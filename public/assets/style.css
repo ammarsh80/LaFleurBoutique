@@ -547,6 +547,7 @@ header h1 {
   border: none;
   color: var(--green);
   font-size: 20px;
+  margin-bottom: 5px;
 
 }
 
@@ -613,20 +614,19 @@ header h1 {
   border: 1px solid var(--primary-light);
 }
 
-#container_btn_inscription {
+.container_btn_inscription {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 50px;
-  padding-left: 200px;
+  align-items: center;
+  padding-left: 210px;
 }
 
 #btn_valide_inscription {
   width: 100px;
   height: 30px;
-  margin-right: 90px;
-  margin-bottom: 20px;
+  margin-right: 130px;
 }
 
 #btn_annuler_inscription {
@@ -876,23 +876,24 @@ textarea#message_contacte {
 #valide_mon_panier {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-
+  flex-wrap: wrap !important;
+  justify-content: space-evenly;
   padding: 20px 10px;
 }
 
 .valide_articles {
-  width: 40%;
+  /* width: 40%; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   background-color: #F7F9F3;
+  padding-top: 0;
 
 }
 
 .container_paiement {
-  width: 60%;
+  /* width: 60%; */
   background-color: var(--white);
   display: flex;
   flex-direction: column;
@@ -900,6 +901,8 @@ textarea#message_contacte {
   align-items: center;
   padding: 40px 20px;
   border-radius: 10px;
+  /* opacity: 50%; */
+  /* pointer-events: none; */
 }
 
 .container_paiement p {
@@ -923,6 +926,48 @@ textarea#message_contacte {
   margin-bottom: 0;
 }
 
+.somme_total {
+  background-color: var(--secondary-light);
+}
+
+.je_valide {
+  background-color: var(--primary-light);
+}
+
+.valide_payement {
+  width: 110px;
+  height: 60px;
+  padding: 5px;
+  font-size: 18px;
+  margin-right: 120px;
+}
+
+.container_loto {
+  width: 90%;
+  background-color: var(--primary-light);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 20px;
+
+}
+
+.container_loto h1 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.container_loto p {
+  font-size: 20px;
+  background-color: var(--green);
+  padding: 15px;
+  border-radius: 5px;
+  color: var(--white);
+
+}
+
 /* ************************************************************ */
 @media (max-width:768px) {
   .info_compte {
@@ -941,7 +986,6 @@ textarea#message_contacte {
 
 
 
-
   .message_inscription {
     font-size: 16px;
   }
@@ -953,5 +997,36 @@ textarea#message_contacte {
     text-align: center;
   }
 
+  .container_paiement {
+    transform: scale(0.7, 0.7);
+  }
 
+  .container_btn_inscription {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0px;
+  }
+/* 
+  .container_loto{
+    margin-top: 0;
+  }
+
+  .container_paiement{
+    margin-bottom: 0;
+  } */
+
+  .container_loto h1 {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  
+  .container_loto p {
+    font-size: 14px;
+    padding: 15px;
+  
+  }
 }

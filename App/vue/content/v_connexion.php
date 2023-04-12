@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-        <div id="container_btn_inscription">
+        <div classe="container_btn_inscription">
             <button type="submit" id="btn_valide_inscription"  class="btn_se_connecter">Valider</button>
             <button type="submit" id="btn_annuler_inscription" class="btn_se_connecter">Annuler</button>
         </div>

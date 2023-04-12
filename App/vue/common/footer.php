@@ -5,7 +5,7 @@
 
     </div>
     <div id="devise">
-        <h1>Lafleur &nbsp;</h1>
+        <h1 class="mx-1">Lafleur</h1>
         <p> prend soin de la nature, la sublime et la partage avec vous au quotidien !</p>
     </div>
     <div class="ligne_banniere"></div>
