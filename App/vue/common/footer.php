@@ -12,13 +12,13 @@
 
     <div id="footer_container">
         <div id="a_propos">
-            <a href="">
+            <a href="index.php?page=v_aPropos">
                 <p class="propos">À propos</p>
             </a>
-            <a href="">
+            <a href="index.php?page=v_aPropos">
                 <p>Qui sommes-nous ?</p>
             </a>
-            <a href="">
+            <a href="index.php?page=v_aPropos">
                 <p>Notre engagement</p>
             </a>
         </div>
@@ -29,19 +29,19 @@
                 <a href="https://shihan.needemand.com/projets_web/la_fleur_wordpress/"> <img src="./public/assets/img/blog.png" alt="logo blog"></a>
             </div>
             <div id="livraison">
-                <a href="">
+                <a href="index.php?page=v_livraison">
                     <p>Zone de livraison</p>
                 </a>
-                <a href="">
+                <a href="index.php?page=v_livraison">
                     <p>Conditions de livraison</p>
                 </a>
             </div>
         </div>
         <div id="nous_contacter">
-            <a href="">
+        <a href="index.php?page=v_nousContacter">
                 <p class="contacter">Nous-contacter</p>
             </a>
-            <a href="">
+            <a href="index.php?page=v_nousContacter">
                 <p>lafleur-labelle@gmail.com</p>
             </a>
             <p>110 Rue Juiverie, 84160 Lourmarin</p>

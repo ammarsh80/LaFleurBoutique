@@ -1,5 +1,5 @@
 <section id="panier">
-    <img class="banniere_accueil" src="./public/assets/img/baniere.jpg" alt="panier de courses">
+    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="panier de courses">
 
     <div id="container_panier">
         <p class="titres_compte valide_panier">Je valide mon panier</p>
@@ -10,7 +10,7 @@
                     <img src="./public/assets/img/naissance/naissance1.jpg" alt="bouquet de fleurs pour une naissance">
                     <div id="description_article">
                         <p>Bouquet de Lys Oriental</p>
-                        <div id="prix_panier" style="padding-left: 0;">
+                        <div id="prix_panier" class="px-0">
                             <p>31.90 &euro;</p>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
                     <img src="./public/assets/img/fleur_1.jpg" alt="bouquet de fleurs pour une naissance">
                     <div id="description_article">
                         <p>Bouquet Cadeau</p>
-                        <div id="prix_panier" style="padding-left: 0;">
+                        <div id="prix_panier" class="px-0">
                             <p>31.09 &euro;</p>
                         </div>
                     </div>

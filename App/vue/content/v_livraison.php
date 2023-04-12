@@ -1,5 +1,5 @@
 <section class="apropos">
-    <img class="banniere_accueil" src="./public/assets/img/baniere.jpg" alt="panier de courses">
+    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="panier de courses">
 
     <div id="container_livraison">
         <p class="titres_apropos">Zone de livraison</p>
@@ -14,9 +14,9 @@
         <p class="titres_apropos">Conditions de livraison</p>
         <div class="qui_somme_nous">
             <span class="notre_engagement">Les livraisons sont facturées</span>
-            <span style="font-weight: bold;">2,99 euros</span>
+            <span class="fw-bold">2,99 euros</span>
             <span> pour chaque commande inférieure à </span>
-            <span style="font-weight: bold;">50 euros</span> <span>, et sont gratuites au-delà de ce montant.</span>
+            <span class="fw-bold">50 euros</span> <span>, et sont gratuites au-delà de ce montant.</span>
             <p> Nous faisons toujours en sorte que le délai de livraison soit d'un jour.</p>
             <p> Une livraison programmée est possible. </p>
 
