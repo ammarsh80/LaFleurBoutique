@@ -1,0 +1,957 @@
+/* import */
+
+@import url("https://fonts.cdnfonts.com/css/courgette");
+@import url('https://fonts.cdnfonts.com/css/hind-jalandhar');
+@import url("https://fonts.cdnfonts.com/css/inter");
+
+/* reset CSS */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+/* fin reset CSS */
+
+/* *************************************************************************************************************************** */
+
+/* start Variables */
+
+:root {
+  --primary-color: #2C3138;
+  --primary-light: #C1E39E;
+  /* --primary-dark: #82514e; */
+  --secondary-color: #78504F;
+  --secondary-light: #D9D9D9;
+  /* --secondary-dark: #14205a; */
+  --green: #31583F;
+  --white: #FFFFFF;
+}
+
+/* end Variables / Import */
+
+/* *************************************************************************************************************************** */
+
+/* start Version Desktop */
+
+/* général */
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--white);
+}
+
+main {
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Courgette", sans-serif;
+}
+
+span {
+  font-family: "Inter", sans-serif;
+}
+
+p {
+  font-family: "hind-jalandhar", sans-serif;
+}
+
+/* *************************************************************************************************************************** */
+
+/* header */
+header {
+  padding: 10px;
+  margin: 0 !important;
+  width: 100%;
+  height: 180px;
+  background-color: var(--primary-light);
+  display: flex;
+  justify-content: space-between;
+}
+
+header img {
+  width: 90px;
+  height: 87px;
+  z-index: 10;
+}
+
+#lafleur {
+  padding-left: 13vw;
+  padding-top: 15px;
+}
+
+header h1 {
+  left: 0;
+  display: flex;
+  justify-content: center;
+  font-size: 70px;
+  color: var(--green);
+  z-index: 0;
+}
+
+#nav_right {
+  padding-right: 20px;
+  width: 270px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--primary-color);
+  font-size: 0.8em;
+
+}
+
+#loop {
+  width: 20px;
+  height: 20px;
+  margin-right: -10px;
+}
+
+#panier_marron {
+  width: 30px;
+  height: 28px;
+  margin-bottom: 5px;
+}
+
+
+/* Fin header */
+
+/* *************************************************************************************************************************** */
+
+/* navigation */
+
+#navigation {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#nav_bar {
+  position: absolute;
+  top: -75px;
+  height: 58px;
+  padding: 20px;
+  padding-right: 50px;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+
+  align-items: center;
+  color: var(--white);
+  font-size: 20px;
+
+}
+
+#nav_bar>a {
+  margin-left: 30px;
+}
+
+.ligne_banniere {
+  width: 100%;
+  height: 3px;
+  background-color: var(--green);
+  margin-bottom: 4px;
+}
+
+.banniere_accueil {
+  width: 100%;
+  height: 150px;
+  margin-bottom: 0;
+  margin-bottom: 50px;
+}
+
+#container_recherche_couleur {
+  position: absolute;
+  top: 170px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  margin-bottom: 50px;
+}
+
+#recherche_couleur {
+  width: 400px;
+  margin-right: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#rechercher_par_couleur {
+  width: 170px;
+  height: 25px;
+  border-radius: 5px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-light);
+  font-size: 14px;
+
+}
+
+.rechercher_couleur {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+#recherche_couleur1 {
+  background-color: red;
+}
+
+#recherche_couleur2 {
+  background-color: white;
+  border: 1px solid var(--primary-light);
+
+}
+
+#recherche_couleur3 {
+  background-color: violet;
+}
+
+#recherche_couleur4 {
+  background-color: yellow;
+}
+
+#recherche_couleur5 {
+  background-color: var(--primary-light);
+}
+
+/* Fin navigation */
+
+/* *************************************************************************************************************************** */
+
+/* Footer */
+#btn_scrole {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+
+#devise {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 7px;
+  color: var(--primary-color);
+  padding: 0 10px;
+}
+
+#footer_container {
+  width: 100%;
+  background-color: var(--secondary-color);
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+#a_propos,
+#nous_contacter {
+  width: 300px;
+  height: 170px;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: var(--primary-color);
+}
+
+.propos {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+#reseaux_sociaux {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+}
+
+#logo_reseaux_sociaux {
+  width: 244px;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: var(--white);
+  border-radius: 4px;
+  padding: 10px;
+}
+
+#logo_reseaux_sociaux img {
+  width: 35px;
+}
+
+#livraison {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
+  color: var(--white);
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.contacter {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#telephone {
+  width: 170px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.numero_telephone {
+  margin-top: 10px;
+}
+
+/* Fin Footer */
+/* *************************************************************************************************************************** */
+
+/* Accueil */
+#container_all_article {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#container_article {
+  width: 270px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+
+}
+
+#container_article>img {
+  width: 270px;
+  border: 1px solid var(--primary-light);
+
+}
+
+#description_article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.7;
+  color: var(--green);
+}
+
+#prix_panier {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 110px;
+}
+
+#prix_panier>img {
+  margin-left: 70px;
+  margin-bottom: 10px;
+}
+
+
+/* Fin Accueil */
+
+/* *************************************************************************************************************************** */
+/*  Connexion */
+#connexion,
+#compte,
+#apropos,
+.apropos,
+#livraison,
+#panier {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#container_connexion {
+  width: 90%;
+  border: 1px solid var(--green);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.btn_se_connecter {
+  width: 155px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: var(--primary-light);
+  border: none;
+  color: var(--green);
+  font-size: 20px;
+
+}
+
+#container_inscription {
+  width: 90%;
+  margin-top: 5px;
+  border: 1px solid var(--green);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+  background-color: #F7F9F3;
+}
+
+.message_inscription {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0px 40px 0px;
+}
+
+#container_formaulaire_inscription {
+  width: 90%;
+  margin-top: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#container_formaulaire_inscription_left,
+#container_formaulaire_inscription_right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#formaulaire_inscription {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.label_connexion {
+  width: 210px;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+  font-size: 22px;
+}
+
+.input_connexion {
+  width: 300px;
+  height: 40px;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  font-size: 22px;
+  margin-bottom: 20px;
+
+}
+
+.input_identification {
+  border: 1px solid var(--primary-light);
+}
+
+#container_btn_inscription {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 50px;
+  padding-left: 200px;
+}
+
+#btn_valide_inscription {
+  width: 100px;
+  height: 30px;
+  margin-right: 90px;
+  margin-bottom: 20px;
+}
+
+#btn_annuler_inscription {
+  width: 100px;
+  height: 30px;
+  background-color: var(--secondary-light);
+}
+
+/*  Fin Connexion */
+
+/* *************************************************************************************************************************** */
+/*  Compte client */
+#container_compte,
+#container_apropos,
+#container_livraison {
+  width: 90%;
+  border: 1px solid var(--green);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 10px;
+}
+
+.titres_compte {
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  background-color: var(--green);
+  color: var(--secondary-light);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+
+}
+
+#container_info_compte {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.info_compte {
+  width: 540px;
+  color: var(--primary-color);
+  font-size: 20px;
+  line-height: 2;
+}
+
+.info_compte_info {
+  width: 100px;
+  font-weight: bold;
+}
+
+.info_compte_info_cp {
+  width: 125px;
+  font-weight: bold;
+
+}
+
+.info_compte_ligne {
+  display: flex;
+}
+
+#ligne_info_compte {
+  width: 100%;
+  height: 1px;
+  background-color: var(--primary-color);
+  margin: 20px;
+}
+
+#modifier_info {
+  height: 52px;
+  background-color: var(--secondary-light);
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.modifier_info_input {
+  width: 340px;
+  background-color: var(--secondary-light);
+  border: none;
+}
+
+
+.table_commande {
+  width: 100%;
+  margin-bottom: 100px;
+}
+
+.table_commande_ligne {
+  padding: 10px;
+  text-align: center;
+}
+
+.table_commande_entete {
+  font-weight: bold;
+}
+
+/*  Fin Compte client */
+
+/* *************************************************************************************************************************** */
+/*  Nous contacter */
+
+
+
+
+.container_contacte {
+  margin-top: 100px;
+}
+
+#formulaire_contact {
+  width: 90%;
+}
+
+textarea#message_contacte {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+  font-size: 20px;
+  resize: vertical;
+}
+
+
+
+
+.test {
+  margin-left: 11vw;
+}
+
+.message_contacte_label {
+  width: 90%;
+  text-align: start;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#container_btn_contacte {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+#btn_envoyer {
+  width: 100px;
+  height: 30px;
+  margin-right: 90px;
+  margin-bottom: 20px;
+  background-color: var(--primary-light);
+  border: none;
+  border-radius: 5px;
+
+}
+
+#btn_annuler_envoyer {
+  width: 100px;
+
+  height: 30px;
+  background-color: var(--secondary-light);
+  background-color: var(--secondary-light);
+  border: none;
+  border-radius: 5px;
+}
+
+/*  Fin Nous contacter */
+/* *************************************************************************************************************************** */
+/*  À propos */
+
+
+.titres_apropos {
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  background-color: var(--secondary-light);
+  color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+
+}
+
+
+.qui_somme_nous {
+  width: 100%;
+  font-size: 20px;
+  line-height: 2;
+  padding: 30px 40px;
+}
+
+.notre_engagement {
+  font-size: 20px;
+  line-height: 2;
+  font-family: "hind-jalandhar", sans-serif;
+}
+
+
+
+.myIframe {
+  width: 70vw;
+  height: 500px;
+  border: 5px ridge var(--primary-color);
+  margin-bottom: 50px;
+}
+
+.zone_livraison {
+  width: 100%;
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*  Fin À propos */
+/* *************************************************************************************************************************** */
+/*  Panier */
+
+#container_panier {
+  width: 90%;
+  background-color: #F7F9F3;
+  border: 1px solid var(--green);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px;
+}
+
+#valide_mon_panier {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  padding: 20px 10px;
+}
+
+.valide_articles {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #F7F9F3;
+
+}
+
+.container_paiement {
+  width: 60%;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 40px 20px;
+  border-radius: 10px;
+}
+
+.container_paiement p {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.adresse_facturation {
+  width: 100%;
+  text-align: center;
+
+}
+
+.info_paiement {
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 10px;
+  text-align: center;
+  background-color: var(--primary-light);
+  margin-bottom: 0;
+}
+
+/* ************************************************************ */
+@media (max-width:768px) {
+  .info_compte {
+    width: 340px;
+  }
+
+  .titres_compte {
+    font-size: 16px;
+  }
+
+  #modifier_info {
+    font-size: 14px;
+  }
+
+
+
+
+
+
+  .message_inscription {
+    font-size: 16px;
+  }
+
+
+  .qui_somme_nous,
+  .notre_engagement {
+    font-size: 14px;
+    text-align: center;
+  }
+
+
+}
