@@ -477,6 +477,39 @@ header h1 {
 
 /* Fin Footer */
 /* *************************************************************************************************************************** */
+/* Début_Page d'erreur */
+
+.body_error {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#message_error {
+  width: 650px;
+  height: 400px;
+  background-image: url(../assets/img/error_404.jpg);
+  background-size: cover;
+  margin: 20px;
+  padding-bottom: 50px;
+  padding-top: 70px;
+  color: rgb(170, 65, 65);
+  font-size: 0.8em;
+  text-align: center;
+  font-weight: bold;
+  box-sizing:content-box;
+}
+
+.go_back {
+  margin-top: 130px;
+}
+.go_back a{
+text-decoration: underline;
+}
+
+/* Fin_Page d'erreur */
+/* *************************************************************************************************************************** */
 
 /* Accueil */
 #container_all_article {
@@ -487,18 +520,21 @@ header h1 {
 }
 
 #container_article {
-  width: 270px;
-  height: 350px;
+  /* width: 270px; */
+  /* height: 350px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
   margin: 20px;
 
 }
 
-#container_article>img {
-  width: 270px;
+#image_article {
+  width: 300px;
+  height: 300px;
+
   border: 1px solid var(--primary-light);
 
 }
@@ -510,18 +546,21 @@ header h1 {
   align-items: center;
   line-height: 1.7;
   color: var(--green);
+  font-weight: bold;
+
 }
 
 #prix_panier {
   display: flex;
   justify-content: start;
   align-items: center;
-  padding-left: 110px;
+  padding-left: 100px;
+  font-weight: normal;
 }
 
-#prix_panier>img {
-  margin-left: 70px;
-  margin-bottom: 10px;
+#prix_panier>a {
+  margin-left: 40px;
+  margin-bottom: 0px;
 }
 
 

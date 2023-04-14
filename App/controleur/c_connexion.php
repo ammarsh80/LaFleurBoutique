@@ -1,3 +1,3 @@
 <?php
-include ("App/modele/M_connexion.php");
+include ("App/modele/M_Connexion.php");
 ?>
