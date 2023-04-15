@@ -45,9 +45,12 @@ switch ($action) {
         
     case 'voirArticlesDeCategorie':
         // $idArticle = filter_input(INPUT_GET, 'id');
-        $idCategorie = filter_input(INPUT_GET, 'voirArticlesDeCategorie');
-       
-        $lesArticles = M_Article::trouveLesArticleDeCategorie($idCategorie);
+        $idCategorie = filter_input(INPUT_GET, 'categorie');
+
+        $lesArticles = M_Article::trouveLesArticlesDeCategorie($idCategorie);
+        $LeNomDeLaCategorie = M_Article::trouveLeNomDeLaCategorie($idCategorie);
+        // var_dump($LeNomDeLaCategorie[0][0]);
+        // die;
 
 
         // $lesArticles = M_Article::trouverAllArticle($categorie);
@@ -78,7 +81,7 @@ switch ($action) {
             afficheMessage("Ce jeu a été ajouté");
         }
         $categorie = filter_input(INPUT_GET, 'categorie');
-        $lesJeux = M_Article::trouveLesArticleDeCategorie($categorie);
+        $lesJeux = M_Article::trouveLesArticlesDeCategorie($categorie);
         break;
     case "ajouterAuPanierCon":
         $idexemplaire = filter_input(INPUT_GET, 'idexemplaire');

@@ -32,10 +32,13 @@ switch ($uc) {
         include 'App/controleur/c_consultation.php';
         break;
     case 'visite' :
-        include './App/controleur/c_consultation.php';
+        include 'App/controleur/c_consultation.php';
+
         break;
     case 'panier' :
+
         include 'App/controleur/c_gestionPanier.php';
+
         break;
     case 'commander':
         include 'App/controleur/c_passerCommande.php';

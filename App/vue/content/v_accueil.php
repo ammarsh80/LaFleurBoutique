@@ -2,7 +2,7 @@
     <!-- <div class="banniere" style="background-image: url(./public/assets/img/baniere.jpg);">
         <h1 style="color:white;"> Bienvenue</h1>
     </div> -->
-    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="panier de courses">
+    <!-- <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="panier de courses"> -->
     <div id="container_all_article">
 
         <!-- <div id="container_article">
@@ -18,7 +18,10 @@
 
 
         <?php
+
+
         foreach ($lesArticles as $unArticle) {
+
             $idArticle = $unArticle['id'];
             $description = $unArticle['description'];
             $etat = $unArticle['etat'];
@@ -30,14 +33,14 @@
             $unite = $unArticle['nom_unite'];
             $taille = $unArticle['taille'];
 
-            
+
         ?>
             <div id="container_article">
-                <img  id="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>" />
+                <img id="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>" />
                 <div id="description_article">
-                    <p><?= $nom_fleur. " " .$couleur ?></p>
-                    <p><?= $nombre. " ".$unite. " ".$taille  ?></p>
-                    
+                    <p><?= $nom_fleur . " " . $couleur ?></p>
+                    <p><?= $nombre . " " . $unite . " " . $taille  ?></p>
+
                     <div id="prix_panier">
                         <p><?= $prix ?> Euros</p>
                         <a href="index.php?uc=accueil&idArticle=<?= $idArticle ?>&action=ajouterAuPanierDepuisAccueil">
@@ -53,3 +56,8 @@
     </div>
 
 </section>
+
+<?php
+include './App/vue/common/footer.php';
+
+?>

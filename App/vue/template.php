@@ -6,7 +6,7 @@
     <?php
     include("./App/vue/common/head.php");
     include("./App/vue/common/header.php");
-    include './App/controleur/c_consultation.php';
+    // include './App/controleur/c_consultation.php';
     include("./App/vue/common/navigation.php");
 
 

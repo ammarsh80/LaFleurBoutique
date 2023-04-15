@@ -15,7 +15,7 @@ class M_Article
      * @param $idCategorie
      * @return un tableau associatif
      */
-    public static function trouveLesArticleDeCategorie($idCategorie)
+    public static function trouveLesArticlesDeCategorie($idCategorie)
     {
         $req = "SELECT * FROM lf_articles
         JOIN lf_article_categorie ON `lf_articles`.`id` = `lf_article_categorie`.`article_id`
@@ -29,6 +29,25 @@ class M_Article
         $statement->execute();
         $lesLignes = $statement->fetchAll();
         return $lesLignes;
+    }
+    /**
+     * Retourne sous forme d'un tableau associatif tous les articles de la
+     * catégorie passée en argument
+     *
+     * @param $idCategorie
+     * @return un tableau associatif
+     */
+    public static function trouveLeNomDeLaCategorie($idCategorie)
+    {
+        $req = "SELECT lf_categories.nom_categorie FROM lf_categories
+        WHERE `lf_categories`.`id` = :idCategorie";
+        $statement = AccesDonnees::getPdo()->prepare($req);
+        $statement->bindParam(':idCategorie', $idCategorie, PDO::PARAM_INT);
+        $statement->execute();
+        $LeNomDeLaCategorie = $statement->fetchAll();
+        return $LeNomDeLaCategorie;
+
+       
     }
 
 
