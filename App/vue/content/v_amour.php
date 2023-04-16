@@ -1,12 +1,15 @@
 <section id="amour">
     <div class="banniere" style="background-image: url(./public/assets/img/amour/baniere_amour.jpg);">
-       <h1> Amour et sentiments</h1>
+        <h1> Amour et sentiments</h1>
     </div>
+    <?php
+      include './App/vue/common/recherche_couleur.php';
+    ?>
     <!-- <img class="banniere" src="./public/assets/img/amour/baniere_amour.jpg" alt="image fleurs amour"> -->
     <div id="container_all_article">
 
 
-    <?php
+        <?php
         foreach ($lesArticles as $unArticle) {
             $idArticle = $unArticle['id'];
             $description = $unArticle['description'];
@@ -19,18 +22,19 @@
             $unite = $unArticle['nom_unite'];
             $taille = $unArticle['taille'];
 
-            
+
         ?>
             <div id="container_article">
-                <img  id="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>" />
+                <img id="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>" />
                 <div id="description_article">
-                    <p><?= $nom_fleur. " " .$couleur ?></p>
-                    <p><?= $nombre. " ".$unite. " ".$taille  ?></p>
-                    
+                    <p><?= $nom_fleur . " " . $couleur ?></p>
+                    <p><?= $nombre . " " . $unite . " " . $taille  ?></p>
+
                     <div id="prix_panier">
                         <p><?= $prix ?> Euros</p>
-                        <a href="index.php?uc=accueil&idArticle=<?= $idArticle ?>&action=ajouterAuPanierDepuisAccueil">
-                            <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add" />
+                        <a href="index.php?page=v_amour&idArticle=<?php echo $idArticle ?>&categorie=Amour%20et%20sentiments&action=ajouterAuPanier">
+
+                        <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add" />
                         </a>
                     </div>
                 </div>

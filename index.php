@@ -1,7 +1,7 @@
 <?php
 $page = filter_input(INPUT_GET, "page", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-session_start(); 
+session_start();
 
 // Pour afficher les erreurs PHP
 error_reporting(E_ALL);
@@ -22,42 +22,45 @@ $action = filter_input(INPUT_GET, "action", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $page = filter_input(INPUT_GET, "page", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Action
 initPanier();
 
+
 if (!$uc) {
     $uc = 'accueil';
 }
 
 // Controleur principale
 switch ($uc) {
-    case 'v_accueil' :
+    case 'v_accueil':
         include 'App/controleur/c_consultation.php';
         break;
-    case 'visite' :
+
+    case 'visite':
         include 'App/controleur/c_consultation.php';
-
         break;
-    case 'panier' :
 
+    case 'panier':
         include 'App/controleur/c_gestionPanier.php';
-
+        
         break;
+       
     case 'commander':
         include 'App/controleur/c_passerCommande.php';
         break;
+
     case 'inscription':
         include 'App/controleur/c_inscription.php';
         break;
-    case 'administrer' :
+
+    case 'administrer':
         include 'App/controleur/c_monCompte.php';
         break;
-    case 'deconnexion' :
+
+    case 'deconnexion':
         include 'App/controleur/c_deconnexion.php';
         break;
-    default: 
-    break;
+
+    default:
+        break;
 }
 
 
-include_once ("./App/vue/template.php");
-
-?>
-
+include_once("./App/vue/template.php");

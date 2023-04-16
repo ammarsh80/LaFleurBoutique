@@ -1,5 +1,5 @@
 <section id="connexion">
-    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="panier de courses">
+    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="image bannière">
 
     <div id="container_connexion">
         <form action="">
@@ -17,7 +17,7 @@
     </div>
 
     <div id="container_inscription">
-            <p>Si vous n'êtes pas encore inscrit, veuillez renseigner le formulaire d'inscription avant de vous connectez</p>
+            <p class="message_inscription">Si vous n'êtes pas encore inscrit, veuillez renseigner le formulaire d'inscription avant de vous connectez</p>
         <div id="container_formaulaire_inscription">
             <div id="container_formaulaire_inscription_left">
                 <div>
@@ -64,12 +64,12 @@
                 </div>
             </div>
         </div>
-        <div classe="container_btn_inscription">
-            <button type="submit" id="btn_valide_inscription"  class="btn_se_connecter">Valider</button>
-            <button type="submit" id="btn_annuler_inscription" class="btn_se_connecter">Annuler</button>
+        <div classe="container_btn_inscription" style="display: flex;">
+            <button type="submit" id="btn_valide_inscription"  class="btn_envoyer">Valider</button>
+            <button type="submit" id="btn_annuler_inscription" class="btn_annuler_envoyer">Annuler</button>
         </div>
         <div>
-            <p>* Information obligatoire</p>
+            <p class="mt-3">* Information obligatoire</p>
         </div>
 
     </div>

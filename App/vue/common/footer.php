@@ -1,7 +1,6 @@
 <footer>
     <div id="btn_scrole">
-        <img src="./public/assets/img/vector-haut.png" alt="logo facebook">
-        <img src="./public/assets/img/vector-right.png" alt="page suivante">
+        <img src="./public/assets/img/vector-haut.png" onclick="topFunction()" id="topBtn" alt="bouton retour en haut de page">
 
     </div>
     <div id="devise">

@@ -1,30 +1,53 @@
 <section id="panier">
-    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="panier de courses">
+    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="image bannière">
 
     <div id="container_panier">
         <p class="titres_compte valide_panier">Je valide mon panier</p>
         <div id="valide_mon_panier">
 
             <div class="valide_articles">
-                <div id="container_article" class="mt-0">
-                    <img src="./public/assets/img/naissance/naissance1.jpg" alt="bouquet de fleurs pour une naissance">
-                    <div id="description_article">
-                        <p>Bouquet de Lys Oriental</p>
-                        <div id="prix_panier" class="px-0">
-                            <p>31.90 &euro;</p>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                if (isset($lesArticlesDuPanier)) {
+                    foreach ($lesArticlesDuPanier as $unArticle) {
+                        $idArticle = $unArticle['id'];
+                        $description = $unArticle['description'];
+                        $etat = $unArticle['etat'];
+                        $prix = $unArticle['prix_unitaire'];
+                        $nombre = $unArticle['nombre'];
+                        $image = $unArticle['image'];
+                        $nom_fleur = $unArticle['nom_fleur'];
+                        $couleur = $unArticle['couleur'];
+                        $unite = $unArticle['nom_unite'];
+                        $taille = $unArticle['taille'];
 
-                <div id="container_article">
-                    <img src="./public/assets/img/fleur_1.jpg" alt="bouquet de fleurs pour une naissance">
-                    <div id="description_article">
-                        <p>Bouquet Cadeau</p>
-                        <div id="prix_panier" class="px-0">
-                            <p>31.09 &euro;</p>
+                ?>
+                        <div id="container_article">
+                            <img id="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>" />
+                            <div id="description_article">
+                                <p><?= $nom_fleur . " " . $couleur ?></p>
+                                <p><?= $nombre . " " . $unite . " " . $taille  ?></p>
+
+                                <div id="prix_panier">
+                                    <p><?= $prix ?> Euros</p>
+                                    <a href="index.php?page=v_panier&uc=panier&idArticle=<?= $idArticle ?>&action=supprimerUnArticle" onclick="return confirm('Voulez-vous vraiment retirer cet article ?');">
+                                        <?php
+
+                                        ?>
+
+                                        <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add" />
+                                    </a>
+
+                                    </a>
+
+
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                <?php
+                    }
+                }
+                ?>
+
                 <div class="w-100 d-flex justify-content-evenly">
                     <span class="fw-bold">Frais de livraison :</span>
                     <label for="frais_offert">
@@ -35,40 +58,67 @@
                     </label>
                 </div>
                 <p class="mt-5 fw-bold">Total à payer (TTC)</p>
-                <div class="p-3 rounded mt-4 somme_total">
-                    63.80 euros
+
+                <div id="somme_total" class="p-3 rounded mt-4 somme_total">
+                    <?php
+
+                    if (isset($lesArticlesDuPanier)) {
+
+                        // à garder au cas où////////////////////////////////////////////////////////////////////
+
+                        // $lesPrixUnitaires = array(); // initialisation du tableau des prix unitaires
+                        // foreach ($lesArticlesDuPanier as $article) {
+                        //     $prix_unitaire = $article['prix_unitaire'];
+                        //     array_push($lesPrixUnitaires, $prix_unitaire); // ajout du prix unitaire à la fin du tableau
+                        // }
+
+                        $sommePrixUnitaires = 0;
+                        foreach ($lesArticlesDuPanier as $article) {
+                            $sommePrixUnitaires += $article['prix_unitaire'];
+                        }
+                        $sommeTTC = number_format($sommePrixUnitaires, 2);
+                        if ($sommeTTC >= 50) {
+                            echo (number_format($sommePrixUnitaires, 2) . " euros");
+                        } else {
+                            echo (number_format($sommePrixUnitaires, 2) + 2.99 . " euros");
+                        }
+                    }
+                    ?>
+
                 </div>
 
+
+
                 <p class="mt-5">Veuillez valider votre panier pour passer au paiement</p>
-                <div class="py-2 px-5 pr-5 rounded mt-4 mb-4 je_valide">
+                <div id="je_valide" class="py-2 px-5 pr-5 rounded mt-4 mb-4 je_valide">
                     Je valide mon panier
                 </div>
 
             </div>
 
-            <div class="container_paiement">
+            <div id="container_paiement" class="container_paiement">
                 <p>Veuillez renseigner une adresse de livraison</p>
                 <div class="mb-5">
                     <div>
-                        <label for="mail" class="label_connexion fw-bold">Mme / M : </label>
-                        <input type="text" name="mail" id="mail" class="input_connexion modifier_info_input">
+                        <label for="identiteLiv" class="label_connexion fw-bold">Mme / M : </label>
+                        <input type="text" name="identiteLiv" id="identiteLiv" class="input_connexion modifier_info_input">
                     </div>
                     <div>
-                        <label for="adresse" class="label_connexion fw-bold">Adresse: </label>
-                        <input type="text" name="adresse" id="adresse" class="input_connexion modifier_info_input">
+                        <label for="adresseLiv" class="label_connexion fw-bold">Adresse: </label>
+                        <input type="text" name="adresseLiv" id="adresseLiv" class="input_connexion modifier_info_input">
                     </div>
                     <div>
-                        <label for="ville" class="label_connexion fw-bold">Ville: </label>
-                        <input type="text" name="ville" id="ville" class="input_connexion modifier_info_input">
+                        <label for="villeLiv" class="label_connexion fw-bold">Ville: </label>
+                        <input type="text" name="villeLiv" id="villeLiv" class="input_connexion modifier_info_input">
                     </div>
                     <div>
-                        <label for="cp" class="label_connexion fw-bold">Code postal: </label>
-                        <input type="text" name="cp" id="cp" class="input_connexion modifier_info_input">
+                        <label for="cpLiv" class="label_connexion fw-bold">Code postal: </label>
+                        <input type="text" name="cpLiv" id="cpLiv" class="input_connexion modifier_info_input">
                     </div>
 
                     <div class="container_btn_inscription">
-                        <button type="submit" id="btn_valide_inscription" class="btn_se_connecter">Valider</button>
-                        <button type="submit" id="btn_annuler_inscription" class="btn_se_connecter">Annuler</button>
+                        <button type="submit" id="btn_valide_livraison" class="btn_valide_livraison">Valider</button>
+                        <button type="submit" id="btn_annuler_livraison" class="btn_annuler_livraison">Annuler</button>
                     </div>
                 </div>
 
@@ -77,24 +127,24 @@
                     <p class="adresse_facturation">Adresse de facturation</p>
 
                     <div>
-                        <label for="identite" class="label_connexion fw-bold">Mme / M : </label>
-                        <input type="text" name="identite" id="identite" class="input_connexion modifier_info_input">
+                        <label for="identiteFac" class="label_connexion fw-bold">Mme / M : </label>
+                        <input type="text" name="identiteFac" id="identiteFac" class="input_connexion modifier_info_input">
                     </div>
                     <div>
-                        <label for="adresse" class="label_connexion fw-bold">Adresse: </label>
-                        <input type="text" name="adresse" id="adresse" class="input_connexion modifier_info_input">
+                        <label for="adresseFac" class="label_connexion fw-bold">Adresse: </label>
+                        <input type="text" name="adresseFac" id="adresseFac" class="input_connexion modifier_info_input">
                     </div>
                     <div>
-                        <label for="ville" class="label_connexion fw-bold">Ville: </label>
-                        <input type="text" name="ville" id="ville" class="input_connexion modifier_info_input">
+                        <label for="villeFac" class="label_connexion fw-bold">Ville: </label>
+                        <input type="text" name="villeFac" id="villeFac" class="input_connexion modifier_info_input">
                     </div>
                     <div>
-                        <label for="cp" class="label_connexion fw-bold">Code postal: </label>
-                        <input type="text" name="cp" id="cp" class="input_connexion modifier_info_input">
+                        <label for="cpFac" class="label_connexion fw-bold">Code postal: </label>
+                        <input type="text" name="cpFac" id="cpFac" class="input_connexion modifier_info_input">
 
                         <div class="container_btn_inscription">
-                            <button type="submit" id="btn_valide_inscription" class="btn_se_connecter">Valider</button>
-                            <button type="submit" id="btn_annuler_inscription" class="btn_se_connecter">Annuler</button>
+                            <button type="submit" id="btn_valide_facturation" class="btn_valide_facturation">Valider</button>
+                            <button type="submit" id="btn_annuler_facturation" class="btn_annuler_facturation">Annuler</button>
                         </div>
                     </div>
                 </div>
@@ -102,34 +152,41 @@
 
                 <div>
                     <div>
-                        <label for="mail" class="label_connexion fw-bold">Nom de propritaire</label>
-                        <input type="text" name="mail" id="mail" class="input_connexion modifier_info_input">
+                        <label for="propritaire" class="label_connexion fw-bold">Nom de propritaire</label>
+                        <input type="text" name="propritaire" id="propritaire" class="input_connexion modifier_info_input">
                     </div>
                     <div>
-                        <label for="adresse" class="label_connexion fw-bold">Numéro de carte</label>
-                        <input type="text" name="adresse" id="adresse" class="input_connexion modifier_info_input">
+                        <label for="carte" class="label_connexion fw-bold">Numéro de carte</label>
+                        <input type="text" name="carte" id="carte" class="input_connexion modifier_info_input">
                     </div>
                     <div>
-                        <label for="ville" class="label_connexion fw-bold">Date d'expiration</label>
-                        <input type="text" name="ville" id="ville" class="input_connexion modifier_info_input">
+                        <label for="expiration" class="label_connexion fw-bold">Date d'expiration</label>
+                        <!-- <input type="datetime-local" name="expiration" id="expiration" class="input_connexion modifier_info_input"> -->
+                        <input type="text" name="expiration" id="expiration" class="input_connexion modifier_info_input" placeholder="MM/AAAA">
+
                     </div>
                     <div>
-                        <label for="cp" class="label_connexion fw-bold">Cryptogramme</label>
-                        <input type="text" name="cp" id="cp" class="input_connexion modifier_info_input">
+                        <label for="crypto" class="label_connexion fw-bold">Cryptogramme</label>
+                        <input type="text" name="crypto" id="crypto" class="input_connexion modifier_info_input">
                     </div>
                     <div class="container_btn_inscription">
-                        <button type="submit" id="btn_valide_payement" class="btn_se_connecter valide_payement">Je paye ma commande</button>
-                        <button type="submit" id="btn_annuler_inscription" class="btn_se_connecter">Annuler</button>
+                        <button type="submit" id="btn_valide_payement" class="btn_valide_payement">Je paye ma commande</button>
+                        <button type="submit" id="btn_annuler_payement" class="btn_annuler_payement">Annuler</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="container_loto">
             <h1>À l’occasion de la fête des mères, tentez de gagner un de nos lot surprise </h1>
-            <p>
-                Je tente ma chance
-            </p>
+            <a href="index.php?page=v_loto">
+                <p>Je tente ma chance</p>
+            </a>
         </div>
     </div>
+
+
+
+
+
 
 </section>

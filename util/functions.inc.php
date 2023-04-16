@@ -7,8 +7,9 @@
  * où elle n'existe pas 
  */
 function initPanier() {
-    if (!isset($_SESSION['jeux'])) {
-        $_SESSION['jeux'] = array();
+    if (!isset($_SESSION['Articles'])) {
+        $_SESSION['Articles'] = array();
+
     }
 }
 
@@ -18,63 +19,66 @@ function initPanier() {
  * Supprime la variable de type session 
  */
 function supprimerPanier() {
-    unset($_SESSION['jeux']);
+    unset($_SESSION['Articles']);
 }
 
 /**
- * Ajoute un jeu au panier
+ * Ajoute un Article au panier
  *
- * Teste si l'identifiant du jeu est déjà dans la variable session 
+ * Teste si l'identifiant du Article est déjà dans la variable session 
  * ajoute l'identifiant à la variable de type session dans le cas où
- * où l'identifiant du jeu n'a pas été trouvé
- * @param $idJeu : identifiant de jeu
- * @return vrai si le jeu n'était pas dans la variable, faux sinon 
+ * où l'identifiant du Article n'a pas été trouvé
+ * @param $idArticle : identifiant de article
+ * @return vrai si le article n'était pas dans la variable, faux sinon 
  */
-function ajouterAuPanier($idJeu) {
+function ajouterAuPanier($idArticle) {
     $ok = false;
-    if (!in_array($idJeu, $_SESSION['jeux'])) {
-        $_SESSION['jeux'][] = $idJeu;
+    if (!in_array($idArticle, $_SESSION['Articles'])) {
+        $_SESSION['Articles'][] = $idArticle;
         $ok = true;
     }
     return $ok;
 }
 
 /**
- * Retourne les jeux du panier
+ * Retourne les Articles du panier
  *
- * Retourne le tableau des identifiants de jeu
+ * Retourne le tableau des identifiants de article
  * @return : le tableau
  */
-function getLesIdJeuxDuPanier() {
-    return $_SESSION['jeux'];
+function getLesIdArticlesDuPanier() {
+   
+    return $_SESSION['Articles'];
+    
 }
 
 /**
- * Retourne le nombre de jeux du panier
+ * Retourne le nombre de Articles du panier
  *
  * Teste si la variable de session existe
  * et retourne le nombre d'éléments de la variable session
  * @return : le nombre 
  */
-function nbJeuxDuPanier() {
+function nbArticlesDuPanier() {
     $n = 0;
-    if (isset($_SESSION['jeux'])) {
-        $n = count($_SESSION['jeux']);
+    if (isset($_SESSION['Articles'])) {
+        $n = count($_SESSION['Articles']);
     }
     return $n;
+ 
 }
 
 /**
- * Retire un de jeux du panier
+ * Retire un de Articles du panier
  *
  * Recherche l'index de l'idProduit dans la variable session
  * et détruit la valeur à ce rang
- * @param $idProduit : identifiant de jeu
+ * @param $idProduit : identifiant de article
 
  */
 function retirerDuPanier($idProduit) {
-    $index = array_search($idProduit, $_SESSION['jeux']);
-    unset($_SESSION['jeux'][$index]);
+    $index = array_search($idProduit, $_SESSION['Articles']);
+    unset($_SESSION['Articles'][$index]);
 }
 
 /**
@@ -107,4 +111,11 @@ function afficheErreur(string $msgErreur) {
  */
 function afficheMessage(string $msg) {
     echo '<div class="message">'.$msg.'</div>';
+}
+/**
+ * Affiche un message bleu
+ * @param string $msg
+ */
+function afficheMessagePanierVide(string $msg) {
+    echo '<div class="messagePanierVide">'.$msg.'</div>';
 }

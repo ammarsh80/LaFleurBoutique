@@ -1,5 +1,5 @@
 <section id="compte">
-    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="panier de courses">
+    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="image bannière">
 
     <div id="container_compte">
         <p class="titres_compte">Information personnelles</p>

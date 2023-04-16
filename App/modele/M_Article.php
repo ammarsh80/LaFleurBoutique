@@ -34,6 +34,30 @@ class M_Article
      * Retourne sous forme d'un tableau associatif tous les articles de la
      * catégorie passée en argument
      *
+     * @param $idArticle
+     * @return un tableau associatif
+     */
+    public static function trouveLaCategorieArticle($idArticle)
+    {
+
+
+        $req = "SELECT lf_categories.nom_categorie FROM lf_categories
+        JOIN lf_article_categorie ON `lf_categories`.`id` = `lf_article_categorie`.`categorie_id`
+        JOIN lf_articles ON `lf_article_categorie`.`article_id` = `lf_articles`.`id` 
+        Join lf_fleurs ON `lf_articles`.`fleurs_id` = `lf_fleurs`.`id`
+        Join lf_unites ON `lf_articles`.`unites_id` = `lf_unites`.`id`
+        Join lf_couleurs ON `lf_articles`.`couleurs_id` = `lf_couleurs`.`id`
+        WHERE `lf_article_categorie`.`article_id` = :idArticle";
+        $statement = AccesDonnees::getPdo()->prepare($req);
+        $statement->bindParam(':idArticle', $idArticle, PDO::PARAM_INT);
+        $statement->execute();
+        $laCategorie = $statement->fetchAll();
+        return $laCategorie;
+    }
+    /**
+     * Retourne sous forme d'un tableau associatif tous les articles de la
+     * catégorie passée en argument
+     *
      * @param $idCategorie
      * @return un tableau associatif
      */
@@ -46,9 +70,35 @@ class M_Article
         $statement->execute();
         $LeNomDeLaCategorie = $statement->fetchAll();
         return $LeNomDeLaCategorie;
-
-       
     }
+
+    /**
+     * Retourne sous forme d'un tableau associatif tous les articles de la
+     * catégorie passée en argument
+     *
+     * @param string $nom_categorie Le nom de la catégorie
+     * @return array Un tableau associatif contenant les articles de la catégorie
+     */
+    public static function trouveLesArticlesDeCategorieNom($nom_categorie)
+    {
+        $req = "SELECT lf_articles.id, lf_articles.nombre, lf_articles.description, lf_articles.prix_unitaire, 
+        lf_articles.image, lf_articles.etat, lf_categories.nom_categorie, lf_fleurs.nom_fleur, 
+        lf_unites.nom_unite, lf_unites.taille, lf_couleurs.couleur  
+        FROM lf_articles
+    JOIN lf_article_categorie ON `lf_articles`.`id` = `lf_article_categorie`.`article_id`
+    JOIN lf_categories ON `lf_article_categorie`.`categorie_id` = `lf_categories`.`id` 
+    JOIN lf_fleurs ON `lf_articles`.`fleurs_id` = `lf_fleurs`.`id`
+    JOIN lf_unites ON `lf_articles`.`unites_id` = `lf_unites`.`id`
+    JOIN lf_couleurs ON `lf_articles`.`couleurs_id` = `lf_couleurs`.`id`
+    WHERE `lf_categories`.`nom_categorie` = :nom_categorie";
+
+        $statement = AccesDonnees::getPdo()->prepare($req);
+        $statement->bindParam(':nom_categorie', $nom_categorie, PDO::PARAM_STR);
+        $statement->execute();
+        $lesArticles = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $lesArticles;
+    }
+
 
 
     /**
@@ -60,7 +110,10 @@ class M_Article
      */
     public static function trouveLesArticleAccueil()
     {
-        $req = "SELECT * FROM lf_articles
+        $req = "SELECT lf_articles.id, lf_articles.nombre, lf_articles.description, lf_articles.prix_unitaire, 
+        lf_articles.image, lf_articles.etat, lf_categories.nom_categorie, lf_fleurs.nom_fleur, 
+        lf_unites.nom_unite, lf_unites.taille, lf_couleurs.couleur 
+        FROM lf_articles
         JOIN lf_article_categorie ON `lf_articles`.`id` = `lf_article_categorie`.`article_id`
         JOIN lf_categories ON `lf_article_categorie`.`categorie_id` = `lf_categories`.`id` 
         Join lf_fleurs ON `lf_articles`.`fleurs_id` = `lf_fleurs`.`id`
@@ -69,8 +122,9 @@ class M_Article
         WHERE `lf_categories`.`nom_categorie` = 'accueil'";
         $res = AccesDonnees::query($req);
         $lesLignes = $res->fetchAll();
-        return $lesLignes;
+        // $lesLignes = $res->fetchAll(PDO::FETCH_ASSOC);
 
+        return $lesLignes;
     }
     /**
      * Retourne sous forme d'un tableau associatif tous les articles de la
@@ -81,7 +135,10 @@ class M_Article
      */
     public static function trouveLesArticleAmour()
     {
-        $req = "SELECT * FROM lf_articles
+        $req = "SELECT lf_articles.id, lf_articles.nombre, lf_articles.description, lf_articles.prix_unitaire, 
+        lf_articles.image, lf_articles.etat, lf_categories.nom_categorie, lf_fleurs.nom_fleur, 
+        lf_unites.nom_unite, lf_unites.taille, lf_couleurs.couleur  
+        FROM lf_articles
         JOIN lf_article_categorie ON `lf_articles`.`id` = `lf_article_categorie`.`article_id`
         JOIN lf_categories ON `lf_article_categorie`.`categorie_id` = `lf_categories`.`id` 
         Join lf_fleurs ON `lf_articles`.`fleurs_id` = `lf_fleurs`.`id`
@@ -91,7 +148,6 @@ class M_Article
         $res = AccesDonnees::query($req);
         $lesLignes = $res->fetchAll();
         return $lesLignes;
-
     }
     /**
      * Retourne sous forme d'un tableau associatif tous les articles de la
@@ -102,7 +158,10 @@ class M_Article
      */
     public static function trouveLesArticleMariage()
     {
-        $req = "SELECT * FROM lf_articles
+        $req = "SELECT lf_articles.id, lf_articles.nombre, lf_articles.description, lf_articles.prix_unitaire, 
+        lf_articles.image, lf_articles.etat, lf_categories.nom_categorie, lf_fleurs.nom_fleur, 
+        lf_unites.nom_unite, lf_unites.taille, lf_couleurs.couleur  
+        FROM lf_articles
         JOIN lf_article_categorie ON `lf_articles`.`id` = `lf_article_categorie`.`article_id`
         JOIN lf_categories ON `lf_article_categorie`.`categorie_id` = `lf_categories`.`id` 
         Join lf_fleurs ON `lf_articles`.`fleurs_id` = `lf_fleurs`.`id`
@@ -112,7 +171,6 @@ class M_Article
         $res = AccesDonnees::query($req);
         $lesLignes = $res->fetchAll();
         return $lesLignes;
-
     }
     /**
      * Retourne sous forme d'un tableau associatif tous les articles de la
@@ -123,7 +181,10 @@ class M_Article
      */
     public static function trouveLesArticleNaissance()
     {
-        $req = "SELECT * FROM lf_articles
+        $req = "SELECT lf_articles.id, lf_articles.nombre, lf_articles.description, lf_articles.prix_unitaire, 
+        lf_articles.image, lf_articles.etat, lf_categories.nom_categorie, lf_fleurs.nom_fleur, 
+        lf_unites.nom_unite, lf_unites.taille, lf_couleurs.couleur 
+         FROM lf_articles
         JOIN lf_article_categorie ON `lf_articles`.`id` = `lf_article_categorie`.`article_id`
         JOIN lf_categories ON `lf_article_categorie`.`categorie_id` = `lf_categories`.`id` 
         Join lf_fleurs ON `lf_articles`.`fleurs_id` = `lf_fleurs`.`id`
@@ -133,7 +194,6 @@ class M_Article
         $res = AccesDonnees::query($req);
         $lesLignes = $res->fetchAll();
         return $lesLignes;
-
     }
     /**
      * Retourne sous forme d'un tableau associatif tous les articles de la
@@ -144,7 +204,10 @@ class M_Article
      */
     public static function trouveLesArticleRemerciement()
     {
-        $req = "SELECT * FROM lf_articles
+        $req = "SELECT lf_articles.id, lf_articles.nombre, lf_articles.description, lf_articles.prix_unitaire, 
+        lf_articles.image, lf_articles.etat, lf_categories.nom_categorie, lf_fleurs.nom_fleur, 
+        lf_unites.nom_unite, lf_unites.taille, lf_couleurs.couleur 
+         FROM lf_articles
         JOIN lf_article_categorie ON `lf_articles`.`id` = `lf_article_categorie`.`article_id`
         JOIN lf_categories ON `lf_article_categorie`.`categorie_id` = `lf_categories`.`id` 
         Join lf_fleurs ON `lf_articles`.`fleurs_id` = `lf_fleurs`.`id`
@@ -154,7 +217,6 @@ class M_Article
         $res = AccesDonnees::query($req);
         $lesLignes = $res->fetchAll();
         return $lesLignes;
-
     }
     /**
      * Retourne sous forme d'un tableau associatif tous les articles de la
@@ -165,7 +227,10 @@ class M_Article
      */
     public static function trouveLesArticleAnniversaire()
     {
-        $req = "SELECT * FROM lf_articles
+        $req = "SELECT lf_articles.id, lf_articles.nombre, lf_articles.description, lf_articles.prix_unitaire, 
+        lf_articles.image, lf_articles.etat, lf_categories.nom_categorie, lf_fleurs.nom_fleur, 
+        lf_unites.nom_unite, lf_unites.taille, lf_couleurs.couleur 
+        FROM lf_articles
         JOIN lf_article_categorie ON `lf_articles`.`id` = `lf_article_categorie`.`article_id`
         JOIN lf_categories ON `lf_article_categorie`.`categorie_id` = `lf_categories`.`id` 
         Join lf_fleurs ON `lf_articles`.`fleurs_id` = `lf_fleurs`.`id`
@@ -175,10 +240,9 @@ class M_Article
         $res = AccesDonnees::query($req);
         $lesLignes = $res->fetchAll();
         return $lesLignes;
-
     }
     /**
-     * Retourne sous forme d'un tableau associatif tous les jeux de la
+     * Retourne sous forme d'un tableau associatif tous les Articles de la
      * console passée en argument
      *
      * @param $idConsole
@@ -255,13 +319,23 @@ class M_Article
      * @param $desIdJeux tableau d'idProduits
      * @return un tableau associatif $lesProduits
      */
-    public static function trouveLesJeuxDuTableau($desIdJeux)
+    public static function trouveLesArticlesDuTableau($desIdArticles)
     {
-        $nbProduits = count($desIdJeux);
+        $nbProduits = count($desIdArticles);
         $lesProduits = array();
         if ($nbProduits != 0) {
-            foreach ($desIdJeux as $unIdProduit) {
-                $req = "SELECT * FROM exemplaire WHERE id_exemplaire = :unIdProduit";
+            foreach ($desIdArticles as $unIdProduit) {
+                $req = "SELECT lf_articles.id, lf_articles.nombre, lf_articles.description, lf_articles.prix_unitaire, 
+                lf_articles.image, lf_articles.etat, lf_categories.nom_categorie, lf_fleurs.nom_fleur, 
+                lf_unites.nom_unite, lf_unites.taille, lf_couleurs.couleur  
+                
+                 FROM lf_articles 
+                   JOIN lf_article_categorie ON `lf_articles`.`id` = `lf_article_categorie`.`article_id`
+        JOIN lf_categories ON `lf_article_categorie`.`categorie_id` = `lf_categories`.`id` 
+        Join lf_fleurs ON `lf_articles`.`fleurs_id` = `lf_fleurs`.`id`
+        Join lf_unites ON `lf_articles`.`unites_id` = `lf_unites`.`id`
+        Join lf_couleurs ON `lf_articles`.`couleurs_id` = `lf_couleurs`.`id`
+        WHERE lf_articles.id = :unIdProduit";
                 $statement = AccesDonnees::getPdo()->prepare($req);
                 $statement->bindParam(':unIdProduit', $unIdProduit, PDO::PARAM_INT);
                 $statement->execute();

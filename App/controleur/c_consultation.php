@@ -1,7 +1,6 @@
 <?php
-include 'App/modele/M_Article.php';
-include 'App/modele/M_categorie.php';
-include 'App/modele/M_Fleur.php';
+include_once 'App/modele/M_Article.php';
+include_once 'App/modele/M_categorie.php';
 
 /**
  * Controleur pour la consultation des exemplaires
@@ -10,32 +9,29 @@ include 'App/modele/M_Fleur.php';
 switch ($action) {
 
     case 'voirArticlesAccueil':
-        $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesDeCategorieAccueil');
+        // $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesAccueil');
         $lesArticles = M_Article::trouveLesArticleAccueil();
         break;
     case 'voirArticlesAmour':
-        $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesAmour');
+        // $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesAmour');
         $lesArticles = M_Article::trouveLesArticleAmour();
         break;
     case 'voirArticlesMariage':
-        $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesMariage');
+        // $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesMariage');
         $lesArticles = M_Article::trouveLesArticleMariage();
         break;
     case 'voirArticlesNaissance':
-        $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesNaissance');
+        // $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesNaissance');
         $lesArticles = M_Article::trouveLesArticleNaissance();
         break;
     case 'voirArticlesRemerciement':
-        $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesRemerciement');
+        // $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesRemerciement');
         $lesArticles = M_Article::trouveLesArticleRemerciement();
         break;
     case 'voirArticlesAnniversaire':
-        $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesAnniversaire');
+        // $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesAnniversaire');
         $lesArticles = M_Article::trouveLesArticleAnniversaire();
         break;
-
-
-
 
 
     case 'voirAll':
@@ -55,24 +51,30 @@ switch ($action) {
 
         // $lesArticles = M_Article::trouverAllArticle($categorie);
         // header('Location: index.php?uc=accueil&action=voirAll');
-      
-       
-  
 
         break;
     case 'voirJeuxConsole':
         $console = filter_input(INPUT_GET, 'console');
         $lesJeux = M_Article::trouveLesJeuxDeConsole($console);
         break;
+
+
     case 'ajouterAuPanier':
-        $idexemplaire = filter_input(INPUT_GET, 'idexemplaire');
-        if (!ajouterAuPanier($idexemplaire)) {
-            afficheErreurs(["Ce jeu est déjà dans le panier !!"]);
-        } else {
-            afficheMessage("Ce jeu a été ajouté");
+        $nom_Categorie = filter_input(INPUT_GET, 'categorie');
+        $idArticle = filter_input(INPUT_GET, 'idArticle');
+
+        // var_dump($idArticle);
+        // die;
+
+        if (!ajouterAuPanier($idArticle)) {
+            afficheErreurs(["Cet article est déjà dans le panier !!"]);
+        } 
+        else {
+            afficheMessage("Cet article a été ajouté au panier ");
         }
-        $lesJeux = M_Article::trouverAllArticle();
+        $lesArticles = M_Article::trouveLesArticlesDeCategorieNom($nom_Categorie);
         break;
+
     case "ajouterAuPanierCat":
         $idexemplaire = filter_input(INPUT_GET, 'idexemplaire');
         if (!ajouterAuPanier($idexemplaire)) {

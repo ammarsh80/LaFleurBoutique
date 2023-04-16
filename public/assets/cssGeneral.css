@@ -194,6 +194,66 @@ p {
   font-family: "hind-jalandhar", sans-serif;
 }
 
+/* message */
+
+/* 
+.message {
+  position: absolute;
+  top: 350px;
+  font-size: 1em;
+  display: block;
+} */
+
+/* .erreur {
+  position: absolute;
+  top: 400px;
+  font-size: 1em;
+  display: block;
+} */
+
+.erreur ul {
+  list-style: none;
+}
+
+.erreur {
+  position: absolute;
+  left: 8px;
+  top: 363px;
+  padding: 3px 20px;
+  font-size: 1em;
+  display: block;
+  background-color: rgb(237, 210, 229);
+  color: rgb(203, 28, 128);
+}
+/* .container_message{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+.message {
+  position: absolute;
+  padding: 2px 20px;
+  top: 340px;
+  font-size: 1em;
+  display: block;
+  background-color: var(--primary-light);
+  color: var(--secondary-color);
+}
+.messagePanierVide {
+  position: absolute;
+  padding: 2px 20px;
+  top: 363px;
+  font-size: 1em;
+  display: block;
+  background-color: var(--secondary-light);
+  color: var(--secondary-color);
+}
+
+/* Fin message */
+
+
 /* *************************************************************************************************************************** */
 
 /* header */
@@ -312,16 +372,16 @@ header h1 {
   align-items: center;
   font-size: 70px;
   /* background-image: url(../assets/img/amour/baniere_amour.jpg); */
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 #container_recherche_couleur {
-  position: absolute;
+  /* position: absolute; */
   top: 170px;
   width: 100%;
   display: flex;
   justify-content: end;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 #recherche_couleur {
@@ -378,10 +438,28 @@ header h1 {
 /* *************************************************************************************************************************** */
 
 /* Footer */
+
+#topBtn {
+
+  display: none;
+  position: fixed;
+  width: 50px;
+  bottom: 10px;
+  right: 3px;
+  z-index: 99;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+#topBtn:hover {
+  transform: scale(1, 1.2);
+}
+
 #btn_scrole {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   padding: 10px 30px;
 }
 
@@ -475,6 +553,7 @@ header h1 {
   margin-top: 10px;
 }
 
+
 /* Fin Footer */
 /* *************************************************************************************************************************** */
 /* Début_Page d'erreur */
@@ -498,14 +577,15 @@ header h1 {
   font-size: 0.8em;
   text-align: center;
   font-weight: bold;
-  box-sizing:content-box;
+  box-sizing: content-box;
 }
 
 .go_back {
   margin-top: 130px;
 }
-.go_back a{
-text-decoration: underline;
+
+.go_back a {
+  text-decoration: underline;
 }
 
 /* Fin_Page d'erreur */
@@ -532,8 +612,8 @@ text-decoration: underline;
 }
 
 #image_article {
-  width: 300px;
-  height: 300px;
+  width: 260px;
+  height: 260px;
 
   border: 1px solid var(--primary-light);
 
@@ -591,15 +671,47 @@ text-decoration: underline;
 }
 
 .btn_se_connecter {
-  width: 155px;
-  height: 50px;
+  width: 125px;
+  height: 30px;
   border-radius: 5px;
   background-color: var(--primary-light);
   border: none;
   color: var(--green);
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+}
+.btn_valide_livraison,
+.btn_valide_facturation {
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: var(--primary-light);
+  border: none;
+  color: var(--green);
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.btn_annuler_livraison,
+.btn_annuler_facturation,
+.btn_annuler_payement {
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: var(--secondary-light);
+  border: none;
+  color: var(--green);
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
 }
 
 #container_inscription {
@@ -615,7 +727,7 @@ text-decoration: underline;
 }
 
 .message_inscription {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   margin: 10px 0px 40px 0px;
 }
@@ -645,19 +757,19 @@ text-decoration: underline;
 }
 
 .label_connexion {
-  width: 210px;
-  margin-bottom: 10px;
+  width: 180px;
+  margin-bottom: 5px;
   color: var(--primary-color);
-  font-size: 22px;
+  font-size: 16px;
 }
 
 .input_connexion {
-  width: 300px;
-  height: 40px;
+  width: 250px;
+  height: 30px;
   border: 1px solid var(--primary-color);
   border-radius: 5px;
-  font-size: 22px;
-  margin-bottom: 20px;
+  font-size: 16px;
+  margin-bottom: 5px;
 
 }
 
@@ -671,20 +783,20 @@ text-decoration: underline;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  padding-left: 210px;
+  padding-left: 130px;
 }
 
-#btn_valide_inscription {
-  width: 100px;
-  height: 30px;
-  margin-right: 130px;
+/* #btn_valide_inscription {
+  width: 80px;
+  height: 25px;
+  margin-right: 100px;
 }
 
 #btn_annuler_inscription {
-  width: 100px;
-  height: 30px;
+  width: 80px;
+  height: 25px;
   background-color: var(--secondary-light);
-}
+} */
 
 /*  Fin Connexion */
 
@@ -835,7 +947,7 @@ textarea#message_contacte {
   margin-bottom: 50px;
 }
 
-#btn_envoyer {
+.btn_envoyer {
   width: 100px;
   height: 30px;
   margin-right: 90px;
@@ -843,17 +955,22 @@ textarea#message_contacte {
   background-color: var(--primary-light);
   border: none;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 }
 
-#btn_annuler_envoyer {
+.btn_annuler_envoyer {
   width: 100px;
 
   height: 30px;
   background-color: var(--secondary-light);
-  background-color: var(--secondary-light);
   border: none;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*  Fin Nous contacter */
@@ -921,7 +1038,7 @@ textarea#message_contacte {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 10px;
+  padding: 20px 0px;
 }
 
 #valide_mon_panier {
@@ -950,10 +1067,10 @@ textarea#message_contacte {
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  padding: 40px 20px;
+  padding: 40px 10px;
   border-radius: 10px;
-  /* opacity: 50%; */
-  /* pointer-events: none; */
+  opacity: 50%;
+  pointer-events: none;
 }
 
 .container_paiement p {
@@ -969,12 +1086,13 @@ textarea#message_contacte {
 }
 
 .info_paiement {
-  width: 100%;
-  padding: 10px 0;
-  border-radius: 10px;
+  width: 90%;
+  padding: 10px 0px;
+  border-radius: 5px;
   text-align: center;
   background-color: var(--primary-light);
   margin-bottom: 0;
+  font-size: 16px !important;
 }
 
 .somme_total {
@@ -983,14 +1101,17 @@ textarea#message_contacte {
 
 .je_valide {
   background-color: var(--primary-light);
+  cursor: pointer;
+
 }
 
-.valide_payement {
-  width: 110px;
-  height: 60px;
+.btn_valide_payement {
+  width: 190px;
+  height: 40px;
   padding: 5px;
   font-size: 18px;
-  margin-right: 120px;
+  margin-right: 3px;
+  border-radius: 5px;
 }
 
 .container_loto {
@@ -1019,6 +1140,75 @@ textarea#message_contacte {
 
 }
 
+/*  Fin Panier */
+
+/* *************************************************************************************************************************** */
+/*  Loto */
+.bd {
+  text-align: center;
+}
+
+.container {
+  margin: 0 auto;
+  width: 266px;
+}
+
+.slot-wrapper {
+  border: 1px solid #000000;
+}
+
+.slot {
+  background: url("../assets/img/reel_normal.png") repeat-y;
+  /*Taken from http://www.swish-designs.co.uk*/
+  width: 86px;
+  height: 70px;
+  float: left;
+  border: 1px solid #000;
+  background-position: 0 4px;
+}
+
+.motion {
+  background: url("../assets/img/reel_blur.png") repeat-y;
+  /*Taken from http://www.swish-designs.co.uk*/
+}
+
+button {
+  display: block;
+  background-color: var(--primary-light);
+  width: 150px;
+  padding: 10px;
+  height: 43px;
+  margin: 20px 60px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#result {
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: bold;
+  height: 22px;
+}
+
+.credits {
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.credits .browsers {
+  font-style: italic;
+  font-size: 14px;
+  color: #777;
+  margin-top: 4px;
+}
+
+.clear {
+  clear: both;
+}
+
+/*  Fin Loto */
+
+/* *************************************************************************************************************************** */
 /* ************************************************************ */
 @media (max-width:768px) {
   .info_compte {

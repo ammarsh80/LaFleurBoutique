@@ -1,5 +1,5 @@
 <section id="apropos">
-    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="panier de courses">
+    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="image bannière">
 
     <div id="container_apropos">
         <p class="titres_apropos">Qui sommes-nous ?</p>

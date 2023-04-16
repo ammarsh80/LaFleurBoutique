@@ -6,7 +6,7 @@
     <?php
     include("./App/vue/common/head.php");
     include("./App/vue/common/header.php");
-    // include './App/controleur/c_consultation.php';
+    include './App/controleur/c_consultation.php';
     include("./App/vue/common/navigation.php");
 
 
@@ -26,6 +26,7 @@
       && ($page !== 'v_nousContacter')
       && ($page !== 'v_panier')
       && ($page !== 'v_remerciement')
+      && ($page !== 'v_loto')
     )) {
 
       include 'content/v_accueil.php';
@@ -62,5 +63,12 @@
 
 </body>
 <script src="public/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="public/assets/monjs/main.js"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script src="public/assets/monjs/jquery.spritely.js"></script>
+<script src="public/assets/monjs/jquery.backgroundPosition.js"></script>
+<script src="public/assets/monjs/slot.js"></script>
 
 </html>

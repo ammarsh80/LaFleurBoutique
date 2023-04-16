@@ -1,5 +1,5 @@
 <section class="apropos">
-    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="panier de courses">
+    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="image bannière">
 
     <div id="container_livraison">
         <p class="titres_apropos">Zone de livraison</p>

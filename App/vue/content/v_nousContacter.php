@@ -1,9 +1,9 @@
 <section id="connexion">
-    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="panier de courses">
+    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="image bannière">
 
 
     <div id="container_inscription" class="container_contacte">
-        <p class="message_inscription">Si vous n'êtes pas encore inscrit, veuillez renseigner le formulaire d'inscription avant de vous connectez</p>
+        <p class="message_inscription">Veuillez renseigner le formulaire de contacte</p>
         <form action="" id="formulaire_contact">
             <div id="container_formaulaire_inscription">
                 <div id="container_formaulaire_inscription_left">
