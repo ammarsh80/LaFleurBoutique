@@ -31,15 +31,10 @@
                                     <p><?= $prix ?> Euros</p>
                                     <a href="index.php?page=v_panier&uc=panier&idArticle=<?= $idArticle ?>&action=supprimerUnArticle" onclick="return confirm('Voulez-vous vraiment retirer cet article ?');">
                                         <?php
-
                                         ?>
-
                                         <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add" />
                                     </a>
-
                                     </a>
-
-
                                 </div>
                             </div>
                         </div>
@@ -58,12 +53,10 @@
                     </label>
                 </div>
                 <p class="mt-5 fw-bold">Total à payer (TTC)</p>
-
                 <div id="somme_total" class="p-3 rounded mt-4 somme_total">
-                    <?php
-
+                  
+                  <?php
                     if (isset($lesArticlesDuPanier)) {
-
                         // à garder au cas où////////////////////////////////////////////////////////////////////
 
                         // $lesPrixUnitaires = array(); // initialisation du tableau des prix unitaires
@@ -71,7 +64,6 @@
                         //     $prix_unitaire = $article['prix_unitaire'];
                         //     array_push($lesPrixUnitaires, $prix_unitaire); // ajout du prix unitaire à la fin du tableau
                         // }
-
                         $sommePrixUnitaires = 0;
                         foreach ($lesArticlesDuPanier as $article) {
                             $sommePrixUnitaires += $article['prix_unitaire'];
@@ -84,16 +76,11 @@
                         }
                     }
                     ?>
-
                 </div>
-
-
-
                 <p class="mt-5">Veuillez valider votre panier pour passer au paiement</p>
-                <div id="je_valide" class="py-2 px-5 pr-5 rounded mt-4 mb-4 je_valide">
+                <div id="je_valide_panier" class="py-2 px-5 pr-5 rounded mt-4 mb-4 je_valide">
                     Je valide mon panier
                 </div>
-
             </div>
 
             <div id="container_paiement" class="container_paiement">
@@ -183,10 +170,4 @@
             </a>
         </div>
     </div>
-
-
-
-
-
-
 </section>

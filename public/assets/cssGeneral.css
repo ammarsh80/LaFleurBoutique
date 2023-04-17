@@ -225,6 +225,7 @@ p {
   background-color: rgb(237, 210, 229);
   color: rgb(203, 28, 128);
 }
+
 /* .container_message{
   width: 100%;
   display: flex;
@@ -241,6 +242,8 @@ p {
   background-color: var(--primary-light);
   color: var(--secondary-color);
 }
+
+
 .messagePanierVide {
   position: absolute;
   padding: 2px 20px;
@@ -251,6 +254,7 @@ p {
   color: var(--secondary-color);
 }
 
+
 /* Fin message */
 
 
@@ -258,7 +262,7 @@ p {
 
 /* header */
 header {
-  padding: 10px;
+  padding: 10px 0 10px 10px;
   margin: 0 !important;
   width: 100%;
   height: 180px;
@@ -311,6 +315,40 @@ header h1 {
   margin-bottom: 5px;
 }
 
+#div_connexion {
+  position: absolute;
+  padding: 1px 10px;
+  top: 5px;
+  right: 15px;
+  font-size: 0.7em;
+  display: block;
+  background-color: var(--green);
+  color: var(--secondary-light);
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#form_mon_compte {
+  margin: 0;
+  padding: 0;
+
+}
+
+#btn_mon_compte {
+  margin: 0 0 0 10px;
+  padding: 0;
+  width: 70px;
+  height: 21px;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  font-size: 11px;
+  border: none;
+  border-radius: 3px;
+
+
+}
 
 /* Fin header */
 
@@ -684,6 +722,7 @@ header h1 {
   align-items: center;
 
 }
+
 .btn_valide_livraison,
 .btn_valide_facturation {
   width: 80px;
@@ -698,6 +737,7 @@ header h1 {
   align-items: center;
   margin-bottom: 5px;
 }
+
 .btn_annuler_livraison,
 .btn_annuler_facturation,
 .btn_annuler_payement {
@@ -732,7 +772,7 @@ header h1 {
   margin: 10px 0px 40px 0px;
 }
 
-#container_formaulaire_inscription {
+.container_formaulaire_inscription {
   width: 90%;
   margin-top: 5px;
   display: flex;
@@ -864,22 +904,28 @@ header h1 {
   background-color: var(--primary-color);
   margin: 20px;
 }
-
+#container_modifier_info{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 #modifier_info {
   height: 52px;
   background-color: var(--secondary-light);
-  padding: 10px 20px;
+  padding: 10px 90px;
   margin-bottom: 10px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .modifier_info_input {
-  width: 340px;
+  width: 300px;
   background-color: var(--secondary-light);
   border: none;
 }
@@ -897,8 +943,33 @@ header h1 {
 
 .table_commande_entete {
   font-weight: bold;
+  background-color: var(--secondary-light);
 }
 
+
+.btn_envoyer_modification {
+  width: 100px;
+  height: 30px;
+  margin-right: 0px;
+  margin-bottom: 20px;
+  background-color: var(--primary-light);
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn_annuler_modification {
+  width: 100px;
+  height: 30px;
+  background-color: var(--secondary-light);
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /*  Fin Compte client */
 
 /* *************************************************************************************************************************** */
@@ -958,7 +1029,6 @@ textarea#message_contacte {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 .btn_annuler_envoyer {
@@ -1244,6 +1314,14 @@ button {
 
   .container_btn_inscription {
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0px;
+  }
+  .container_btn_modifie {
+    width: 50%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

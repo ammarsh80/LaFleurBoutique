@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="fr">
+    
 <?php
 $page = filter_input(INPUT_GET, "page", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
@@ -9,7 +12,7 @@ ini_set("display_errors", 1);
 // Attention : A supprimer en production !!!
 
 require("./util/functions.inc.php");
-// require('./util/validateurs.inc.php');
+require('./util/validateurs.inc.php');
 require("./App/modele/AccesDonnees.php");
 
 $clientSession = [];

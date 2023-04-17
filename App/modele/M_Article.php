@@ -288,8 +288,7 @@ class M_Article
         $res = AccesDonnees::query($req);
         $lesLignes = $res->fetchAll();
         return $lesLignes;
-        var_dump($lesLignes);
-        die;
+       
     }
 
 

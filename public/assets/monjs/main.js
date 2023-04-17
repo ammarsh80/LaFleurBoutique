@@ -1,13 +1,13 @@
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
-//   if (window.innerWidth < 900 ) {
-//     document.getElementById("topBtn").style.display = "none";
-//   }
-   if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+  //   if (window.innerWidth < 900 ) {
+  //     document.getElementById("topBtn").style.display = "none";
+  //   }
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
 
     document.getElementById("topBtn").style.display = "block";
-  }   else {
+  } else {
     document.getElementById("topBtn").style.display = "none";
   }
 }
@@ -16,9 +16,9 @@ function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   window.scrollTo({
-    top: 0, 
-    left: 0, 
-    behavior: 'smooth' 
+    top: 0,
+    left: 0,
+    behavior: 'smooth'
   });
 }
 
@@ -41,6 +41,7 @@ const frais_payant = document.getElementById('frais_payant');
 // Récupérer l'élément HTML avec l'ID "somme_total"
 const somme_total = document.getElementById('somme_total');
 
+
 // Accéder au contenu de la div
 const contenu_div = somme_total.innerHTML;
 if (parseInt(contenu_div) >= 50) {
@@ -59,3 +60,27 @@ je_valide.addEventListener('click', (e) => {
     container_paiement.style.opacity = '100%';
   }
 });
+
+
+
+// // Accéder au contenu de la div
+// if (somme_total > 0) {
+//   const contenu_div = somme_total.innerHTML;
+//   if (parseInt(contenu_div) >= 50) {
+//     frais_offert.checked = true;
+//   }
+//   else if (parseInt(contenu_div) > 0) {
+//     frais_payant.checked = true;
+//   }
+// }
+
+// let je_valide_panier = document.getElementById('je_valide_panier');
+// let container_paiement = document.getElementById('container_paiement');
+// if (je_valide_panier !== null) {
+//   je_valide_panier.addEventListener('click', (e) => {
+//     if ((contenu_div !== null) && (parseInt(contenu_div) > 0)) {
+//       container_paiement.style.pointerEvents = 'all';
+//       container_paiement.style.opacity = '100%';
+//     }
+//   })
+// };

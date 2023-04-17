@@ -116,6 +116,13 @@ function afficheMessage(string $msg) {
  * Affiche un message bleu
  * @param string $msg
  */
+function afficheMessageConnexion(string $msg) {
+    echo '<div class="messageConnexion">'.$msg.'</div>';
+}
+/**
+ * Affiche un message bleu
+ * @param string $msg
+ */
 function afficheMessagePanierVide(string $msg) {
     echo '<div class="messagePanierVide">'.$msg.'</div>';
 }
