@@ -33,54 +33,56 @@ function topFunction() {
 // });
 
 
-
+// Checked l'input frais (> 50 euros ou > 50)/////////////////////////////////////////////////////
 // Récupérer l'élément HTML avec l'ID "frais_payant"
-const frais_offert = document.getElementById('frais_offert');
+let frais_offert = document.getElementById('frais_offert');
 // Récupérer l'élément HTML avec l'ID "frais_payant"
-const frais_payant = document.getElementById('frais_payant');
+let frais_payant = document.getElementById('frais_payant');
 // Récupérer l'élément HTML avec l'ID "somme_total"
-const somme_total = document.getElementById('somme_total');
+let affiche_somme = document.getElementById('panier_marron');
+// affiche_somme.addEventListener('click', (e) => {
+  let somme_total = document.getElementById('somme_total');
+  // Accéder au contenu de la div
+  let contenu_div = somme_total.innerHTML;
+  if (parseInt(contenu_div) >= 50) {
+    frais_offert.checked = true;
+  }
+  else if (parseInt(contenu_div) > 0) {
+    frais_payant.checked = true;
+  }
+// })
 
 
-// Accéder au contenu de la div
-const contenu_div = somme_total.innerHTML;
-if (parseInt(contenu_div) >= 50) {
-  frais_offert.checked = true;
-}
-else if (parseInt(contenu_div) > 0) {
-  frais_payant.checked = true;
-}
 
-const je_valide = document.getElementById('je_valide');
-const container_paiement = document.getElementById('container_paiement');
+// Bloquer ou activer la modification du panier pour passer au paiement/////////////////////////////////////////////////////
+var valide_panier = document.getElementById('valide_panier');
+valide_panier.addEventListener('click', (e) => {
+ 
+var container_paiement = document.getElementById('container_paiement');
+var modifier_panier = document.getElementById('modifier_panier');
+var valide_articles = document.querySelector('.valide_articles');
 
-je_valide.addEventListener('click', (e) => {
   if (parseInt(contenu_div) > 0) {
     container_paiement.style.pointerEvents = 'all';
-    container_paiement.style.opacity = '100%';
+    container_paiement.style.opacity = '1';
+    modifier_panier.style.display = 'block';
+    valide_articles.style.pointerEvents = 'none';
+    valide_articles.style.opacity = '0.50';
   }
-});
+ });
 
 
+ var modifier_panier = document.getElementById('modifier_panier');
+ modifier_panier.addEventListener('click', (e) => {
+var container_paiement = document.getElementById('container_paiement');
+var modifier_panier = document.getElementById('modifier_panier');
+var valide_articles = document.querySelector('.valide_articles');
 
-// // Accéder au contenu de la div
-// if (somme_total > 0) {
-//   const contenu_div = somme_total.innerHTML;
-//   if (parseInt(contenu_div) >= 50) {
-//     frais_offert.checked = true;
-//   }
-//   else if (parseInt(contenu_div) > 0) {
-//     frais_payant.checked = true;
-//   }
-// }
-
-// let je_valide_panier = document.getElementById('je_valide_panier');
-// let container_paiement = document.getElementById('container_paiement');
-// if (je_valide_panier !== null) {
-//   je_valide_panier.addEventListener('click', (e) => {
-//     if ((contenu_div !== null) && (parseInt(contenu_div) > 0)) {
-//       container_paiement.style.pointerEvents = 'all';
-//       container_paiement.style.opacity = '100%';
-//     }
-//   })
-// };
+  if (parseInt(contenu_div) > 0 ) {
+    container_paiement.style.pointerEvents = 'none';
+    container_paiement.style.opacity = '0.50';
+    modifier_panier.style.display = 'none';
+    valide_articles.style.pointerEvents = 'all';
+    valide_articles.style.opacity = '1';
+  }
+ });

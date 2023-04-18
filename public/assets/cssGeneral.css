@@ -646,7 +646,6 @@ header h1 {
   align-items: center;
   box-sizing: border-box;
   margin: 20px;
-
 }
 
 #image_article {
@@ -665,22 +664,67 @@ header h1 {
   line-height: 1.7;
   color: var(--green);
   font-weight: bold;
+}
 
+#container_article_panier {
+  /* max-width: 100%; */
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border: 1px solid var(--green);
+
+  /* display: grid;
+  grid-template-columns: 3fr;
+  grid-template-rows: 3fr; */
+}
+
+#article_panier {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 10px;
+}
+
+#image_article_panier {
+  width: 150px;
+  height: 150px;
+
+  border: 1px solid var(--primary-light);
+
+}
+
+#description_article_panier {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
+  color: var(--green);
+  font-weight: bold;
+  font-size: 12px;
 }
 
 #prix_panier {
   display: flex;
   justify-content: start;
   align-items: center;
-  padding-left: 100px;
+  padding-left: 20px;
   font-weight: normal;
+
 }
 
 #prix_panier>a {
-  margin-left: 40px;
+  /* margin-left: 40px; */
   margin-bottom: 0px;
 }
 
+.panier_delete {
+  width: 15px;
+  margin-left: 10px;
+}
 
 /* Fin Accueil */
 
@@ -803,6 +847,13 @@ header h1 {
   font-size: 16px;
 }
 
+.label_livraison {
+  width: 120px;
+  margin-bottom: 5px;
+  color: var(--primary-color);
+  font-size: 16px;
+}
+
 .input_connexion {
   width: 250px;
   height: 30px;
@@ -826,6 +877,15 @@ header h1 {
   padding-left: 130px;
 }
 
+.container_btn_facturation {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  /* padding-left: 130px; */
+}
+
 /* #btn_valide_inscription {
   width: 80px;
   height: 25px;
@@ -845,7 +905,7 @@ header h1 {
 #container_compte,
 #container_apropos,
 #container_livraison {
-  width: 90%;
+  width: 95%;
   border: 1px solid var(--green);
   display: flex;
   flex-direction: column;
@@ -871,28 +931,25 @@ header h1 {
 }
 
 #container_info_compte {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 0 10px;
 }
 
 .info_compte {
-  width: 540px;
+  width: 300px;
   color: var(--primary-color);
-  font-size: 20px;
-  line-height: 2;
+  font-size: 16px;
+  line-height: 1.8;
 }
 
 .info_compte_info {
-  width: 100px;
+  width: 110px;
   font-weight: bold;
 }
 
-.info_compte_info_cp {
-  width: 125px;
-  font-weight: bold;
-
-}
 
 .info_compte_ligne {
   display: flex;
@@ -904,32 +961,85 @@ header h1 {
   background-color: var(--primary-color);
   margin: 20px;
 }
-#container_modifier_info{
-  width: 100%;
+
+#container_modifier_info {
+  /* width: 100%; */
+  border: 1px solid var(--primary-light);
+  padding: 0 10px;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 #modifier_info {
-  height: 52px;
+  height: 32px;
   background-color: var(--secondary-light);
-  padding: 10px 90px;
+  padding: 10px 20px;
   margin-bottom: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .modifier_info_input {
-  width: 300px;
-  background-color: var(--secondary-light);
+  padding-left: 5px;
+  width: 230px;
+  height: 30px;
+  border: 1px solid var(--green) !important;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-bottom: 5px;
+  /* background-color: var(--secondary-light); */
   border: none;
 }
 
+.label_modif {
+  width: 300px;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.label_modif input {
+  width: 180px;
+  height: 25px;
+  font-size: 13px;
+}
+
+.btn_modif {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#btn_valide_modif {
+  width: 80px;
+  height: 30px;
+  background-color: var(--primary-light);
+  color: var(--primary-color);
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  text-align: center;
+}
+
+#btn_annule_modif {
+  width: 80px;
+  height: 30px;
+  background-color: var(--secondary-light);
+  color: var(--primary-color);
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  text-align: center;
+}
 
 .table_commande {
   width: 100%;
@@ -970,6 +1080,7 @@ header h1 {
   justify-content: center;
   align-items: center;
 }
+
 /*  Fin Compte client */
 
 /* *************************************************************************************************************************** */
@@ -1101,7 +1212,7 @@ textarea#message_contacte {
 /*  Panier */
 
 #container_panier {
-  width: 90%;
+  width: 95%;
   background-color: #F7F9F3;
   border: 1px solid var(--green);
   display: flex;
@@ -1130,17 +1241,33 @@ textarea#message_contacte {
 
 }
 
+#modifier_panier {
+  display: none;
+  top: 1020px;
+  left: 310px;
+  width: 150px;
+  height: 28px;
+  padding: 5px;
+  text-align: center;
+  background-color: var(--green);
+  color: var(--white);
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+
 .container_paiement {
-  /* width: 60%; */
+  width: 95%;
   background-color: var(--white);
   display: flex;
-  flex-direction: column;
-  justify-content: start;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 40px 10px;
+  padding: 15px 0px;
   border-radius: 10px;
-  opacity: 50%;
-  pointer-events: none;
+  opacity: 100%;
+  box-shadow: 2px 2px 2px 2px var(--green);
+  /* pointer-events: none; */
 }
 
 .container_paiement p {
@@ -1149,20 +1276,36 @@ textarea#message_contacte {
   margin-bottom: 40px;
 }
 
+.cadre_paiement {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #c1e39e;
+  padding: 10px;
+}
+
 .adresse_facturation {
   width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  color: var(--secondary-light);
+  background-color: var(--green);
   text-align: center;
+  font-size: 12px !important;
 
 }
 
 .info_paiement {
-  width: 90%;
+  width: 95%;
   padding: 10px 0px;
+  /* padding: 10px 30px; */
   border-radius: 5px;
   text-align: center;
-  background-color: var(--primary-light);
+  background-color: var(--green);
   margin-bottom: 0;
-  font-size: 16px !important;
+  font-size: 12px !important;
+  color: var(--secondary-light);
 }
 
 .somme_total {
@@ -1185,7 +1328,7 @@ textarea#message_contacte {
 }
 
 .container_loto {
-  width: 90%;
+  width: 60%;
   background-color: var(--primary-light);
   border-radius: 10px;
   display: flex;
@@ -1308,9 +1451,9 @@ button {
     text-align: center;
   }
 
-  .container_paiement {
-    transform: scale(0.7, 0.7);
-  }
+  /* .container_paiement {
+    transform: scale(0.9, 0.9);
+  } */
 
   .container_btn_inscription {
     width: 100%;
@@ -1320,13 +1463,38 @@ button {
     align-items: center;
     padding-left: 0px;
   }
-  .container_btn_modifie {
+
+  .container_btn {
     width: 50%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     padding-left: 0px;
+  }
+
+  .btn_modif {
+    width: 80%;
+    flex-direction: row;
+  }
+
+  #modifier_info {
+    margin-right: 90px;
+  }
+
+  #container_modifier_info {
+    border: none;
+  }
+
+  #modifier_panier {
+    top: 840px;
+    left: 120px;
+
+
+  }
+
+  .table_commande {
+    font-size: 10.75px;
   }
 
   /* 
@@ -1347,5 +1515,10 @@ button {
   .container_loto p {
     font-size: 14px;
     padding: 15px;
+  }
+
+  #reseaux_sociaux {
+    margin-left: 25px;
+    margin-top: 25px;
   }
 }

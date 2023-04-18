@@ -25,55 +25,55 @@
             <div id="container_formaulaire_inscription_left">
                 <div>
                     <label for="nom" class="label_connexion">Nom *</label>
-                    <input type="nom" name="nom" id="nom" class="input_connexion">
+                    <input type="nom" name="nom" id="nom" class="input_connexion" required>
                 </div>
                 <div>
                     <label for="prenom" class="label_connexion">Prénom *</label>
-                    <input type="text" name="prenom" id="prenom" class="input_connexion">
+                    <input type="text" name="prenom" id="prenom" class="input_connexion" required>
                 </div>
                 <div>
                     <label for="pseudo" class="label_connexion">Pseudo *</label>
-                    <input type="text" name="pseudo" id="pseudo" class="input_connexion">
+                    <input type="text" name="pseudo" id="pseudo" class="input_connexion" required>
                 </div>
                 <div>
                     <label for="psw" class="label_connexion">Mot de passe *</label>
-                    <input type="password" name="psw" id="psw" class="input_connexion" placeholder="8 caractères Aa1)">
+                    <input type="password" name="psw" id="psw" class="input_connexion" placeholder="8 caractères Aa1)" required>
                 </div>
                 <div>
                     <label for="confirm_psw" class="label_connexion">Confirmation de Mot de passe *</label>
-                    <input type="password" name="confirm_psw" id="confirm_psw" class="input_connexion" placeholder="8 caractères Aa1)">
+                    <input type="password" name="confirm_psw" id="confirm_psw" class="input_connexion" placeholder="8 caractères Aa1)" required>
                 </div>
             </div>
             <div id="container_formaulaire_inscription_right">
                 <div>
                     <label for="rue" class="label_connexion">Rue *</label>
-                    <input type="text" name="rue" id="rue" class="input_connexion">
+                    <input type="text" name="rue" id="rue" class="input_connexion" required>
                 </div>
                 <div>
                     <label for="complement" class="label_connexion">Complément </label>
-                    <input type="text" name="complement" id="complement" class="input_connexion">
+                    <input type="text" name="complement" id="complement" class="input_connexion" required>
                 </div>
                 <div>
                     <label for="ville" class="label_connexion">Ville *</label>
-                    <input type="text" name="ville" id="ville" class="input_connexion">
+                    <input type="text" name="ville" id="ville" class="input_connexion" required>
                 </div>
                 <div>
                     <label for="cp" class="label_connexion">Code postal *</label>
-                    <input type="text" name="cp" id="cp" class="input_connexion">
+                    <input type="text" name="cp" id="cp" class="input_connexion" required>
                 </div>
 
                 <div>
                     <label for="mail" class="label_connexion">E-mail *</label>
-                    <input type="text" name="mail" id="mail" class="input_connexion">
+                    <input type="text" name="mail" id="mail" class="input_connexion" required>
                 </div>
 
                 <div class="d-flex">
                     <label for="telephone" class="label_connexion">Téléphone *</label>
-                    <input type="text" name="telephone" id="telephone" class="input_connexion" placeholder="0630303030">
+                    <input type="text" name="telephone" id="telephone" class="input_connexion" placeholder="0630303030" maxlength="10" size="10" required>
                 </div>
             </div>
 
-            <div classe="container_btn_inscription" style="display: flex;">
+            <div class="container_btn_inscription" style="display: flex;">
                 <button type="submit" id="btn_valide_inscription" class="btn_envoyer">Valider</button>
                 <button type="reset" id="btn_annuler_inscription" class="btn_annuler_envoyer">Annuler</button>
             </div>

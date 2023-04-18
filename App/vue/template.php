@@ -26,6 +26,7 @@
       && ($page !== 'v_panier')
       && ($page !== 'v_remerciement')
       && ($page !== 'v_loto')
+      && ($page !== 'v_adresseLivraison')
     )) {
 
       include 'content/v_accueil.php';

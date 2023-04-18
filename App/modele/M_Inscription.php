@@ -269,25 +269,36 @@ class M_Inscription
         return $id_Utilisateur;
     }
 
-    public static function changerInfoClient($id_client, $adresse, $mail, $ville_id)
+    public static function changerInfoClient($id_client, $adresse,$complement, $mail, $telephone, $new_ville_id, $new_cp_id)
     {
         $erreurs = M_Inscription::estProfilValide($adresse, $mail);
         if (count($erreurs) > 0) {
             return $erreurs;
         }
         $pdo = AccesDonnees::getPdo();
-        $stmt = $pdo->prepare("UPDATE client JOIN utilisateur ON utilisateur.client_id=client.id_client SET adresse = :adresse, email = :email WHERE utilisateur.id_utilisateur = :id_client");
+        $stmt = $pdo->prepare("UPDATE lf_clients 
+        SET email = :mail, telephone = :telephone 
+        WHERE lf_clients.id = :id_client");
 
-        $stmt->bindParam(":adresse", $adresse);
-        $stmt->bindParam(":email", $mail);
-
+        $stmt->bindParam(":mail", $mail);
+        $stmt->bindParam(":telephone", $telephone);
         $stmt->bindParam(":id_client", $id_client);
         $stmt->execute();
 
-        $stmt2 = $pdo->prepare("UPDATE client JOIN utilisateur ON utilisateur.client_id=client.id_client JOIN ville ON client.ville_id = ville.id_ville SET client.ville_id = :ville_id WHERE utilisateur.id_utilisateur = :id_client");
-        $stmt2->bindParam(":ville_id", $ville_id);
+        $stmt2 = $pdo->prepare("UPDATE lf_adresses 
+        JOIN lf_adresse_client ON lf_adresses.id = lf_adresse_client.adresses_id
+        JOIN lf_clients ON lf_adresse_client.clients_id = lf_clients.id
+        JOIN lf_code_postaux ON lf_adresses.code_postaux_id = lf_code_postaux.id
+        JOIN lf_villes ON lf_adresses.villes_id = lf_villes.id
+        SET rue = :adresse, complement_rue = :complement, villes_id = :new_ville_id, code_postaux_id = :new_cp_id 
+        WHERE lf_clients.id = :id_client");
+        $stmt2->bindParam(":adresse", $adresse);
+        $stmt2->bindParam(":complement", $complement);
+        $stmt2->bindParam(":new_ville_id", $new_ville_id);
+        $stmt2->bindParam(":new_cp_id", $new_cp_id);
         $stmt2->bindParam(":id_client", $id_client);
         $stmt2->execute();
+        
     }
 
     public static function estProfilValide($rue,  $mail)
@@ -299,9 +310,10 @@ class M_Inscription
         }
         if ($mail == "") {
             $erreurs[] = "Il faut saisir le champ mail";
-        } else if (!estUnMail($mail)) {
-            $erreurs[] = "erreur de mail";
-        }
+        } 
+        // else if (!estUnMail($mail)) {
+        //     $erreurs[] = "erreur de 1111mail";
+        // }
         return $erreurs;
     }
 

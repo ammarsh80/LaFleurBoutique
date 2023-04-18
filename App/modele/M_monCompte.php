@@ -14,7 +14,7 @@ class M_monCompte
      * @param $mail : chaîne
      * @return : array
      */
-    public static function estValideModification($adresse, $complement, $cp, $ville, $mail)
+    public static function estValideModification($adresse, $complement, $cp, $ville, $mail, $telephone)
     {
         
         $erreurs = [];
@@ -28,7 +28,8 @@ class M_monCompte
         }
         if ($cp == "") {
             $erreurs[] = "Il faut saisir le champ Code postal";
-        } else if (!estUnCp($cp)) {
+        }
+         else if (!estUnCp($cp)) {
             $erreurs[] = "erreur de code postal";
         }
         if ($mail == "") {
@@ -39,6 +40,9 @@ class M_monCompte
         }
         if ($complement == "") {
             $erreurs[] = "Il faut saisir le champ complement";
+        } 
+        if ($telephone == "") {
+            $erreurs[] = "Il faut saisir le champ telephone";
         } 
         return $erreurs;
     }

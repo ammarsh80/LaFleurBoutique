@@ -49,7 +49,7 @@ if (isset($_SESSION["id"])) { ?>
         <span id="deconnexion_info">Bonjour, <?php echo $_SESSION["id"]?> vous êtes connecté</span>
         <!-- <form action="index.php?page=v_compte" id="form_mon_compte">
             </form> -->
-            <a href="index.php?page=v_compte">
+            <a href="index.php?page=v_compte&action=passerCommande">
             <!-- <a href="index.php?page=v_compte&uc=administrer"> -->
 
             <button type="submit" id="btn_mon_compte">Mon compte</span></a>

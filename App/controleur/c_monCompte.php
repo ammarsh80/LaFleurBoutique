@@ -70,23 +70,29 @@ switch ($action) {
   case "changerProfil":
     
     
-    // $adresse = '';
-    // $complement = '';
-    // $cp = '';
-    // $ville = '';
-    // $mail = '';
-    // $erreurs = '';
+    $adresse = '';
+    $complement = '';
+    $cp = '';
+    $ville = '';
+    $mail = '';
+    $telephone = '';
+    $erreurs = '';
     $adresse = filter_input(INPUT_POST, "adresse");
     
+
 
     $complement = filter_input(INPUT_POST, "complement");
     $cp = filter_input(INPUT_POST, "cp");
     $ville = filter_input(INPUT_POST, "ville");
     $mail = filter_input(INPUT_POST, "mail");
-    $ville_id = M_Inscription::trouveOuCreerVille($ville, $cp);
-    $erreurs = M_Inscription::changerInfoClient($_SESSION['id'], $adresse, $complement, $mail);
+    $telephone = filter_input(INPUT_POST, "telephone");
 
-    $errors = M_monCompte::estValideModification($adresse, $complement, $cp, $ville, $mail);
+   
+    $errors = M_monCompte::estValideModification($adresse, $complement, $cp, $ville, $mail, $telephone);
+    $new_ville_id = M_Inscription::trouveOuCreerVille($ville);
+    $new_cp_id = M_Inscription::trouveOuCreerCp($cp);
+    $erreurs = M_Inscription::changerInfoClient($_SESSION['id'], $adresse, $complement, $mail, $telephone, $new_ville_id, $new_cp_id);
+
 
     if ($erreurs) {
       afficheErreurs($erreurs);

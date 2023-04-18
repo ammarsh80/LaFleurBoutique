@@ -6,6 +6,7 @@ $complement = '';
 $ville = '';
 $cp = '';
 $mail = '';
+$telephone = '';
 ?>
 
 <section id="compte">
@@ -14,7 +15,7 @@ $mail = '';
     <div id="container_compte">
         <p class="titres_compte">Information personnelles</p>
         <div id="container_info_compte">
-            <div class="info_compte">
+            <div class="info_compte mb-3">
                 <div class="info_compte_ligne">
                     <p class="info_compte_info">Pseudo:</p>
                     <p>
@@ -47,9 +48,17 @@ $mail = '';
                         ?>
                     </p>
                 </div>
+                <div class="info_compte_ligne">
+                    <p class="info_compte_info">Téléphone:</p>
+                    <p>
+                        <?php
+                        echo  $InfoUtilisateur[0]['telephone'];
+                        ?>
+                    </p>
+                </div>
 
             </div>
-            <div class="info_compte">
+            <div class="info_compte mb-3">
                 <div class="info_compte_ligne">
                     <p class="info_compte_info">Adresse:</p>
                     <p>
@@ -59,8 +68,8 @@ $mail = '';
                     </p>
                 </div>
                 <div class="info_compte_ligne">
-                    <p class="info_compte_info" style="font-size: 15px;">Complément:</p>
-                    <p style="font-size: 15px;">
+                    <p class="info_compte_info">Complément:</p>
+                    <p>
                         <?php
                         echo  $InfoUtilisateur[0]['complement_rue'];
                         ?>
@@ -75,67 +84,60 @@ $mail = '';
                     </p>
                 </div>
                 <div class="info_compte_ligne">
-                    <p class="info_compte_info_cp">Code postal:</p>
+                    <p class="info_compte_info">Code postal:</p>
                     <p>
                         <?php
                         echo  $InfoUtilisateur[0]['code_postal'];
                         ?>
                     </p>
                 </div>
+            </div>
 
+            <div id="container_modifier_info">
+                <div id="modifier_info">
+                    <p>
+                        Modifier les informations de mon compte
+                    </p>
+                </div>
+
+                <form action="index.php?page=v_compte&uc=administrer&action=changerProfil" method="POST">
+                        <div style="display: flex; flex-wrap: wrap;">
+
+                            <div class="container_form_modif">
+
+                                <p class="label_modif"> <label for="adresse">Adresse</label>
+                                    <input type="text" id="adresse" name="adresse" value="<?php echo $InfoUtilisateur[0]['rue']; ?>" required>
+                                </p>
+                                <p class="label_modif"><label for="complement">Complement</label>
+                                    <input type="text" id="complement" name="complement" value="<?php echo $InfoUtilisateur[0]['complement_rue']; ?>" required>
+                                </p>
+                                <p class="label_modif"><label for="ville">Ville</label>
+                                    <input type="text" id="ville" name="ville" value="<?php echo $InfoUtilisateur[0]['nom_ville']; ?>" required>
+                                </p>
+                                <p class="label_modif"> <label for="cp">Code postal</label>
+                                    <input type="text" id="cp" name="cp" value="<?php echo $InfoUtilisateur[0]['code_postal']; ?>" required>
+                                </p>
+                                <p class="label_modif"> <label for="mail">E-mail</label>
+                                    <input type="text" id="mail" name="mail" value="<?php echo $InfoUtilisateur[0]['email']; ?>" required>
+                                </p>
+                                <p class="label_modif"> <label for="telephone">Telephone</label>
+                                    <input type="tel" id="telephone" name="telephone"  maxlength="10" size="10" value="<?php echo $InfoUtilisateur[0]['telephone']; ?>" required>
+                                </p>
+                            </div>
+
+                            <p class="btn_modif">
+                                <button type="submit" id="btn_valide_modif">Valider</button>
+                                <button type="reser" id="btn_annule_modif">Annuler</button>
+                            </p>
+                        </div>
+                </form>
             </div>
         </div>
+
         <div id="ligne_info_compte">
         </div>
-        <div id="container_modifier_info">
-            <div id="modifier_info">
-                <p>
-                    Modifier les informations de mon compte
-                </p>
-            </div>
 
 
-
-
-            <!-- <script>
-    function submitForm() {
-        document.getElementById("myForm").submit();
-    }
-</script> -->
-
-            <form id="myForm" action="index.php?page=v_compte&uc=administrer&action=changerProfil" method="POST">
-                <div>
-                    <div>
-                        <label for="adresse" class="label_connexion">Adresse: </label>
-                        <input type="text" name="adresse" id="adresse" class="input_connexion modifier_info_input" value="<?= $adresse ?>" maxlength="90">
-                    </div>
-                    <div>
-                        <label for="adresse" class="label_connexion">Complement: </label>
-                        <input type="text" name="adresse" id="adresse" class="input_connexion modifier_info_input" value="<?= $complement ?>" maxlength="90">
-                    </div>
-                    <div>
-                        <label for="ville" class="label_connexion">Ville: </label>
-                        <input type="text" name="ville" id="ville" class="input_connexion modifier_info_input" value="<?= $ville ?>" maxlength="90">
-                    </div>
-                    <div>
-                        <label for="cp" class="label_connexion">Code postal: </label>
-                        <input type="text" name="cp" id="cp" class="input_connexion modifier_info_input" value="<?= $cp ?>" size="5" maxlength="5">
-                    </div>
-                    <div>
-                        <label for="mail" class="label_connexion">E-mail: </label>
-                        <input type="text" name="mail" id="mail" class="input_connexion modifier_info_input" value="<?= $mail ?>" maxlength="150">
-                    </div>
-                </div>
-
-                <div classe="container_btn_modifie" style="display: flex;">
-                    <button type="submit" id="btn_valide_modification" class="btn_envoyer_modification">Valider</button>
-                    <button type="reset" id="btn_annuler_modification" class="btn_annuler_modification">Annuler</button>
-                </div>
-            </form>
-
-   
-
-        </div>
 
         <p class="titres_compte">Historique de mes commandes</p>
 
