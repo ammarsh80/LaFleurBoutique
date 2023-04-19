@@ -127,6 +127,7 @@ switch ($action) {
 }
 
 $lesCategories = M_Categorie::trouveLesCategories();
+$lesCouleurs = M_Categorie::trouveLesCouleurs();
 
 
 // $lesConsoles = M_Categorie::trouveLesConsoles();

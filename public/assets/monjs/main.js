@@ -86,3 +86,24 @@ var valide_articles = document.querySelector('.valide_articles');
     valide_articles.style.opacity = '1';
   }
  });
+
+
+//  $params = array('page' => 'v_parCouleur', 'couleur' => $idCouleur);
+//  $url = 'index.php?' . http_build_query($params);
+
+
+//  function redirectToUrl(url) {
+//   window.location.href = url;
+// }
+
+var page = 'v_parCouleur';
+var couleur = '<?php echo $idCouleur; ?>';
+var params = {'page': page, 'couleur': couleur};
+var url = 'index.php?' + new URLSearchParams(params).toString();
+
+function redirectToUrl(url) {
+  window.location.href = url;
+}
+
+// redirectToUrl(url);
+

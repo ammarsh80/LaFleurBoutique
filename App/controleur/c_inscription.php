@@ -1,6 +1,6 @@
 <?php
 
-include 'App/modele/M_Inscription.php';
+// include_once 'App/modele/M_Inscription.php';
 
 /**
  * Controleur pour les inscriptions

@@ -10,7 +10,7 @@
             <div id="container_paiement" class="container_paiement">
                 <div>
 
-                    <form action="index.php?page=v_adresseLivraison&uc=commander&action=confirmerCommande" method="POST">
+                    <form name="btn_valide_facturation" action="index.php?page=v_adresseLivraison&uc=commander&action=confirmerCommande" method="POST">
 
                         <p class="adresse_facturation fs-6 mb-2">Veuillez renseigner une adresse de livraison</p>
                         <div class="mb-3">
@@ -37,6 +37,10 @@
                             <div>
                                 <label for="cpLiv" class="label_livraison fw-bold">Code postal: </label>
                                 <input type="text" name="cpLiv" id="cpLiv" class="input_connexion modifier_info_input" maxlength="5" size="5" value="<?php echo  $InfoUtilisateur[0]['code_postal'];?>" requiried>
+                            </div>
+                            <div class="d-flex justify-center align-center">
+                                <label for="date_livraison_progamme" class="label_livraison fw-bold">Livraison souhaitée le : (optionel)</label>
+                                <input type="date" name="date_livraison_progamme" id="date_livraison_progamme" class="input_connexion modifier_info_input">
                             </div>
 
 
@@ -101,8 +105,8 @@
                             <input type="text" name="crypto" id="crypto" class=" modifier_info_input">
                         </div>
                         <div class="container_btn_facturation">
-                            <button type="submit" id="btn_valide_payement" class="btn_valide_payement">Je paye ma commande</button>
-                            <button type="submit" id="btn_annuler_payement" class="btn_annuler_payement">Annuler</button>
+                            <button type="submit" name="btn_valide_payement" id="btn_valide_payement" value="valider" class="btn_valide_payement">Je paye ma commande</button>
+                            <button type="reset" id="btn_annuler_payement" class="btn_annuler_payement">Annuler</button>
                         </div>
                     </div>
                 </div>

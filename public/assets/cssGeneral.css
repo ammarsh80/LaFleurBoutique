@@ -235,12 +235,13 @@ p {
 } */
 .message {
   position: absolute;
-  padding: 2px 20px;
+  padding: 2px 20px 4px 20px;
   top: 340px;
   font-size: 1em;
   display: block;
-  background-color: var(--primary-light);
-  color: var(--secondary-color);
+  background-color: var(--green);
+  color: var(--white);
+  border-radius: 3px;
 }
 
 
@@ -350,6 +351,7 @@ header h1 {
 
 }
 
+
 /* Fin header */
 
 /* *************************************************************************************************************************** */
@@ -415,7 +417,6 @@ header h1 {
 
 #container_recherche_couleur {
   /* position: absolute; */
-  top: 170px;
   width: 100%;
   display: flex;
   justify-content: end;
@@ -423,12 +424,16 @@ header h1 {
 }
 
 #recherche_couleur {
-  width: 400px;
-  margin-right: 30px;
+  /* width:400px; */
+  margin-right: 0px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  margin-right: 20px;
+  background-color: var(--primary-light);
+  border-radius: 5px;
 }
+
 
 #rechercher_par_couleur {
   width: 170px;
@@ -440,10 +445,39 @@ header h1 {
   align-items: center;
   background-color: var(--primary-light);
   font-size: 14px;
+}
+
+#form_couleur{
+  width: 150px;
+  height: 25px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
 }
 
-.rechercher_couleur {
+
+#btn_par_couleur{
+  margin: 0;
+  width: 23px;
+  height: 23px;
+display: flex;
+justify-content: center;
+align-items: center;
+border: none;
+border-radius: 5px;
+border: 1px solid var(--primary-color);
+background-color: var(--secondary-light);
+
+}
+
+
+
+
+
+/* .rechercher_couleur {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -470,6 +504,13 @@ header h1 {
 #recherche_couleur5 {
   background-color: var(--primary-light);
 }
+
+#recherche_couleur6 {
+  background-color: orange;
+}
+#recherche_couleur7 {
+  background-color: lightskyblue;
+} */
 
 /* Fin navigation */
 
@@ -1494,8 +1535,19 @@ button {
   }
 
   .table_commande {
-    font-size: 10.75px;
+    font-size: 9.5px;
   }
+
+  .table_commande {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .table_commande_ligne {
+    padding: 3px;
+    text-align: center;
+  }
+
 
   /* 
   .container_loto{

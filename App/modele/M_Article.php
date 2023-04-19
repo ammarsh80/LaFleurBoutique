@@ -101,6 +101,33 @@ class M_Article
 
 
 
+    // /**
+    //  * Retourne sous forme d'un tableau associatif tous les articles de la
+    //  * catégorie passée en argument
+    //  *
+    //  * @param $idCategorie
+    //  * @return un tableau associatif
+    //  */
+    // public static function trouveLesArticleAccueil()
+    // {
+    //     $req = "SELECT lf_articles.id, lf_articles.nombre, lf_articles.description, lf_articles.prix_unitaire, 
+    //     lf_articles.image, lf_articles.etat, lf_categories.nom_categorie, lf_fleurs.nom_fleur, 
+    //     lf_unites.nom_unite, lf_unites.taille, lf_couleurs.couleur 
+    //     FROM lf_articles
+    //     JOIN lf_article_categorie ON `lf_articles`.`id` = `lf_article_categorie`.`article_id`
+    //     JOIN lf_categories ON `lf_article_categorie`.`categorie_id` = `lf_categories`.`id` 
+    //     Join lf_fleurs ON `lf_articles`.`fleurs_id` = `lf_fleurs`.`id`
+    //     Join lf_unites ON `lf_articles`.`unites_id` = `lf_unites`.`id`
+    //     Join lf_couleurs ON `lf_articles`.`couleurs_id` = `lf_couleurs`.`id`
+    //     WHERE `lf_categories`.`nom_categorie` = 'accueil'";
+    //     $res = AccesDonnees::query($req);
+    //     $lesLignes = $res->fetchAll();
+    //     // $lesLignes = $res->fetchAll(PDO::FETCH_ASSOC);
+
+    //     return $lesLignes;
+    // }
+
+
     /**
      * Retourne sous forme d'un tableau associatif tous les articles de la
      * catégorie passée en argument

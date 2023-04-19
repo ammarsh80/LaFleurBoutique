@@ -18,8 +18,30 @@ class M_Commande
      * @param $ville_id
      * @param $listArticles
      */
-    public static function creerCommande($idclient, $id_adresse_livraison, $id_adresse_facturation, $listArticles)
-    {
+    // public static function creerCommande($idclient, $id_adresse_livraison, $id_adresse_facturation, $listArticles,$commande_cree=false)
+    // {
+    //     $req = "INSERT INTO lf_commande_clients (clients_id, adresses_livraison_id, adresses_facturation_id) 
+    //     VALUES (:idclient, :id_adresse_livraison, :id_adresse_facturation)";
+    //     $statement = AccesDonnees::getPdo()->prepare($req);
+    //     $statement->bindParam(':idclient', $idclient, PDO::PARAM_INT);
+    //     $statement->bindParam(':id_adresse_livraison', $id_adresse_livraison, PDO::PARAM_INT);
+    //     $statement->bindParam(':id_adresse_facturation', $id_adresse_facturation, PDO::PARAM_INT);
+    //     $statement->execute();
+    //     $idDerniereCommande = AccesDonnees::getPdo()->lastInsertId();
+
+    //     foreach ($listArticles as $article) {
+    //         $req = "INSERT INTO lf_ligne_commande_client (commande_client_id, article_id) 
+    //         VALUES (:idDerniereCommande, :article)";
+    //         $statement = AccesDonnees::getPdo()->prepare($req);
+    //         $statement->bindParam(':idDerniereCommande', $idDerniereCommande, PDO::PARAM_INT);
+    //         $statement->bindParam(':article', $article, PDO::PARAM_INT);
+    //         $statement->execute();
+    //     }
+    // }
+
+    public static function creerCommande($idclient, $id_adresse_livraison, $id_adresse_facturation, $listArticles, $commande_cree=false)
+{
+    if(!$commande_cree){
         $req = "INSERT INTO lf_commande_clients (clients_id, adresses_livraison_id, adresses_facturation_id) 
         VALUES (:idclient, :id_adresse_livraison, :id_adresse_facturation)";
         $statement = AccesDonnees::getPdo()->prepare($req);
@@ -38,6 +60,61 @@ class M_Commande
             $statement->execute();
         }
     }
+}
+    /**
+     * Crée une commande
+     *
+     * Crée une commande à partir des arguments validés passés en paramètre, l'identifiant est
+     * construit à partir du maximum existant ; crée les lignes de commandes dans la table contenir à partir du
+     * tableau d'idProduit passé en paramètre
+     * @param $iddernierclient
+     * @param $ville_id
+     * @param $listArticles
+     */
+    public static function creerCommandeProrgramer($idclient, $date_livraison_progamme, $id_adresse_livraison, $id_adresse_facturation, $listArticles, $commande_cree=false)
+    {
+        if(!$commande_cree){
+        $req = "INSERT INTO lf_commande_clients (clients_id, date_livraison_progamme, adresses_livraison_id, adresses_facturation_id) 
+        VALUES (:idclient, :date_livraison_progamme, :id_adresse_livraison, :id_adresse_facturation)";
+        $statement = AccesDonnees::getPdo()->prepare($req);
+        $statement->bindParam(':idclient', $idclient, PDO::PARAM_INT);
+        $statement->bindParam(':date_livraison_progamme', $date_livraison_progamme, PDO::PARAM_STR);
+        $statement->bindParam(':id_adresse_livraison', $id_adresse_livraison, PDO::PARAM_INT);
+        $statement->bindParam(':id_adresse_facturation', $id_adresse_facturation, PDO::PARAM_INT);
+        $statement->execute();
+        $idDerniereCommande = AccesDonnees::getPdo()->lastInsertId();
+
+        foreach ($listArticles as $article) {
+            $req = "INSERT INTO lf_ligne_commande_client (commande_client_id, article_id) 
+            VALUES (:idDerniereCommande, :article)";
+            $statement = AccesDonnees::getPdo()->prepare($req);
+            $statement->bindParam(':idDerniereCommande', $idDerniereCommande, PDO::PARAM_INT);
+            $statement->bindParam(':article', $article, PDO::PARAM_INT);
+            $statement->execute();
+        }
+    }
+}
+    // public static function creerCommandeProrgramer($idclient, $date_livraison_progamme, $id_adresse_livraison, $id_adresse_facturation, $listArticles)
+    // {
+    //     $req = "INSERT INTO lf_commande_clients (clients_id, date_livraison_progamme, adresses_livraison_id, adresses_facturation_id) 
+    //     VALUES (:idclient, :date_livraison_progamme, :id_adresse_livraison, :id_adresse_facturation)";
+    //     $statement = AccesDonnees::getPdo()->prepare($req);
+    //     $statement->bindParam(':idclient', $idclient, PDO::PARAM_INT);
+    //     $statement->bindParam(':date_livraison_progamme', $date_livraison_progamme, PDO::PARAM_STR);
+    //     $statement->bindParam(':id_adresse_livraison', $id_adresse_livraison, PDO::PARAM_INT);
+    //     $statement->bindParam(':id_adresse_facturation', $id_adresse_facturation, PDO::PARAM_INT);
+    //     $statement->execute();
+    //     $idDerniereCommande = AccesDonnees::getPdo()->lastInsertId();
+
+    //     foreach ($listArticles as $article) {
+    //         $req = "INSERT INTO lf_ligne_commande_client (commande_client_id, article_id) 
+    //         VALUES (:idDerniereCommande, :article)";
+    //         $statement = AccesDonnees::getPdo()->prepare($req);
+    //         $statement->bindParam(':idDerniereCommande', $idDerniereCommande, PDO::PARAM_INT);
+    //         $statement->bindParam(':article', $article, PDO::PARAM_INT);
+    //         $statement->execute();
+    //     }
+    // }
 
     /**
      * Retourne vrai si pas d'erreur
@@ -177,9 +254,12 @@ class M_Commande
     {
         $pdo = Accesdonnees::getPdo();
         $stmt = $pdo->prepare(
-            "SELECT lf_commande_clients.id, lf_commande_clients.etat, lf_commande_clients.commande_le, lf_fleurs.nom_fleur,
-            lf_couleurs.couleur, lf_unites.nom_unite, lf_unites.taille, lf_articles.nombre,
-        lf_articles.prix_unitaire, lf_adresses.rue, lf_adresses.complement_rue, lf_code_postaux.code_postal, lf_villes.nom_ville
+            "SELECT lf_commande_clients.id, lf_commande_clients.commande_le, 
+            
+CONCAT(lf_fleurs.nom_fleur) AS fleur,        
+CONCAT(lf_articles.nombre, ' ', lf_unites.nom_unite) AS detail,        
+lf_articles.prix_unitaire, 
+CONCAT(lf_adresses.rue, ' ', lf_adresses.complement_rue, ' ', lf_code_postaux.code_postal, ' ', lf_villes.nom_ville) AS adresse, lf_commande_clients.etat
        FROM lf_commande_clients
        JOIN lf_clients ON lf_commande_clients.clients_id = lf_clients.id 
        JOIN lf_ligne_commande_client ON lf_commande_clients.id = lf_ligne_commande_client.commande_client_id
@@ -191,7 +271,7 @@ class M_Commande
        JOIN lf_code_postaux ON lf_adresses.code_postaux_id = lf_code_postaux.id
        JOIN lf_villes ON lf_adresses.villes_id = lf_villes.id
             WHERE lf_clients.id = :id_client
-            ORDER BY lf_commande_clients.id"
+            ORDER BY lf_commande_clients.commande_le"
         );
         $stmt->bindParam(":id_client", $id_client);
         $stmt->execute();
@@ -264,7 +344,7 @@ class M_Commande
         $id_adresse = $statement->fetchColumn();
 
         if ($id_adresse == false) {
-            $req = "INSERT INTO lf_adresse (rue, complement_rue, villes_id, code_postaux_id) 
+            $req = "INSERT INTO lf_adresses (rue, complement_rue, villes_id, code_postaux_id) 
             VALUES (:rue, :complement, :id_ville, :id_cp)";
             $statement = AccesDonnees::getPdo()->prepare($req);
             $statement->bindParam(':rue', $rue, PDO::PARAM_STR);

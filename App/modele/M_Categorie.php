@@ -18,4 +18,15 @@ class M_Categorie {
         $lesLignes = $res->fetchAll();
         return $lesLignes;
     }
+    /**
+     * Retourne toutes les catégories sous forme d'un tableau associatif
+     *
+     * @return le tableau associatif des catégories
+     */
+    public static function trouveLesCouleurs() {
+        $req = "SELECT * FROM lf_couleurs";
+        $res = AccesDonnees::query($req);
+        $lesLignes = $res->fetchAll();
+        return $lesLignes;
+    }
 }

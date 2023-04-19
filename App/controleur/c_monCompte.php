@@ -1,7 +1,7 @@
 <?php
-include "App/modele/M_Commande.php";
-include 'APP/modele/M_Inscription.php';
-include 'APP/modele/M_monCompte.php';
+include_once "App/modele/M_Commande.php";
+include_once 'APP/modele/M_Inscription.php';
+include_once 'APP/modele/M_monCompte.php';
 
 
 switch ($action) {

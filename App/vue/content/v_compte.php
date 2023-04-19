@@ -101,35 +101,35 @@ $telephone = '';
                 </div>
 
                 <form action="index.php?page=v_compte&uc=administrer&action=changerProfil" method="POST">
-                        <div style="display: flex; flex-wrap: wrap;">
+                    <div style="display: flex; flex-wrap: wrap;">
 
-                            <div class="container_form_modif">
+                        <div class="container_form_modif">
 
-                                <p class="label_modif"> <label for="adresse">Adresse</label>
-                                    <input type="text" id="adresse" name="adresse" value="<?php echo $InfoUtilisateur[0]['rue']; ?>" required>
-                                </p>
-                                <p class="label_modif"><label for="complement">Complement</label>
-                                    <input type="text" id="complement" name="complement" value="<?php echo $InfoUtilisateur[0]['complement_rue']; ?>" required>
-                                </p>
-                                <p class="label_modif"><label for="ville">Ville</label>
-                                    <input type="text" id="ville" name="ville" value="<?php echo $InfoUtilisateur[0]['nom_ville']; ?>" required>
-                                </p>
-                                <p class="label_modif"> <label for="cp">Code postal</label>
-                                    <input type="text" id="cp" name="cp" value="<?php echo $InfoUtilisateur[0]['code_postal']; ?>" required>
-                                </p>
-                                <p class="label_modif"> <label for="mail">E-mail</label>
-                                    <input type="text" id="mail" name="mail" value="<?php echo $InfoUtilisateur[0]['email']; ?>" required>
-                                </p>
-                                <p class="label_modif"> <label for="telephone">Telephone</label>
-                                    <input type="tel" id="telephone" name="telephone"  maxlength="10" size="10" value="<?php echo $InfoUtilisateur[0]['telephone']; ?>" required>
-                                </p>
-                            </div>
-
-                            <p class="btn_modif">
-                                <button type="submit" id="btn_valide_modif">Valider</button>
-                                <button type="reser" id="btn_annule_modif">Annuler</button>
+                            <p class="label_modif"> <label for="adresse">Adresse</label>
+                                <input type="text" id="adresse" name="adresse" value="<?php echo $InfoUtilisateur[0]['rue']; ?>" required>
+                            </p>
+                            <p class="label_modif"><label for="complement">Complement</label>
+                                <input type="text" id="complement" name="complement" value="<?php echo $InfoUtilisateur[0]['complement_rue']; ?>" required>
+                            </p>
+                            <p class="label_modif"><label for="ville">Ville</label>
+                                <input type="text" id="ville" name="ville" value="<?php echo $InfoUtilisateur[0]['nom_ville']; ?>" required>
+                            </p>
+                            <p class="label_modif"> <label for="cp">Code postal</label>
+                                <input type="text" id="cp" name="cp" value="<?php echo $InfoUtilisateur[0]['code_postal']; ?>" required>
+                            </p>
+                            <p class="label_modif"> <label for="mail">E-mail</label>
+                                <input type="text" id="mail" name="mail" value="<?php echo $InfoUtilisateur[0]['email']; ?>" required>
+                            </p>
+                            <p class="label_modif"> <label for="telephone">Telephone</label>
+                                <input type="tel" id="telephone" name="telephone" maxlength="10" size="10" value="<?php echo $InfoUtilisateur[0]['telephone']; ?>" required>
                             </p>
                         </div>
+
+                        <p class="btn_modif">
+                            <button type="submit" id="btn_valide_modif">Valider</button>
+                            <button type="reser" id="btn_annule_modif">Annuler</button>
+                        </p>
+                    </div>
                 </form>
             </div>
         </div>
@@ -137,70 +137,39 @@ $telephone = '';
         <div id="ligne_info_compte">
         </div>
 
-
-
         <p class="titres_compte">Historique de mes commandes</p>
+        <?php
+        if (isset($commandesClient) && !empty($commandesClient)) {
+        ?>
+            <table class="table_commande">
+                <thead>
+                    <tr class="table_commande_entete">
+                        <th class="table_commande_ligne">Numéro de commande</th>
+                        <th class="table_commande_ligne">Date</th>
+                        <th class="table_commande_ligne">Article</th>
+                        <th class="table_commande_ligne">Détail</th>
+                        <th class="table_commande_ligne">Prix (euros)</th>
+                        <th class="table_commande_ligne">Adresse de livraison</th>
+                        <th class="table_commande_ligne">État</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-        <table class="table_commande">
-            <thead>
-                <tr class="table_commande_entete">
-                    <th class="table_commande_ligne">Numéro de commande</th>
-                    <th class="table_commande_ligne">Date</th>
-                    <th class="table_commande_ligne">Article</th>
-                    <th class="table_commande_ligne">Prix (euros)</th>
-                    <th class="table_commande_ligne">Adresse de livraison</th>
-                    <th class="table_commande_ligne">État</th>
+                    <?php
+                    foreach ($commandesClient as $key => $commande) : ?>
+                        <tr>
+                            <?php foreach ($commande as $value) : ?>
+                                <td class="table_commande_ligne">
+                                    <?= $value ?></td>
+                            <?php endforeach; ?>
+                        </tr>
+                    <?php endforeach; ?>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="table_commande_ligne">
-                        <p>
-                            <?php
-                            echo  $commandesClient[0]['id'];
-                            ?>
-                        </p>
-                    </td>
-                    <td class="table_commande_ligne">
-                        <p>
-                            <?php
-                            echo  $commandesClient[0]['commande_le'];
-                            ?>
-                        </p>
-                    </td>
-                    <td class="table_commande_ligne">
-                        <p>
-                            <?php
-                            echo  $commandesClient[0]['nom_fleur'] . ' ' . $commandesClient[0]['couleur'] . ' ' . $commandesClient[0]['nombre'] . ' ' . $commandesClient[0]['nom_unite'] . ' ' . $commandesClient[0]['taille'];
-                            ?>
-                        </p>
-                    </td>
-                    <td class="table_commande_ligne">
-                        <p>
-                            <?php
-                            echo  $commandesClient[0]['prix_unitaire'];
-                            ?>
-                        </p>
-                    </td>
-                    <td class="table_commande_ligne">
-                        <p>
-                            <?php
-                            echo  $commandesClient[0]['rue'] . '<br>' . $commandesClient[0]['nom_ville'] . ' ' . $commandesClient[0]['code_postal'];
-                            ?>
-                        </p>
-                    </td>
-                    <td class="table_commande_ligne">
-                        <p>
-                            <?php
-                            echo  $commandesClient[0]['etat'];
-                            ?>
-                        </p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
+                </tbody>
+            </table>
+        <?php
+        }
+        ?>
     </div>
 
 </section>
