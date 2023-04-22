@@ -39,5 +39,19 @@ function estUnMail($mail) {
 function estUnPwd($psw) {
     return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $psw);
 }
+// function estUnMot($recherche_mot) {
+//     return preg_match('^[a-zA-Z]+$/', $recherche_mot);
+// }
 
+function estUnMot($recherche_mot) {
+
+    
+    if (!isset($recherche_mot)) {
+        return true;
+    }
+   else if (isset($recherche_mot)) {
+        return preg_match('/^[a-zA-Z]+$/', $recherche_mot);
+    } 
+
+}
 

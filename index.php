@@ -2,7 +2,8 @@
 <html lang="fr">
 
 <?php
-$page = filter_input(INPUT_GET, "page", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+// $page = filter_input(INPUT_GET, "page", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+// $recherche_mot = filter_input(INPUT_GET, "recherche_mot", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 session_start();
 
@@ -23,12 +24,16 @@ if (!empty($_SESSION['client'])) {
 $uc = filter_input(INPUT_GET, "uc", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Use Case
 $action = filter_input(INPUT_GET, "action", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Action
 $page = filter_input(INPUT_GET, "page", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Action
+$recherche_mot = filter_input(INPUT_GET, "recherche_mot", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Action
 initPanier();
 
 
-if (!$uc) {
-    $uc = 'accueil';
+if ($recherche_mot) {
+    include 'App/controleur/c_consultation.php';
 }
+// if (!$uc) {
+//     $uc = 'v_accueil';
+// }
 
 // Controleur principale
 switch ($uc) {
@@ -42,9 +47,9 @@ switch ($uc) {
 
     case 'panier':
         include 'App/controleur/c_gestionPanier.php';
-        
+
         break;
-       
+
     case 'commander':
         include 'App/controleur/c_commande.php';
 
@@ -52,14 +57,21 @@ switch ($uc) {
 
     case 'inscription':
         include 'App/controleur/c_inscription.php';
+
         break;
 
     case 'administrer':
-        include 'App/controleur/c_monCompte.php';
+        include_once "App/controleur/c_moncompte.php";
+
+
         break;
 
     case 'deconnexion':
         include 'App/controleur/c_deconnexion.php';
+        break;
+
+    case 'contacte':
+        include 'App/controleur/c_contact.php';
         break;
 
     default:

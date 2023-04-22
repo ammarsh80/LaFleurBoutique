@@ -5,7 +5,7 @@
 
     <?php
     include './App/vue/common/recherche_couleur.php';
-    ?>
+?>
     <!-- <img class="banniere" src="./public/assets/img/amour/baniere_amour.jpg" alt="image fleurs amour"> -->
     <div id="container_all_article">
         <?php

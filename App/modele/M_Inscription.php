@@ -72,7 +72,8 @@ class M_Inscription
             // Le reste du code ici
         }
         if ($stmt->rowCount() == 0) {
-            header('Location: index.php?page=v_connexion&uc=inscription&action=demandeInscription');
+           
+            header('Location: index.php?page=v_connexion');
             afficheMessage("L'identifiant ou le mot de passe est incorrecte, Entrez votre identifiant et votre mot de passe Correctement ou enregistrez-vous sur la page 'S'inscrire', merci !");
             die;
         }
@@ -84,10 +85,8 @@ class M_Inscription
             // echo "Bonjour " . "$identifiant" . " vous êtes connecté";
             // afficheMessageConnexion("Bonjour " . "$identifiant" . " vous êtes connecté");
             return $id_clients;
-           
-
-
         }
+
         return false;
     }
 
@@ -152,6 +151,106 @@ class M_Inscription
         } 
         return $erreurs;
     }
+   
+   
+   
+    /**
+     * Retourne vrai si pas d'erreur
+     * Remplie le tableau d'erreur s'il y a
+     *
+     * @param $nom : chaîne
+     * @param $prenom : chaîne
+     * @param $rue : chaîne
+     * @param $ville : chaîne
+     * @param $cp : INT
+     * @param $mail : chaîne
+     * @return : array
+     */
+    public static function estValideContact($nom, $prenom, $mail, $message_contacte)
+    {
+        $erreurs = [];
+        if ($nom == "") {
+            $erreurs[] = "Il faut saisir le champ nom";
+        }
+
+        if ($prenom == "") {
+            $erreurs[] = "Il faut saisir le champ prénom";
+        }
+        
+        if ($mail == "") {
+            $erreurs[] = "Il faut saisir le champ mail";
+        } 
+        else if (!estUnMail($mail)) {
+            $erreurs[] = "erreur de mail";
+        }
+        if ($message_contacte == "") {
+            $erreurs[] = "Veuillez  saisir votre message";
+        } 
+        return $erreurs;
+    }
+    /**
+     * Retourne vrai si pas d'erreur
+     * Remplie le tableau d'erreur s'il y a
+     *
+     * @param $nom : chaîne
+     * @param $prenom : chaîne
+     * @param $rue : chaîne
+     * @param $ville : chaîne
+     * @param $cp : INT
+     * @param $mail : chaîne
+     * @return : array
+     */
+    public static function estValideIdentifiant($identifiant, $mot_de_passe)
+    {
+       
+        $erreurs = [];
+        if ($identifiant == "t") {
+            $erreurs[] = "Il faut saisir le pseudo";
+        }
+      
+        if ($mot_de_passe == "t") {
+            $erreurs[] = "Il faut saisir le champ mot de passe";
+           
+            
+        }
+        
+        // if ($mail == "") {
+        //     $erreurs[] = "Il faut saisir le champ mail";
+        // } 
+        // else if (!estUnMail($mail)) {
+        //     $erreurs[] = "erreur de mail";
+        // }
+     
+        
+        return $erreurs;
+    }
+ 
+ 
+    /**
+     * Retourne vrai si pas d'erreur
+     * Remplie le tableau d'erreur s'il y a
+     *
+     * @param $nom : chaîne
+     * @param $prenom : chaîne
+     * @param $rue : chaîne
+     * @param $ville : chaîne
+     * @param $cp : INT
+     * @param $mail : chaîne
+     * @return : array
+     */
+    public static function estValideMot($recherche_mot)
+    {
+       
+        $erreurs = [];
+           if (!estUnMot($recherche_mot)) {
+            $erreurs[] = "Veuillez saisir du texte en lettre majuscule au miniscule";
+            header('location: index.php?page=v_accueil&action=voirArticlesAccueil');
+
+        }
+    
+        return $erreurs;
+    }
+
     /**
      * trouve ou creer une ville
      *
@@ -207,7 +306,7 @@ class M_Inscription
      * @param [INT] $ville_id
      * @return :$idclient
      */
-    public static function trouveOuCreerClient($nom, $prenom, $pseudo, $telephone, $mail, $psw)
+    public static function trouveOuCreerClient($nom, $prenom, $pseudo, $telephone, $mail, $psw, $adresses_id)
     {
 
         $pdo = AccesDonnees::getPdo();
@@ -235,6 +334,14 @@ class M_Inscription
             $statement->execute();
             $id_client = $statement->fetchColumn();
             $id_client = $pdo->lastInsertId();
+
+            $req = "INSERT INTO lf_adresse_client (clients_id, adresses_id) VALUES (:id_client,:adresses_id)";
+            $statement = AccesDonnees::getPdo()->prepare($req);
+            $statement->bindParam(':id_client', $id_client, PDO::PARAM_INT);
+            $statement->bindParam(':adresses_id', $adresses_id, PDO::PARAM_INT);
+            $statement->execute();
+            $adresses_id = $statement->fetchColumn();
+            $adresses_id = $pdo->lastInsertId();
         }
         return $id_client;
     }

@@ -1,29 +1,15 @@
 <?php
-include_once "App/modele/M_Commande.php";
-include_once 'APP/modele/M_Inscription.php';
-include_once 'APP/modele/M_monCompte.php';
+include_once "./App/modele/M_Commande.php";
+include_once "App/modele/M_Inscription.php";
+include_once "./App/modele/M_monCompte.php";
+include_once "./App/modele/M_Commande.php";
+
+
 
 
 switch ($action) {
 
-  case 'loginClient':
-    $identifiant = filter_input(INPUT_POST, 'identifiant');
-    $mot_de_passe = filter_input(INPUT_POST, 'mot_de_passe');
-    $client = M_Inscription::checkPassword($identifiant, $mot_de_passe);
-
-  
-
-
-    if (!$client) {
-      afficheErreur("Entrez votre identifiant et votre mot de passe ou enregistrez-vous sur la page 'S'inscrire', merci !");
-    } else {
-      $_SESSION['id'] = $client;
-      // supprimerPanier();
-    //   header('index.php?page=v_accueil&action=voirArticlesAccueil');
-      header('location: index.php?page=v_accueil&action=voirArticlesAccueil');
-
-    }
-    break;
+ 
   
   case 'logoutClient':
     // supprimerPanier();

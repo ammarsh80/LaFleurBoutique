@@ -76,7 +76,7 @@
 
                                 <div class="container_btn_facturation">
                                     <button type="submit" id="btn_valide_facturation" class="btn_valide_facturation">Valider</button>
-                                    <button type="submit" id="btn_annuler_facturation" class="btn_annuler_facturation">Annuler</button>
+                                    <button type="reset" id="btn_annuler_facturation" class="btn_annuler_facturation">Annuler</button>
                                 </div>
                             </div>
                         </div>

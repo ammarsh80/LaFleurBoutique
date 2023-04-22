@@ -294,7 +294,7 @@ header h1 {
 
 #nav_right {
   padding-right: 20px;
-  width: 270px;
+  width: 155px;
   height: 50px;
   display: flex;
   justify-content: space-between;
@@ -420,22 +420,23 @@ header h1 {
   width: 100%;
   display: flex;
   justify-content: end;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 #recherche_couleur {
   /* width:400px; */
   margin-right: 0px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-right: 20px;
-  background-color: var(--primary-light);
+  margin-right: 15px;
+  /* background-color: var(--primary-light); */
   border-radius: 5px;
 }
 
 
-#rechercher_par_couleur {
+/* #rechercher_par_couleur {
   width: 170px;
   height: 25px;
   border-radius: 5px;
@@ -445,9 +446,30 @@ header h1 {
   align-items: center;
   background-color: var(--primary-light);
   font-size: 14px;
+} */
+
+#couleur{
+  width: 164.33px;
+  padding: 3px 10px;
+  background-color: var(--green);
+  color: var(--white);
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  margin-left: -32.5px;
+  margin-top: 4px;
+
 }
 
-#form_couleur{
+.option_couleur{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+
+}
+/* #form_couleur{
   width: 150px;
   height: 25px;
   padding: 0;
@@ -456,7 +478,7 @@ header h1 {
   justify-content: center;
   align-items: center;
 
-}
+} */
 
 
 #btn_par_couleur{
@@ -1145,6 +1167,9 @@ textarea#message_contacte {
   color: var(--primary-color);
   font-size: 20px;
   resize: vertical;
+  line-height: 1.5;
+  font-size: 20px;
+  border-radius: 6px;
 }
 
 

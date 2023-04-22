@@ -1,18 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 <section id="connexion">
     <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="image bannière">
-
+<div class="message">Entrez correctement votre identifiant et votre mot de passe ou veuillez renseigner le formulaire d'inscription avant de vous connectez</div>
     <div id="container_connexion">
         <!-- <form action="index.php?page=v_connexion&uc=administrer&action=loginClient" method="post"> -->
-        <form action="index.php?page=v_accueil&uc=administrer&action=loginClient" method="post">
-                      <!-- index.php?page=v_accueil&action=voirArticlesAccueil -->
+        <form action="index.php?page=v_connexion&uc=inscription&action=loginClient" method="POST">
 
             <div>
                 <label for="identifiant" class="label_connexion">Pseudo *</label>
-                <input type="text" name="identifiant" id="identifiant" class="input_connexion input_identification">
+                <input type="text" name="identifiant" id="identifiant" class="input_connexion input_identification" required>
             </div>
             <div>
                 <label for="mot_de_passe" class="label_connexion">Mot de passe *</label>
-                <input type="password" name="mot_de_passe" id="mot_de_passe" class="input_connexion input_identification">
+                <input type="password" name="mot_de_passe" id="mot_de_passe" class="input_connexion input_identification" required>
             </div>
             <button type="submit" id="btn_se_connecter" class="btn_se_connecter">Me connecter</button>
         </form>
@@ -83,3 +91,5 @@
         </div>
     </div>
 </section>
+</body>
+</html>

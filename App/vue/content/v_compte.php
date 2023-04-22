@@ -1,5 +1,6 @@
 <?php
-include 'APP/controleur/c_monCompte.php';
+include_once "./App/controleur/c_moncompte.php";
+
 
 $adresse = '';
 $complement = '';
@@ -127,7 +128,7 @@ $telephone = '';
 
                         <p class="btn_modif">
                             <button type="submit" id="btn_valide_modif">Valider</button>
-                            <button type="reser" id="btn_annule_modif">Annuler</button>
+                            <button type="reset" id="btn_annule_modif">Annuler</button>
                         </p>
                     </div>
                 </form>

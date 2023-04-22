@@ -1,14 +1,14 @@
 <?php
 
-// include_once 'App/modele/M_Inscription.php';
+include_once "./App/modele/M_Inscription.php";
+include_once "./App/modele/M_Commande.php";
 
 /**
  * Controleur pour les inscriptions
  * @author AS
  */
 switch ($action) {
-    case 'demandeInscription':
-               {
+    case 'demandeInscription': {
             $nom = '';
             $prenom = '';
             $pseudo = '';
@@ -21,7 +21,7 @@ switch ($action) {
             $mail = '';
             $telephone = '';
         }
-            break;
+        break;
     case 'confirmerInscription':
         $nom = filter_input(INPUT_POST, 'nom');
         $prenom = filter_input(INPUT_POST, 'prenom');
@@ -35,19 +35,54 @@ switch ($action) {
         $mail = filter_input(INPUT_POST, 'mail');
         $telephone = filter_input(INPUT_POST, 'telephone');
         $errors = M_Inscription::estValideInscription($nom, $prenom, $pseudo, $psw, $confirm_psw, $rue, $ville, $cp, $mail, $telephone);
-        
 
         if (count($errors) > 0) {
             // Si une erreur, on recommence
             afficheErreurs($errors);
         } else {
-
             $id_ville = M_Inscription::trouveOuCreerVille($ville);
             $id_cp = M_Inscription::trouveOuCreerCp($cp);
-            $id_client = M_Inscription::trouveOuCreerClient($nom, $prenom, $pseudo, $telephone, $mail, $confirm_psw);
+            $id_adresse = M_Commande::trouveOuCreerAdresse($rue, $complement, $id_ville, $id_cp);
+            $id_client = M_Inscription::trouveOuCreerClient($nom, $prenom, $pseudo, $telephone, $mail, $confirm_psw, $id_adresse);
             // $idUtilisateur = M_Inscription::creerUtilisateur($pseudo, $psw, $id_client);
             afficheMessage("Vous venez de vous inscrire avec succès!<br> Veuillez vous-connecter grâce à votre pseudo (identifiant) et le mot de passe que vous venez de créer !");
             $uc = '';
+        }
+        break;
+    case 'loginClient':
+
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Récupérer les valeurs des inputs
+            $identifiant = filter_input(INPUT_POST, 'identifiant');
+            $mot_de_passe = filter_input(INPUT_POST, 'mot_de_passe');
+
+            $errors = M_Inscription::estValideIdentifiant($identifiant, $mot_de_passe);
+            if (count($errors) > 0) {
+                // Si une erreur, on recommence
+                afficheErreurs($errors);
+                header('location: index.php?page=v_connexion');
+            }
+            
+
+
+
+            $client = M_Inscription::checkPassword($identifiant, $mot_de_passe);
+
+            if (!$client) {
+                afficheErreur("Entrez correctement votre identifiant et votre mot de passe ou veuillez renseigner le formulaire d'inscription avant de vous connectez, merci !");
+            } else {
+                $_SESSION['id'] = $client;
+                // supprimerPanier();
+                //   header('index.php?page=v_accueil&action=voirArticlesAccueil');
+
+                if (isset($_SESSION['id'])) {
+                    $InfoUtilisateur = [];
+                    $InfoUtilisateur = M_Commande::afficherInfoUtilisateur($_SESSION['id']);
+                }
+                header('location: index.php?page=v_accueil&action=voirArticlesAccueil');
+            }
         }
         break;
 }

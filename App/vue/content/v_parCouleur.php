@@ -38,7 +38,7 @@ $id_couleur = filter_var($_GET['couleur'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
                     <div id="prix_panier">
                         <p><?= $prix ?> Euros</p>
-                        <a href="index.php?page=v_parCouleur&idArticle=<?php echo $idArticle ?>&couleur=<?php echo $id_couleur ?>&action=ajouterAuPanier">
+                        <a href="index.php?page=v_parCouleur&idArticle=<?php echo $idArticle ?>&couleur=<?php echo $id_couleur ?>&action=ajouterAuPanierDepuisCouleur">
                             <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add" />
                         </a>
 

@@ -1,7 +1,11 @@
 <?php
-include_once "App/modele/M_Commande.php";
-include_once 'APP/modele/M_Inscription.php';
-include_once 'APP/modele/M_monCompte.php';
+include_once "./App/modele/M_Commande.php";
+include_once "./App/modele/M_Inscription.php";
+include_once "./App/modele/M_monCompte.php";
+
+// include_once "App/modele/M_Commande.php";
+// include_once "App/modele/M_Inscription.php";
+// include_once 'APP/modele/M_monCompte.php';
 
 
 if (isset($_SESSION['id'])) {

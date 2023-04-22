@@ -287,6 +287,8 @@ CONCAT(lf_adresses.rue, ' ', lf_adresses.complement_rue, ' ', lf_code_postaux.co
      */
     public static function afficherInfoUtilisateur($id_client)
     {
+        
+
         $pdo = Accesdonnees::getPdo();
         $stmt = $pdo->prepare("SELECT DISTINCT lf_clients.id, lf_clients.nom_client, lf_clients.prenom, 
         lf_clients.pseudo, lf_clients.telephone, lf_clients.email , lf_clients.mot_de_passe, 

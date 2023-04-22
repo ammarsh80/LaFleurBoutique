@@ -18,13 +18,13 @@
         <a href="index.php?page=v_anniversaire&action=voirArticlesAnniversaire">
             <h1>Anniversaire</h1>
         </a>
+        <a href="https://shihan.needemand.com/projets_web/la_fleur_wordpress/">
+            <h1>Notre Blog</h1>
+        </a>
 
 
     </div>
+   
     <div class="ligne_banniere"></div>
-
-
-
-
 
 </section>
