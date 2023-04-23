@@ -11,7 +11,8 @@
  * @param $codePostal : la chaîne testée
  * @return : vrai ou faux
  */
-function estUnCp($codePostal) {
+function estUnCp($codePostal)
+{
     return strlen($codePostal) == 5 && estEntier($codePostal);
 }
 
@@ -22,8 +23,14 @@ function estUnCp($codePostal) {
  * @param $valeur : la chaîne testée
  * @return : vrai ou faux
  */
-function estEntier($valeur) {
+function estEntier($valeur)
+{
     return preg_match("/[^0-9]/", $valeur) == 0;
+}
+
+function estTelephone($numero)
+{
+    return preg_match('/^(0|\+33)[1-9]([-. ]?[0-9]{2}){4}$/', $numero);
 }
 
 /**
@@ -33,25 +40,89 @@ function estEntier($valeur) {
  * @param $mail : la chaîne testée
  * @return : vrai ou faux
  */
-function estUnMail($mail) {
+function estUnMail($mail)
+{
     return preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#', $mail);
 }
-function estUnPwd($psw) {
-    return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/', $psw);
+
+function estUntext($nom)
+{
+    return preg_match('/^[a-zA-ZÀ-ÖØ-öø-ÿàçéîïôöêù\s_-]*$/u', $nom);
 }
+function estUntextEtChiffre($message_contacte)
+{
+    return preg_match('/^[a-zA-ZÀ-ÖØ-öø-ÿàçéîïôöêù0-9\s_-]*$/u', $message_contacte);
+}
+
+
+function estUnPwd($psw)
+{
+    return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/', $psw);
+}
+
+function estEntierCarte($carte)
+{
+    return preg_match('/^[0-9]{15,16}$/', $carte) == 1;
+}
+
+
+
+/**
+ * Pour valider un numéro de carte bancaire, on peut utiliser l'algorithme de Luhn 
+ * (également connu sous le nom d'algorithme de modulo 10). Voici le code modifié pour
+ *  valider un numéro de carte bancaire :
+ *
+ * @param [type] $numero
+ * @return void
+ */
+function estUneCarteModulo10($numero)
+{
+    // Supprime tous les espaces de la chaîne de caractères
+    $numero = str_replace(' ', '', $numero);
+
+    // La chaîne doit être constituée de chiffres uniquement
+    if (!preg_match('/^[0-9]+$/', $numero)) {
+        return false;
+    }
+
+    $sum = 0;
+    $length = strlen($numero);
+
+    for ($i = $length - 1; $i >= 0; $i--) {
+        $digit = (int) $numero[$i];
+        if ($i % 2 == $length % 2) {
+            $digit *= 2;
+            if ($digit > 9) {
+                $digit -= 9;
+            }
+        }
+        $sum += $digit;
+    }
+
+    return $sum % 10 == 0;
+}
+
+
+function estDateExpiration($expiration)
+{
+    return preg_match('/^(0[1-9]|1[0-2])\/[0-9]{4}$/', $expiration) === 1;
+}
+function estCrypto($crypto)
+{
+    return preg_match('/^[0-9]{3,4}$/', $crypto) === 1;
+}
+
+
+
 // function estUnMot($recherche_mot) {
 //     return preg_match('^[a-zA-Z]+$/', $recherche_mot);
 // }
 
-function estUnMot($recherche_mot) {
-
-    
+function estUnMot($recherche_mot)
+{
     if (!isset($recherche_mot)) {
         return true;
-    }
-   else if (isset($recherche_mot)) {
+    } else if (isset($recherche_mot)) {
         return preg_match('/^[a-zA-Z]+$/', $recherche_mot);
-    } 
-
+    }
 }
-

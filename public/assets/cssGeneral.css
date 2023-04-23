@@ -221,6 +221,7 @@ p {
   top: 363px;
   padding: 3px 20px;
   font-size: 1em;
+  border-radius: 5px;
   display: block;
   background-color: rgb(237, 210, 229);
   color: rgb(203, 28, 128);
@@ -243,6 +244,18 @@ p {
   color: var(--white);
   border-radius: 3px;
 }
+.nArticles {
+  position: absolute;
+  padding: 2px 5px 4px 5px;
+  top: 30px;
+  right: 15px;
+  font-size: 0.7em;
+  display: block;
+  background-color: var(--green);
+  color: var(--white);
+  border-radius: 3px;
+  z-index: 10;
+}
 
 
 .messagePanierVide {
@@ -250,6 +263,7 @@ p {
   padding: 2px 20px;
   top: 363px;
   font-size: 1em;
+  border-radius: 5px;
   display: block;
   background-color: var(--secondary-light);
   color: var(--secondary-color);
@@ -622,6 +636,8 @@ header h1 {
   background-color: var(--white);
   border-radius: 4px;
   padding: 10px;
+  margin-left:10px ;
+  margin-right:10px ;
 }
 
 #logo_reseaux_sociaux img {
@@ -783,7 +799,11 @@ header h1 {
   font-weight: normal;
 
 }
-
+#prix_panier img {
+  width: 25px;
+  margin-top: 5px;
+  margin-left: 10px;
+}
 #prix_panier>a {
   /* margin-left: 40px; */
   margin-bottom: 0px;
@@ -803,7 +823,8 @@ header h1 {
 #apropos,
 .apropos,
 #livraison,
-#panier {
+#panier,
+#container_blog {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -916,7 +937,7 @@ header h1 {
 }
 
 .label_livraison {
-  width: 120px;
+  width: 180px;
   margin-bottom: 5px;
   color: var(--primary-color);
   font-size: 16px;
@@ -982,6 +1003,10 @@ header h1 {
   padding: 20px 10px;
 }
 
+.label_livraison_progamme{
+  font-size: 16px;
+  margin-right: 5px;
+}
 .titres_compte {
   width: 100%;
   height: 50px;
@@ -1350,10 +1375,11 @@ textarea#message_contacte {
 .cadre_paiement {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   border: 1px solid #c1e39e;
   padding: 10px;
+  margin-bottom: 20px;
   /* pointer-events: none; */
   /* opacity: 0.4; */
 
@@ -1378,7 +1404,7 @@ textarea#message_contacte {
   text-align: center;
   background-color: var(--green);
   margin-bottom: 0;
-  font-size: 12px !important;
+  font-size: 15px !important;
   color: var(--secondary-light);
 }
 
@@ -1394,11 +1420,13 @@ textarea#message_contacte {
 
 .btn_valide_payement {
   width: 190px;
-  height: 40px;
-  padding: 5px;
-  font-size: 18px;
-  margin-right: 3px;
+  margin-top: 35px;
+  height: 30px;
+  font-size: 14px;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container_loto {
@@ -1409,17 +1437,17 @@ textarea#message_contacte {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  padding: 20px;
+  padding: 20px 10px;
 
 }
 
 .container_loto h1 {
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 20px;
 }
 
 .container_loto p {
-  font-size: 20px;
+  font-size: 14px;
   background-color: var(--green);
   padding: 15px;
   border-radius: 5px;
@@ -1530,10 +1558,98 @@ button {
 
   }
 
+  /* Articles Blog ***********************************/
+#container_blog{
+  width: 95%;
+  margin-left: 2.5vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--green);
+  padding: 0;
+  margin-bottom: 100px;
+  border-radius: 5px;
+
+
+}
+
+#container_blog > p{
+  background-color: var(--primary-light);
+  padding: 20px 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  font-weight: bold;
+
+}
+#container_articles{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+
+
+}
+
+#article img {
+  width: 40vw;
+  margin: 20px 20px 10px 20px;
+  border-radius: 10px;
+}
+
+#article> p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 0 30px 20px;
+font-weight: bold;
+}
+
+  /* Fin Articles Blog ***********************************/
 
 /* Début_MEDIA QUERIES **********************************768px */
 
 @media (max-width:768px) {
+
+  .message {
+    position: absolute;
+    padding: 2px 20px 4px 10px;
+    top: 290px;
+    font-size: 0.8em;
+    display: block;
+    background-color: var(--green);
+    color: var(--white);
+    border-radius: 3px;
+  }
+
+  .nArticles {
+    position: absolute;
+    padding: 2px 5px 4px 5px;
+    top: 48px;
+    right: 17px;
+    font-size: 0.7em;
+    display: block;
+    background-color: var(--green);
+    color: var(--white);
+    border-radius: 3px;
+    z-index: 10;
+  }
+
+  .erreur {
+    position: absolute;
+    left: 3px;
+    top: 280px;
+    padding: 1px 5px;
+    font-size: 0.9em;
+    border-radius: 5px;
+    display: block;
+    background-color: rgb(237, 210, 229);
+    color: rgb(203, 28, 128);
+  }
+
   #div_nav{
     display: block;
   }
@@ -1548,7 +1664,8 @@ button {
 
   #lafleur h1 {
     font-size: 40px;
-    margin-top: 20px;
+    margin-top: 0px;
+margin-left: 3vw;
   }
 
   #div_connexion {
@@ -1563,7 +1680,7 @@ button {
     padding-right: 10px;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: end;
     width: 200px;
     height: 160px;
     display: flex;
@@ -1593,7 +1710,7 @@ button {
   }
 
   /* .banniere {
-    position: absolute;
+position: fixed;
   } */
 
   /* Burger Menu */
@@ -1630,7 +1747,7 @@ button {
 
   .lignes {
     width: 100%;
-    height: 4px;
+    height: 5px;
     border-radius: 5px;
     background-color: var(--primary-color);
     position: absolute;
@@ -1728,7 +1845,7 @@ button {
   }
 
   a {
-    font-size: 1.2em;
+    font-size: 1em;
   }
 
   /* Fin Burger Menu */
@@ -1746,8 +1863,18 @@ button {
   }
 
 
+#footer_container > div{
+font-size: 14px;
+}
+.propos,
+#livraison,
+.contacter{
 
-
+font-size: 18px;
+}
+#livraison{
+margin-top: 30px;
+}
 
   .message_inscription {
     font-size: 16px;
@@ -1763,7 +1890,34 @@ button {
   /* .container_paiement {
     transform: scale(0.9, 0.9);
   } */
+  .container_paiement {
+    width: 100%;
+    background-color: var(--white);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0px 0px;
+    border-radius: 10px;
+    opacity: 100%;
+    box-shadow: 2px 2px 2px 2px var(--green);
+    /* pointer-events: none; */
+  }
+  
+#container_livraison{
+  padding-left: 20px !important;
+}
 
+
+#date_livraison_progamme{
+  width: 150px;
+}
+  .container_paiement p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 40px;
+  }
+  
   .container_btn_inscription {
     width: 100%;
     display: flex;
@@ -1841,4 +1995,16 @@ button {
     margin-left: 25px;
     margin-top: 25px;
   }
+
+
+  /* Articles blog */
+   #article img {
+    width: 60vw;
+  }
+  
+  #article> p{
+    margin: 0px 0 30px 0px;
+  font-size: 12px;
+  }
+  
 }

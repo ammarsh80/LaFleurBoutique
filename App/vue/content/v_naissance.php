@@ -43,5 +43,20 @@
         }
         ?>
     </div>
+    <div id="container_blog">
+        <p>Journal Lafleur</p>
+        <div id="container_articles">
 
+            <div id="article">
+                <a href="https://shihan.needemand.com/projets_web/la_fleur_wordpress/?p=111">
+                    <img src="./public/assets/img/blog/zoom_miel.jpg" alt="phoho paysages"></a>
+                <p>Zoom sur le miel de fleurs & les plantes mellifères</p>
+            </div>
+            <div id="article">
+                <a href="https://shihan.needemand.com/projets_web/la_fleur_wordpress/?p=130">
+                    <img src="./public/assets/img/blog/remedes.jpg" alt="phoho mimosa"> </a>
+                <p>10 remèdes de grand-mère à connaître</p>
+            </div>
+        </div>
+    </div>
 </section>

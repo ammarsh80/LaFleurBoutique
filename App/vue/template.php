@@ -1,4 +1,13 @@
 <body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+<script src="public/assets/monjs/jquery.spritely.js"></script>
+<script src="public/assets/monjs/jquery.backgroundposition.js"></script>
+<script src="public/assets/monjs/slot.js"></script>
+
+<script src="public/assets/monjs/external-api.js"></script>
+<script src="public/assets/monjs/single-file-hooks-frames.js"></script>
+
   <main>
     <?php
     include("./App/vue/common/head.php");
@@ -16,22 +25,23 @@
 
 
     if (!isset($page) || (($page !== 'v_accueil')
-        && ($page !== 'v_amour')
-        && ($page !== 'v_anniversaire')
-        &&  ($page !== 'v_aPropos')
-        && ($page !== 'v_compte')
-        && ($page !== 'v_connexion')
-        && ($page !== 'v_livraison')
-        && ($page !== 'v_mariage')
-        && ($page !== 'v_naissance')
-        && ($page !== 'v_nousContacter')
-        && ($page !== 'v_panier')
-        && ($page !== 'v_remerciement')
-        && ($page !== 'v_loto')
-        && ($page !== 'v_adresseLivraison')
-        && ($page !== 'v_parCouleur')
-      )) 
-      {
+      && ($page !== 'v_amour')
+      && ($page !== 'v_anniversaire')
+      &&  ($page !== 'v_aPropos')
+      && ($page !== 'v_compte')
+      && ($page !== 'v_connexion')
+      && ($page !== 'v_livraison')
+      && ($page !== 'v_mariage')
+      && ($page !== 'v_naissance')
+      && ($page !== 'v_nousContacter')
+      && ($page !== 'v_panier')
+      && ($page !== 'v_remerciement')
+      && ($page !== 'v_loto')
+      && ($page !== 'v_adresseLivraison')
+      && ($page !== 'v_parCouleur')
+      && ($page !== 'v_paiement')
+      && ($page !== 'v_confirmationPayement')
+    )) {
 
       // var_dump($recherche_mot);
       // die;
@@ -54,19 +64,16 @@
       include './App/vue/content/' . $page . '.php';
     }
 
-
-
     include './App/vue/common/footer.php';
     ?>
   </main>
 </body>
-<script src="public/assets/bootstrap/js/bootstrap.min.js"></script>
+<!-- <script src="public/assets/bootstrap/js/bootstrap.min.js"></script> -->
 <script src="public/assets/monjs/main.js"></script>
 
 
-<script src="public/assets/monjs/jquery.backgroundposition.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-<script src="public/assets/monjs/jquery.spritely.js"></script>
-<script src="public/assets/monjs/slot.js"></script>
+
+
+
 
 </html>

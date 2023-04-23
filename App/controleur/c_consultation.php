@@ -65,12 +65,11 @@ switch ($action) {
         $nom_Categorie = filter_input(INPUT_GET, 'categorie');
         $idArticle = filter_input(INPUT_GET, 'idArticle');
 
-     
-      
+
+
         if (!ajouterAuPanier($idArticle)) {
             afficheErreurs(["Cet article est déjà dans le panier !!"]);
-        } 
-        else {
+        } else {
             afficheMessage("Cet article a été ajouté au panier ");
         }
         $lesArticles = M_Article::trouveLesArticlesDeCategorieNom($nom_Categorie);
@@ -85,6 +84,9 @@ switch ($action) {
             afficheMessage("Cet article a été ajouté au panier ");
         }
         $lesArticles = M_Article::trouveLesArticleDeCouleur($id_couleur);
+        break;
+
+    default:
         break;
 }
 

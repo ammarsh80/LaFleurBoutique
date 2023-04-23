@@ -58,6 +58,7 @@ class M_Commande
             $statement->bindParam(':idDerniereCommande', $idDerniereCommande, PDO::PARAM_INT);
             $statement->bindParam(':article', $article, PDO::PARAM_INT);
             $statement->execute();
+            return $idDerniereCommande;
         }
     }
 }
@@ -132,47 +133,80 @@ class M_Commande
 
     {
         $erreurs = [];
-        if ($nom == "") {
-            $erreurs[] = "Il faut saisir le champ nom adresse livraicon";
-        }
-        if ($prenom == "") {
-            $erreurs[] = "Il faut saisir le champ prénom adresse livraicon";
-        }
-        if ($rue == "") {
-            $erreurs[] = "Il faut saisir le champ rue adresse livraicon";
-        }
-        if ($complement == "") {
-            $erreurs[] = "Il faut saisir le champ complement adresse livraicon";
-        }
-        if ($ville == "") {
-            $erreurs[] = "Il faut saisir le champ ville adresse livraicon";
-        }
-        if ($cp == "") {
-            $erreurs[] = "Il faut saisir le champ Code postal adresse livraicon";
-        } else if (!estUnCp($cp)) {
-            $erreurs[] = "erreur de code postal adresse livraicon";
-        }
+        if ($nom === "") {
+        $erreurs[] = "Il faut saisir le champ nom";
+    }
+    else if (!estUntext($nom)) {
+        $erreurs[] = "erreur de nom, veuillez saisir du text seulement (accents acceptés)";
+    }
+        if ($prenom === "") {
+        $erreurs[] = "Il faut saisir le champ prenom";
+    }
+    else if (!estUntext($prenom)) {
+        $erreurs[] = "erreur de prénom, veuillez saisir du text seulement (accents acceptés)";
+    }
+        if ($rue === "") {
+        $erreurs[] = "Il faut saisir le champ rue";
+    }
+    else if (!estUntextEtChiffre($rue)) {
+        $erreurs[] = "erreur d'adresse, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
+    }
+        if ($complement === "") {
+        $erreurs[] = "Il faut saisir le champ complement";
+    }
+    else if (!estUntextEtChiffre($complement)) {
+        $erreurs[] = "erreur de complément d'adresse, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
+    }
 
-        if ($nomFac == "") {
-            $erreurs[] = "Il faut saisir le champ nom adresse factoration";
-        }
-        if ($prenomFac == "") {
-            $erreurs[] = "Il faut saisir le champ prénom adresse factoration";
-        }
-        if ($rueFac == "") {
-            $erreurs[] = "Il faut saisir le champ rue adresse factoration";
-        }
-        if ($complementFac == "") {
-            $erreurs[] = "Il faut saisir le champ complement adresse factoration";
-        }
-        if ($villeFac == "") {
-            $erreurs[] = "Il faut saisir le champ ville adresse factoration";
-        }
-        if ($cpFac == "") {
-            $erreurs[] = "Il faut saisir le champ Code postal adresse factoration";
-        } else if (!estUnCp($cp)) {
-            $erreurs[] = "erreur de code postal adresse factoration";
-        }
+    if ($ville == "") {
+        $erreurs[] = "Il faut saisir le champ ville";
+    }
+    else if (!estUntextEtChiffre($ville)) {
+        $erreurs[] = "erreur de ville, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
+    }
+    if ($cp == "") {
+        $erreurs[] = "Il faut saisir le champ Code postal";
+    }
+     else if (!estUnCp($cp)) {
+        $erreurs[] = "erreur de code postal";
+    }
+        if ($nomFac === "") {
+        $erreurs[] = "Il faut saisir le champ nom adresse de facturation";
+    }
+    else if (!estUntext($nomFac)) {
+        $erreurs[] = "erreur de nom adresse de facturation, veuillez saisir du text seulement (accents acceptés)";
+    }
+        if ($prenomFac === "") {
+        $erreurs[] = "Il faut saisir le champ prenom";
+    }
+    else if (!estUntext($prenomFac)) {
+        $erreurs[] = "erreur de prénom adresse de facturation, veuillez saisir du text seulement (accents acceptés)";
+    }
+        if ($rueFac === "") {
+        $erreurs[] = "Il faut saisir le champ rue";
+    }
+    else if (!estUntextEtChiffre($rueFac)) {
+        $erreurs[] = "erreur d'adresse de facturation, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
+    }
+        if ($complementFac === "") {
+        $erreurs[] = "Il faut saisir le champ complement";
+    }
+    else if (!estUntextEtChiffre($complementFac)) {
+        $erreurs[] = "erreur de complémentd'adresse de facturation, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
+    }
+
+    if ($villeFac == "") {
+        $erreurs[] = "Il faut saisir le champ ville";
+    }
+    else if (!estUntextEtChiffre($villeFac)) {
+        $erreurs[] = "erreur de ville adresse de facturation, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
+    }
+    if ($cpFac == "") {
+        $erreurs[] = "Il faut saisir le champ Code postal";
+    }
+     else if (!estUnCp($cpFac)) {
+        $erreurs[] = "erreur de code postal adresse de facturation";
+    }
 
         return $erreurs;
     }

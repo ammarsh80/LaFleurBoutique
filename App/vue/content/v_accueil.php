@@ -43,7 +43,13 @@
             </div>
         <?php
         }
+
+
         ?>
     </div>
 
+<?php
+        include("./App/vue/common/articleBlog.php");
+
+?>
 </section>

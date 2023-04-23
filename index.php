@@ -7,6 +7,9 @@
 
 session_start();
 
+
+
+
 // Pour afficher les erreurs PHP
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
@@ -72,6 +75,9 @@ switch ($uc) {
 
     case 'contacte':
         include 'App/controleur/c_contact.php';
+        break;
+    case 'payer':
+        include 'App/controleur/c_payer.php';
         break;
 
     default:

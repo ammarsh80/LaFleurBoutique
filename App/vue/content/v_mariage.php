@@ -43,5 +43,20 @@
     }
     ?>
 </div>
+<div id="container_blog">
+    <p>Journal Lafleur</p>
+    <div id="container_articles">
 
+        <div id="article">
+            <a href="https://shihan.needemand.com/projets_web/la_fleur_wordpress/?p=66">
+                <img src="./public/assets/img/blog/muguet.jpg" alt="phoho muguet"></a>
+            <p>Muguet : Fleur de bonheur</p>
+        </div>
+        <div id="article">
+            <a href="https://shihan.needemand.com/projets_web/la_fleur_wordpress/?p=41">
+                <img src="./public/assets/img/blog/vera.jpg" alt="phoho aloé vera"> </a>
+            <p>L’aloé vera</p>
+        </div>
+    </div>
+</div>
 </section>

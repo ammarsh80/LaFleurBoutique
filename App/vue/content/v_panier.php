@@ -40,10 +40,10 @@
                                             <img src="./public/assets/img/panier_delete.jpg" title="Ajouter au panier" class="add panier_delete" />
                                         </a>
                                     </div>
-                                    <div>
+                                    <!-- <div>
                                         <span>Quantité</span>
                                         <input name="quantite_commande" id="quantite_commande" type="number" min=1 max=10 maxlength="2" value="1" style="width: 40px;">
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
@@ -53,38 +53,75 @@
                     ?>
                 </div>
 
-                <div class="w-100 d-flex justify-content-evenly mt-2" style="pointer-events: none !important;">
-                    <span class="fw-bold">Frais de livraison :</span>
-                    <label for="frais_offert">
-                        <input type="checkbox" name="frais_offert" id="frais_offert"> Offert
-                    </label>
-                    <label for="frais_payant">
-                        <input type="checkbox" name="frais_payant" id="frais_payant"> 2.99 euros
-                    </label>
-                </div>
+
+                <?php
+                if (isset($lesArticlesDuPanier)) {
+
+                    $sommePrixUnitaires = 0;
+                    foreach ($lesArticlesDuPanier as $article) {
+                        $sommePrixUnitaires += $article['prix_unitaire'];
+                    }
+                    $sommeTTC = number_format($sommePrixUnitaires, 2);
+                    if ($sommeTTC >= 50) {
+
+                        $total_a_payer = (number_format($sommePrixUnitaires, 2));
+                ?>
+
+                        <div class="w-100 d-flex justify-content-evenly mt-2" style="pointer-events: none !important;">
+                            <span class="fw-bold">Frais de livraison :</span>
+                            <label for="frais_offert">
+                                <input type="checkbox" name="frais_offert" id="frais_offert" checked> Offert
+                            </label>
+                            <label for="frais_payant">
+                                <input type="checkbox" name="frais_payant" id="frais_payant"> 2.99 euros
+                            </label>
+                        </div>
+                    <?php
+                    } else {
+                        $total_a_payer = (number_format($sommePrixUnitaires, 2) + 2.99);
+                    ?>
+
+                        <div class="w-100 d-flex justify-content-evenly mt-2" style="pointer-events: none !important;">
+                            <span class="fw-bold">Frais de livraison :</span>
+                            <label for="frais_offert">
+                                <input type="checkbox" name="frais_offert" id="frais_offert"> Offert
+                            </label>
+                            <label for="frais_payant">
+                                <input type="checkbox" name="frais_payant" id="frais_payant" checked> 2.99 euros
+                            </label>
+                        </div>
+                <?php
+                    }
+                }
+                ?>
+
+
+
                 <p class="mt-3 fs-6">(Les frais de livraison son offert à partir de 50 euros d'achat)</p>
                 <p class="mt-3 fw-bold">Total à payer (TTC)</p>
                 <div id="somme_total" class="p-2 rounded mt-2 somme_total">
 
                     <?php
+                    if (!isset($lesArticlesDuPanier)) {
+                    ?>
+                        <p>0</p>
+                    <?php
+                    }
                     if (isset($lesArticlesDuPanier)) {
-                        // à garder au cas où////////////////////////////////////////////////////////////////////
-
-                        // $lesPrixUnitaires = array(); // initialisation du tableau des prix unitaires
-                        // foreach ($lesArticlesDuPanier as $article) {
-                        //     $prix_unitaire = $article['prix_unitaire'];
-                        //     array_push($lesPrixUnitaires, $prix_unitaire); // ajout du prix unitaire à la fin du tableau
-                        // }
+       
                         $sommePrixUnitaires = 0;
                         foreach ($lesArticlesDuPanier as $article) {
                             $sommePrixUnitaires += $article['prix_unitaire'];
                         }
                         $sommeTTC = number_format($sommePrixUnitaires, 2);
                         if ($sommeTTC >= 50) {
+
                             $total_a_payer = (number_format($sommePrixUnitaires, 2));
+
                             echo ($total_a_payer . " euros");
                         } else {
                             $total_a_payer = (number_format($sommePrixUnitaires, 2) + 2.99);
+
                             echo ($total_a_payer . " euros");
                         }
                     }
@@ -96,18 +133,17 @@
 
                 if ((isset($_SESSION['id']) && (isset($lesArticlesDuPanier)))) {
 
-                        $sommePrixUnitaires = 0;
-                        foreach ($lesArticlesDuPanier as $article) {
-                            $sommePrixUnitaires += $article['prix_unitaire'];
-                        }
-                        $sommeTTC = number_format($sommePrixUnitaires, 2);
-                        if ($sommeTTC >= 50) {
-                            $total_a_payer = (number_format($sommePrixUnitaires, 2));
-                    } 
-                        else {
-                            $total_a_payer = (number_format($sommePrixUnitaires, 2) + 2.99);
-                        }
-                   
+                    $sommePrixUnitaires = 0;
+                    foreach ($lesArticlesDuPanier as $article) {
+                        $sommePrixUnitaires += $article['prix_unitaire'];
+                    }
+                    $sommeTTC = number_format($sommePrixUnitaires, 2);
+                    if ($sommeTTC >= 50) {
+                        $total_a_payer = (number_format($sommePrixUnitaires, 2));
+                    } else {
+                        $total_a_payer = (number_format($sommePrixUnitaires, 2) + 2.99);
+                    }
+
                     $_SESSION['total_a_payer']  = $total_a_payer;
                 }
 

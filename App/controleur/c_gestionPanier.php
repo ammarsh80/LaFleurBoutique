@@ -21,12 +21,12 @@ switch ($action) {
         if ($n > 0) {
             $desIdArticle = getLesIdArticlesDuPanier();
             $lesArticlesDuPanier = M_Article::trouveLesArticlesDuTableau($desIdArticle);
-
-          
         } else {
             afficheMessagePanierVide("Panier Vide !!");
             $uc = '';
         }
 
+        break;
+    default:
         break;
 }

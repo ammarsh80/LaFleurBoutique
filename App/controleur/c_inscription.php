@@ -64,7 +64,7 @@ switch ($action) {
                 afficheErreurs($errors);
                 header('location: index.php?page=v_connexion');
             }
-            
+
 
 
 
@@ -84,5 +84,7 @@ switch ($action) {
                 header('location: index.php?page=v_accueil&action=voirArticlesAccueil');
             }
         }
+        break;
+    default:
         break;
 }

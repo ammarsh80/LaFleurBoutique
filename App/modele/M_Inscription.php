@@ -172,11 +172,16 @@ class M_Inscription
         if ($nom == "") {
             $erreurs[] = "Il faut saisir le champ nom";
         }
+        else if (!estUntext($nom)) {
+            $erreurs[] = "erreur de nom, veuillez saisir du text seulement (accents acceptés)";
+        }
 
         if ($prenom == "") {
             $erreurs[] = "Il faut saisir le champ prénom";
         }
-        
+        else if (!estUntext($prenom)) {
+            $erreurs[] = "erreur de prenom, veuillez saisir du text seulement (accents acceptés)";
+        }
         if ($mail == "") {
             $erreurs[] = "Il faut saisir le champ mail";
         } 
@@ -184,8 +189,56 @@ class M_Inscription
             $erreurs[] = "erreur de mail";
         }
         if ($message_contacte == "") {
-            $erreurs[] = "Veuillez  saisir votre message";
+            $erreurs[] = "Veuillez saisir votre message";
         } 
+        else if (!estUntextEtChiffre($message_contacte)) {
+            $erreurs[] = "erreur de message, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
+        }
+        return $erreurs;
+    }
+ 
+ 
+    /**
+     * Retourne vrai si pas d'erreur
+     * Remplie le tableau d'erreur s'il y a
+     *
+     * @param $nom : chaîne
+     * @param $prenom : chaîne
+     * @param $rue : chaîne
+     * @param $ville : chaîne
+     * @param $cp : INT
+     * @param $mail : chaîne
+     * @return : array
+     */
+    public static function estValideCarte($propritaire, $carte, $expiration, $crypto)
+    {
+        $erreurs = [];
+        if ($propritaire === "") {
+            $erreurs[] = "Il faut saisir le champ Nom de propritaire";
+        }
+        else if (!estUntext($propritaire)) {
+            $erreurs[] = "erreur de Nom de propritaire, veuillez saisir du text seulement (accents acceptés)";
+        }
+         
+        if ($carte == "") {
+            $erreurs[] = "Il faut saisir le champ Numéro de carte";
+        }
+         else if (!estEntierCarte($carte)) {
+            $erreurs[] = "erreur de Numéro de carte";
+        }
+        if ($expiration == "") {
+            $erreurs[] = "Il faut saisir le champ Date d'expiration ";
+        }
+         else if (!estDateExpiration($expiration)) {
+            $erreurs[] = "erreur de Date d'expiration ";
+        }
+        if ($crypto == "") {
+            $erreurs[] = "Il faut saisir le champ Cryptogramme  ";
+        }
+         else if (!estCrypto($crypto)) {
+            $erreurs[] = "erreur de Cryptogramme  ";
+        }
+    
         return $erreurs;
     }
     /**

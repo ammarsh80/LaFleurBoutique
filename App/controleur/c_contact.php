@@ -9,11 +9,6 @@ include_once "./App/modele/M_Inscription.php";
 switch ($action) {
 
     case 'nousContacter':
-        // $nom = filter_input(INPUT_POST, 'nom');
-        // $prenom = filter_input(INPUT_POST, 'prenom');
-        // $mail = filter_input(INPUT_POST, 'mail');
-        // $message_contacte = filter_input(INPUT_POST, 'message_contacte');
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Récupérer les valeurs des inputs
             $nom = filter_input(INPUT_POST, 'nom');
@@ -88,4 +83,6 @@ switch ($action) {
             }
             break;
         }
+    default:
+        break;
 }
