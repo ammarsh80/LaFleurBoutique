@@ -1,6 +1,6 @@
-<section id="amour">
+<section id="remerciement">
     <div class="banniere" style="background-image: url(./public/assets/img/remerciement/baniere_remerciement.jpg);">
-       <h1 style="color:#2c3138;"> Remerciement</h1>
+       <h1 class="remerciement" style="color:#2c3138;"> Remerciement</h1>
     </div>
     <?php
       include './App/vue/common/recherche_couleur.php';

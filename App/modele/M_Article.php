@@ -390,7 +390,8 @@ class M_Article
             foreach ($desIdArticles as $unIdProduit) {
                 $req = "SELECT lf_articles.id, lf_articles.nombre, lf_articles.description, lf_articles.prix_unitaire, 
                 lf_articles.image, lf_articles.etat, lf_categories.nom_categorie, lf_fleurs.nom_fleur, 
-                lf_unites.nom_unite, lf_unites.taille, lf_couleurs.couleur  
+                lf_unites.nom_unite, lf_unites.taille, lf_couleurs.couleur
+                -- ,lf_frais_livraisons.nom_frais, lf_frais_livraisons.somme
                 
                  FROM lf_articles 
                    JOIN lf_article_categorie ON `lf_articles`.`id` = `lf_article_categorie`.`article_id`
@@ -398,6 +399,10 @@ class M_Article
         Join lf_fleurs ON `lf_articles`.`fleurs_id` = `lf_fleurs`.`id`
         Join lf_unites ON `lf_articles`.`unites_id` = `lf_unites`.`id`
         Join lf_couleurs ON `lf_articles`.`couleurs_id` = `lf_couleurs`.`id`
+        -- Join lf_ligne_commande_client ON `lf_articles`.`id` = `lf_ligne_commande_client`.`article_id`
+        -- Join lf_commande_clients ON `lf_ligne_commande_client`.`commande_client_id` = `lf_commande_clients`.`id`
+        -- Join lf_frais_livraisons ON `lf_commande_clients`.`frais_livraisons_id` = `lf_frais_livraisons`.`id`
+
         WHERE lf_articles.id = :unIdProduit";
                 $statement = AccesDonnees::getPdo()->prepare($req);
                 $statement->bindParam(':unIdProduit', $unIdProduit, PDO::PARAM_INT);
@@ -405,7 +410,31 @@ class M_Article
                 $unProduit = $statement->fetch();
                 $lesProduits[] = $unProduit;
             }
+        //     foreach ($lesProduits as $unIdProduit) {
+        //         $req = "SELECT lf_articles.id, lf_articles.nombre, lf_articles.description, lf_articles.prix_unitaire, 
+        //         lf_articles.image, lf_articles.etat, lf_categories.nom_categorie, lf_fleurs.nom_fleur, 
+        //         lf_unites.nom_unite, lf_unites.taille, lf_couleurs.couleur
+        //         -- ,lf_frais_livraisons.nom_frais, lf_frais_livraisons.somme
+                
+        //          FROM lf_articles 
+        //            JOIN lf_article_categorie ON `lf_articles`.`id` = `lf_article_categorie`.`article_id`
+        // JOIN lf_categories ON `lf_article_categorie`.`categorie_id` = `lf_categories`.`id` 
+        // Join lf_fleurs ON `lf_articles`.`fleurs_id` = `lf_fleurs`.`id`
+        // Join lf_unites ON `lf_articles`.`unites_id` = `lf_unites`.`id`
+        // Join lf_couleurs ON `lf_articles`.`couleurs_id` = `lf_couleurs`.`id`
+        // -- Join lf_ligne_commande_client ON `lf_articles`.`id` = `lf_ligne_commande_client`.`article_id`
+        // -- Join lf_commande_clients ON `lf_ligne_commande_client`.`commande_client_id` = `lf_commande_clients`.`id`
+        // -- Join lf_frais_livraisons ON `lf_commande_clients`.`frais_livraisons_id` = `lf_frais_livraisons`.`id`
+
+        // WHERE lf_articles.id = :unIdProduit";
+        //         $statement = AccesDonnees::getPdo()->prepare($req);
+        //         $statement->bindParam(':unIdProduit', $unIdProduit, PDO::PARAM_INT);
+        //         $statement->execute();
+        //         $unProduit = $statement->fetch();
+        //         $lesProduits[] = $unProduit;
+        //     }
         }
         return $lesProduits;
+
     }
 }

@@ -65,25 +65,16 @@ switch ($action) {
         $nom_Categorie = filter_input(INPUT_GET, 'categorie');
         $idArticle = filter_input(INPUT_GET, 'idArticle');
 
+     
+      
         if (!ajouterAuPanier($idArticle)) {
             afficheErreurs(["Cet article est déjà dans le panier !!"]);
-        } else {
+        } 
+        else {
             afficheMessage("Cet article a été ajouté au panier ");
         }
         $lesArticles = M_Article::trouveLesArticlesDeCategorieNom($nom_Categorie);
         break;
-
-    case "ajouterAuPanierCat":
-        $idexemplaire = filter_input(INPUT_GET, 'idexemplaire');
-        if (!ajouterAuPanier($idexemplaire)) {
-            afficheErreurs(["Ce jeu est déjà dans le panier !!"]);
-        } else {
-            afficheMessage("Ce jeu a été ajouté");
-        }
-        $categorie = filter_input(INPUT_GET, 'categorie');
-        $lesJeux = M_Article::trouveLesArticlesDeCategorie($categorie);
-        break;
-
 
     case 'ajouterAuPanierDepuisCouleur':
         $id_couleur = filter_input(INPUT_GET, 'couleur');
@@ -100,7 +91,7 @@ switch ($action) {
 $lesCategories = M_Categorie::trouveLesCategories();
 $lesCouleurs = M_Categorie::trouveLesCouleurs();
 
-if (($_SERVER['REQUEST_METHOD'] === 'GET') && (isset($recherche_mot))){
+if (($_SERVER['REQUEST_METHOD'] === 'GET') && (isset($recherche_mot))) {
     // Récupérer les valeurs des inputs
     $recherche_mot = filter_input(INPUT_GET, "recherche_mot", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Action
 
@@ -111,6 +102,5 @@ if (($_SERVER['REQUEST_METHOD'] === 'GET') && (isset($recherche_mot))){
     } else {
         // header('location: index.php?page=v_accueil&action=voirArticlesAccueil');
         $lesArticles = M_Article::trouveLesArticleParMot($recherche_mot);
-
     }
 }

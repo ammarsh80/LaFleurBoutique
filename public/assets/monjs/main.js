@@ -22,15 +22,15 @@ function topFunction() {
   });
 }
 
-// let btn = document.querySelector(".btn1");
-// let list_nav = document.querySelector(".list_nav");
-// let bye = document.querySelectorAll(".bye");
-// btn.addEventListener("click", (e) => {
-//   btn.classList.toggle("active");
-//   bye.forEach((element) => {
-//     element.classList.toggle("smallScreen");
-//   });
-// });
+let btn = document.querySelector(".btn1");
+let list_nav = document.querySelector(".list_nav");
+let bye = document.querySelectorAll(".bye");
+btn.addEventListener("click", (e) => {
+  btn.classList.toggle("active");
+  bye.forEach((element) => {
+    element.classList.toggle("smallScreen");
+  });
+});
 
 
 
@@ -54,6 +54,18 @@ function redirectToUrl(url) {
 
 // redirectToUrl(url);
 
+// Bloquer ou activer la modification du panier pour passer au paiement/////////////////////////////////////////////////////
+var btn_valide_facturation = document.querySelector('.btn_valide_payement');
+btn_valide_facturation.addEventListener('click', (e) => {
+  var container_livraison = document.querySelector('.container_livraison');
+  var cadre_paiement = document.querySelector('.cadre_paiement');
+   container_livraison.style.pointerEvents = 'none';
+  container_livraison.style.opacity = '0.5';
+  cadre_paiement.style.pointerEvents = 'all';
+  cadre_paiement.style.opacity = '1';
+  // }
+});
+
 
 
 // Checked l'input frais (> 50 euros ou > 50)/////////////////////////////////////////////////////
@@ -65,6 +77,39 @@ if (parseInt(contenu_div) >= 50) {
   else if (parseInt(contenu_div) > 0) {
     frais_payant.checked = true;
   }
+
+
+
+
+
+
+
+
+// Checked l'input frais (> 50 euros ou > 50)/////////////////////////////////////////////////////
+// Accéder au contenu de la div
+
+// document.addEventListener('DOMContentLoaded', function () {
+//   let sommeTotal = document.getElementById('somme_Total');
+//   let fraisOffert = document.getElementById('frais_offert');
+//   let fraisPayant = document.getElementById('frais_payant');
+//   if (sommeTotal) {
+//     if (parseInt(contenu_div) >= 50) {
+//       fraisOffert.checked = true;
+//     }
+//     else if (parseInt(contenu_div) > 0) {
+//       fraisPayant.checked = true;
+//     }
+//   }
+// });
+
+
+  
+
+
+
+
+
+
 
 
 
@@ -103,25 +148,8 @@ if (parseInt(contenu_div) >= 50) {
 
 
 
-// Bloquer ou activer la modification du panier pour passer au paiement/////////////////////////////////////////////////////
 
-// window.onload = function () {
-//   var valide_panier = document.getElementById('valide_panier');
-//   valide_panier.addEventListener('click', (e) => {
 
-//     var container_paiement = document.getElementById('container_paiement');
-//     var modifier_panier = document.getElementById('modifier_panier');
-//     var valide_articles = document.querySelector('.valide_articles');
-
-//     if (parseInt(contenu_div) > 0) {
-//       container_paiement.style.pointerEvents = 'all';
-//       container_paiement.style.opacity = '1';
-//       modifier_panier.style.display = 'block';
-//       valide_articles.style.pointerEvents = 'none';
-//       valide_articles.style.opacity = '0.50';
-//     }
-//   });
-// };
 
 
 

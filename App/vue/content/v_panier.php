@@ -39,7 +39,10 @@
                                             ?>
                                             <img src="./public/assets/img/panier_delete.jpg" title="Ajouter au panier" class="add panier_delete" />
                                         </a>
-                                        </a>
+                                    </div>
+                                    <div>
+                                        <span>Quantité</span>
+                                        <input name="quantite_commande" id="quantite_commande" type="number" min=1 max=10 maxlength="2" value="1" style="width: 40px;">
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +53,7 @@
                     ?>
                 </div>
 
-                <div class="w-100 d-flex justify-content-evenly mt-2">
+                <div class="w-100 d-flex justify-content-evenly mt-2" style="pointer-events: none !important;">
                     <span class="fw-bold">Frais de livraison :</span>
                     <label for="frais_offert">
                         <input type="checkbox" name="frais_offert" id="frais_offert"> Offert
@@ -59,6 +62,7 @@
                         <input type="checkbox" name="frais_payant" id="frais_payant"> 2.99 euros
                     </label>
                 </div>
+                <p class="mt-3 fs-6">(Les frais de livraison son offert à partir de 50 euros d'achat)</p>
                 <p class="mt-3 fw-bold">Total à payer (TTC)</p>
                 <div id="somme_total" class="p-2 rounded mt-2 somme_total">
 
@@ -77,9 +81,11 @@
                         }
                         $sommeTTC = number_format($sommePrixUnitaires, 2);
                         if ($sommeTTC >= 50) {
-                            echo (number_format($sommePrixUnitaires, 2) . " euros");
+                            $total_a_payer = (number_format($sommePrixUnitaires, 2));
+                            echo ($total_a_payer . " euros");
                         } else {
-                            echo (number_format($sommePrixUnitaires, 2) + 2.99 . " euros");
+                            $total_a_payer = (number_format($sommePrixUnitaires, 2) + 2.99);
+                            echo ($total_a_payer . " euros");
                         }
                     }
                     ?>
@@ -87,6 +93,25 @@
                 <p class="mt-3">Veuillez valider votre panier pour passer au paiement</p>
 
                 <?php
+
+                if ((isset($_SESSION['id']) && (isset($lesArticlesDuPanier)))) {
+
+                        $sommePrixUnitaires = 0;
+                        foreach ($lesArticlesDuPanier as $article) {
+                            $sommePrixUnitaires += $article['prix_unitaire'];
+                        }
+                        $sommeTTC = number_format($sommePrixUnitaires, 2);
+                        if ($sommeTTC >= 50) {
+                            $total_a_payer = (number_format($sommePrixUnitaires, 2));
+                    } 
+                        else {
+                            $total_a_payer = (number_format($sommePrixUnitaires, 2) + 2.99);
+                        }
+                   
+                    $_SESSION['total_a_payer']  = $total_a_payer;
+                }
+
+
                 if (!isset($_SESSION['id'])) {
                 ?>
                     <a href="index.php?page=v_connexion&uc=inscription&action=demandeInscription">
@@ -100,7 +125,7 @@
                 if (isset($_SESSION['id'])) {
                 ?>
                     <a href="index.php?page=v_adresseLivraison&uc=commander&action=passerCommande">
-                    <!-- <form action="index.php?page=v_adresseLivraison&uc=commander&action=passerCommande" method="POST"> -->
+                        <!-- <form action="index.php?page=v_adresseLivraison&uc=commander&action=passerCommande" method="POST"> -->
 
                         <div id="valide_panier" class="py-2 px-5 pr-5 rounded mt-1 mb-4 je_valide">
                             Je valide mon panier

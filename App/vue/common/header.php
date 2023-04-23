@@ -5,7 +5,7 @@ if (!isset($_SESSION["id"])) { ?>
 
     <header id="header">
         <a href="index.php?page=v_accueil&action=voirArticlesAccueil">
-            <img src="./public/assets/img/logo/logo_lafleur-figma.png" alt="logo"></a>
+            <img id="img_logo" src="./public/assets/img/logo/logo_lafleur-figma.png" alt="logo"></a>
         <div id="lafleur">
             <a href="index.php?page=v_accueil&action=voirArticlesAccueil">
                 <h1>Lafleur</h1>
@@ -36,7 +36,7 @@ if (!isset($_SESSION["id"])) { ?>
 if (isset($_SESSION["id"])) { ?>
     <header id="header">
         <a href="index.php?page=v_accueil&action=voirArticlesAccueil">
-            <img src="./public/assets/img/logo/logo_lafleur-figma.png" alt="logo"></a>
+            <img id="img_logo"  src="./public/assets/img/logo/logo_lafleur-figma.png" alt="logo"></a>
         <div id="lafleur">
             <a href="index.php?page=v_accueil&action=voirArticlesAccueil">
                 <h1>Lafleur</h1>
@@ -49,7 +49,7 @@ if (isset($_SESSION["id"])) { ?>
           
             <!-- <a href="index.php?page=v_connexion&uc=inscription&action=demandeInscription"><span>Connectez-vous</span></a> -->
             <!-- <li><a href="index.php?uc=inscription&action=demandeInscription"> S'inscrire</a></li> -->
-            <form action="index.php?uc=deconnexion&action=logoutClient" method="post">
+            <form class="input_deconnexion" action="index.php?uc=deconnexion&action=logoutClient" method="post">
                 <input type="submit" name="deconnexion" id="input_deconnexion" value="Déconnexion" />
             </form>
             <a href="index.php?page=v_panier&uc=panier&action=voirPanier"><img id="panier_marron" src="./public/assets/img/panier-marron.png" alt="panier de courses"></a>
