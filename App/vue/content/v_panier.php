@@ -9,11 +9,14 @@
         <div id="valide_mon_panier">
 
             <div class="valide_articles">
-                <div id="container_article_panier">
 
-                    <?php
-                    if (isset($lesArticlesDuPanier)) {
-                        foreach ($lesArticlesDuPanier as $unArticle) {
+                <?php
+                if (isset($lesArticlesDuPanier)) {
+                ?>
+
+                    <div id="container_article_panier">
+
+                        <?php foreach ($lesArticlesDuPanier as $unArticle) {
                             $idArticle = $unArticle['id'];
                             $description = $unArticle['description'];
                             $etat = $unArticle['etat'];
@@ -25,7 +28,7 @@
                             $unite = $unArticle['nom_unite'];
                             $taille = $unArticle['taille'];
 
-                    ?>
+                        ?>
                             <div id="article_panier">
                                 <img id="image_article_panier" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>" />
                                 <div id="description_article_panier">
@@ -40,19 +43,21 @@
                                             <img src="./public/assets/img/panier_delete.jpg" title="Ajouter au panier" class="add panier_delete" />
                                         </a>
                                     </div>
-                                    <!-- <div>
+                                    <div>
                                         <span>Quantité</span>
                                         <input name="quantite_commande" id="quantite_commande" type="number" min=1 max=10 maxlength="2" value="1" style="width: 40px;">
-                                    </div> -->
+                                    </div>
                                 </div>
                             </div>
 
-                    <?php
+                        <?php
                         }
-                    }
-                    ?>
-                </div>
+                        ?>
+                    </div>
 
+                <?php
+                }
+                ?>
 
                 <?php
                 if (isset($lesArticlesDuPanier)) {
@@ -70,10 +75,10 @@
                         <div class="w-100 d-flex justify-content-evenly mt-2" style="pointer-events: none !important;">
                             <span class="fw-bold">Frais de livraison :</span>
                             <label for="frais_offert">
-                                <input type="checkbox" name="frais_offert" id="frais_offert" checked> Offert
+                                <input type="checkbox" name="frais_offert" id="frais_offert" checked> <?php echo $lesFraisLivraison[0]['nom_frais']; ?>
                             </label>
                             <label for="frais_payant">
-                                <input type="checkbox" name="frais_payant" id="frais_payant"> 2.99 euros
+                                <input type="checkbox" name="frais_payant" id="frais_payant"> <?php echo $lesFraisLivraison[1]['somme']; ?>
                             </label>
                         </div>
                     <?php
@@ -84,10 +89,12 @@
                         <div class="w-100 d-flex justify-content-evenly mt-2" style="pointer-events: none !important;">
                             <span class="fw-bold">Frais de livraison :</span>
                             <label for="frais_offert">
-                                <input type="checkbox" name="frais_offert" id="frais_offert"> Offert
+                                <input type="checkbox" name="frais_offert" id="frais_offert"> <?php echo $lesFraisLivraison[0]['nom_frais']; ?>
                             </label>
                             <label for="frais_payant">
-                                <input type="checkbox" name="frais_payant" id="frais_payant" checked> 2.99 euros
+                                <input type="checkbox" name="frais_payant" id="frais_payant" checked>
+                                <?php echo $lesFraisLivraison[1]['somme']; ?>
+                                euros
                             </label>
                         </div>
                 <?php
@@ -99,16 +106,15 @@
 
                 <p class="mt-3 fs-6">(Les frais de livraison son offert à partir de 50 euros d'achat)</p>
                 <p class="mt-3 fw-bold">Total à payer (TTC)</p>
-                <div id="somme_total" class="p-2 rounded mt-2 somme_total">
 
-                    <?php
-                    if (!isset($lesArticlesDuPanier)) {
-                    ?>
-                        <p>0</p>
-                    <?php
-                    }
-                    if (isset($lesArticlesDuPanier)) {
-       
+                <?php
+
+                if (isset($lesArticlesDuPanier)) {
+                ?>
+
+                    <div id="somme_total" class="p-2 rounded mt-2 somme_total">
+                        <?php
+
                         $sommePrixUnitaires = 0;
                         foreach ($lesArticlesDuPanier as $article) {
                             $sommePrixUnitaires += $article['prix_unitaire'];
@@ -116,17 +122,21 @@
                         $sommeTTC = number_format($sommePrixUnitaires, 2);
                         if ($sommeTTC >= 50) {
 
-                            $total_a_payer = (number_format($sommePrixUnitaires, 2));
+                            $total_a_payer = (number_format($sommePrixUnitaires, 2) + $lesFraisLivraison[0]['somme']);
 
                             echo ($total_a_payer . " euros");
                         } else {
-                            $total_a_payer = (number_format($sommePrixUnitaires, 2) + 2.99);
+                            $total_a_payer = (number_format($sommePrixUnitaires, 2) + $lesFraisLivraison[1]['somme']);
 
                             echo ($total_a_payer . " euros");
                         }
-                    }
-                    ?>
-                </div>
+                        ?>
+                    </div>
+
+                <?php
+
+                }
+                ?>
                 <p class="mt-3">Veuillez valider votre panier pour passer au paiement</p>
 
                 <?php
@@ -139,16 +149,16 @@
                     }
                     $sommeTTC = number_format($sommePrixUnitaires, 2);
                     if ($sommeTTC >= 50) {
-                        $total_a_payer = (number_format($sommePrixUnitaires, 2));
+                        $total_a_payer = (number_format($sommePrixUnitaires, 2) + $lesFraisLivraison[0]['somme']);
                     } else {
-                        $total_a_payer = (number_format($sommePrixUnitaires, 2) + 2.99);
+                        $total_a_payer = (number_format($sommePrixUnitaires, 2) + $lesFraisLivraison[1]['somme']);
                     }
 
                     $_SESSION['total_a_payer']  = $total_a_payer;
                 }
 
 
-                if (!isset($_SESSION['id'])) {
+                if (!isset($_SESSION['id']) && (isset($lesArticlesDuPanier))) {
                 ?>
                     <a href="index.php?page=v_connexion&uc=inscription&action=demandeInscription">
                         <div id="valide_panier" class="py-2 px-5 pr-5 rounded mt-1 mb-4 je_valide">
@@ -158,8 +168,8 @@
                 <?php
                 }
 
-                if (isset($_SESSION['id'])) {
-                ?>
+                if (isset($_SESSION['id']) && (isset($lesArticlesDuPanier))) {
+                    ?>
                     <a href="index.php?page=v_adresseLivraison&uc=commander&action=passerCommande">
                         <!-- <form action="index.php?page=v_adresseLivraison&uc=commander&action=passerCommande" method="POST"> -->
 

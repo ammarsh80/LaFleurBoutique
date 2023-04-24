@@ -42,23 +42,27 @@ function estTelephone($numero)
  */
 function estUnMail($mail)
 {
-    return preg_match('#^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$#', $mail);
+    return preg_match('/^(?=.{1,44}$)[\w.-]+@[\w.-]+\.[a-zA-Z]{2,6}$/', $mail);
 }
+
+
 
 function estUntext($nom)
 {
-    return preg_match('/^[a-zA-ZÀ-ÖØ-öø-ÿàçéîïôöêù\s_-]*$/u', $nom);
+    return preg_match('/^(?=.{2,44}$)[a-zA-ZÀ-ÖØ-öø-ÿàçéîïôöêù\s_-]*$/u', $nom);
 }
+
 function estUntextEtChiffre($message_contacte)
 {
-    return preg_match('/^[a-zA-ZÀ-ÖØ-öø-ÿàçéîïôöêù0-9\s_-]*$/u', $message_contacte);
+    return preg_match('/^[a-zA-ZÀ-ÖØ-öø-ÿàçéîïôöêù0-9\s_-]{2,1000}$/u', $message_contacte);
 }
 
 
 function estUnPwd($psw)
 {
-    return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/', $psw);
+    return preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,14}$/', $psw);
 }
+
 
 function estEntierCarte($carte)
 {
@@ -105,18 +109,13 @@ function estUneCarteModulo10($numero)
 
 function estDateExpiration($expiration)
 {
-    return preg_match('/^(0[1-9]|1[0-2])\/[0-9]{4}$/', $expiration) === 1;
+    return preg_match('/^(0[1-9]|1[0-2])\/[0-9]{4}$/', $expiration) === 1 && strlen($expiration) === 7;
 }
+
 function estCrypto($crypto)
 {
     return preg_match('/^[0-9]{3,4}$/', $crypto) === 1;
 }
-
-
-
-// function estUnMot($recherche_mot) {
-//     return preg_match('^[a-zA-Z]+$/', $recherche_mot);
-// }
 
 function estUnMot($recherche_mot)
 {
@@ -126,3 +125,9 @@ function estUnMot($recherche_mot)
         return preg_match('/^[a-zA-Z]+$/', $recherche_mot);
     }
 }
+
+function estUnPseudo($pseudo)
+{
+    return preg_match('/^[a-zA-Z0-9#@_-]{3,40}$/', $pseudo) === 1;
+}
+

@@ -1136,7 +1136,7 @@ header h1 {
 
 .table_commande {
   width: 100%;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .table_commande_ligne {
@@ -1149,7 +1149,11 @@ header h1 {
   background-color: var(--secondary-light);
 }
 
-
+.payer_derniere{
+  background-color: salmon;
+  padding: 10px;
+  border-radius: 5px;
+}
 .btn_envoyer_modification {
   width: 100px;
   height: 30px;
@@ -1315,15 +1319,17 @@ textarea#message_contacte {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0px;
+  padding: 10px 0px 20px 0px;
 }
 
 #valide_mon_panier {
   width: 100%;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap !important;
   justify-content: space-evenly;
-  padding: 20px 10px;
+  align-items: center;
+  padding: 10px 10px;
 }
 
 .valide_articles {
@@ -1357,6 +1363,7 @@ textarea#message_contacte {
   background-color: var(--white);
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   padding: 15px 0px;
@@ -1455,6 +1462,26 @@ textarea#message_contacte {
 
 }
 
+.a_jour{
+  width: 60%;
+  background-color: var(--secondary-light);
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  margin-bottom: 100px;
+  line-height: 1.5;
+}
+.a_jour_retour{
+  background-color: var(--primary-light);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  margin-bottom: 100px;
+}
 /*  Fin Panier */
 
 /* *************************************************************************************************************************** */
@@ -1529,6 +1556,19 @@ button {
 /* Début_MEDIA QUERIES **********************************1024px */
 
 @media (max-width:1024px) {
+
+  .message {
+    position: absolute;
+    padding: 2px 20px 4px 10px;
+    top: 340px;
+    font-size: 0.8em;
+    display: block;
+    background-color: var(--green);
+    color: var(--white);
+    border-radius: 3px;
+  }
+
+
   #nav_bar {
     position: absolute;
     top: -75px;
@@ -1617,7 +1657,7 @@ font-weight: bold;
   .message {
     position: absolute;
     padding: 2px 20px 4px 10px;
-    top: 290px;
+    top: 313px;
     font-size: 0.8em;
     display: block;
     background-color: var(--green);
@@ -1896,6 +1936,7 @@ margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    flex-direction: column;
     align-items: center;
     padding: 0px 0px;
     border-radius: 10px;
@@ -1962,7 +2003,7 @@ margin-top: 30px;
 
   .table_commande {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 
   .table_commande_ligne {

@@ -34,7 +34,7 @@ switch ($action) {
         $cp = filter_input(INPUT_POST, 'cp');
         $mail = filter_input(INPUT_POST, 'mail');
         $telephone = filter_input(INPUT_POST, 'telephone');
-        $errors = M_Inscription::estValideInscription($nom, $prenom, $pseudo, $psw, $confirm_psw, $rue, $ville, $cp, $mail, $telephone);
+        $errors = M_Inscription::estValideInscription($nom, $prenom, $pseudo, $psw, $confirm_psw, $rue, $complement, $ville, $cp, $mail, $telephone);
 
         if (count($errors) > 0) {
             // Si une erreur, on recommence
@@ -44,8 +44,7 @@ switch ($action) {
             $id_cp = M_Inscription::trouveOuCreerCp($cp);
             $id_adresse = M_Commande::trouveOuCreerAdresse($rue, $complement, $id_ville, $id_cp);
             $id_client = M_Inscription::trouveOuCreerClient($nom, $prenom, $pseudo, $telephone, $mail, $confirm_psw, $id_adresse);
-            // $idUtilisateur = M_Inscription::creerUtilisateur($pseudo, $psw, $id_client);
-            afficheMessage("Vous venez de vous inscrire avec succès!<br> Veuillez vous-connecter grâce à votre pseudo (identifiant) et le mot de passe que vous venez de créer !");
+            // afficheMessage("<br><br>Vous venez de vous inscrire avec succès! Veuillez vous-connecter grâce à votre pseudo et mot de passe que vous venez de créer !");
             $uc = '';
         }
         break;
@@ -65,17 +64,13 @@ switch ($action) {
                 header('location: index.php?page=v_connexion');
             }
 
-
-
-
             $client = M_Inscription::checkPassword($identifiant, $mot_de_passe);
 
             if (!$client) {
-                afficheErreur("Entrez correctement votre identifiant et votre mot de passe ou veuillez renseigner le formulaire d'inscription avant de vous connectez, merci !");
+                afficheErreur("Pour vous connecter, veuillez saisir correctement votre pseudo et votre mot de passe ou veuillez renseigner le formulaire d'inscription avant de vous connectez, merci !");
             } else {
                 $_SESSION['id'] = $client;
                 // supprimerPanier();
-                //   header('index.php?page=v_accueil&action=voirArticlesAccueil');
 
                 if (isset($_SESSION['id'])) {
                     $InfoUtilisateur = [];

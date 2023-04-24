@@ -72,7 +72,7 @@ class M_Inscription
             // Le reste du code ici
         }
         if ($stmt->rowCount() == 0) {
-           
+
             header('Location: index.php?page=v_connexion');
             afficheMessage("L'identifiant ou le mot de passe est incorrecte, Entrez votre identifiant et votre mot de passe Correctement ou enregistrez-vous sur la page 'S'inscrire', merci !");
             die;
@@ -81,16 +81,11 @@ class M_Inscription
         if (password_verify($psw, $psw_bdd)) {
             $id_clients = $data['id'];
             $identifiant = $data['pseudo'];
-            // header('Location: index.php?page=v_compte');
-            // echo "Bonjour " . "$identifiant" . " vous êtes connecté";
-            // afficheMessageConnexion("Bonjour " . "$identifiant" . " vous êtes connecté");
             return $id_clients;
         }
 
         return false;
     }
-
-
 
     /**
      * Retourne vrai si pas d'erreur
@@ -104,19 +99,27 @@ class M_Inscription
      * @param $mail : chaîne
      * @return : array
      */
-    public static function estValideInscription($nom, $prenom, $pseudo, $psw, $confirm_psw, $rue, $ville, $cp, $mail, $telephone)
+    public static function estValideInscription($nom, $prenom, $pseudo, $psw, $confirm_psw, $rue, $complement, $ville, $cp, $mail, $telephone)
     {
         $erreurs = [];
-        if ($nom == "") {
+        if ($nom === "") {
             $erreurs[] = "Il faut saisir le champ nom";
+        } else if (!estUntext($nom)) {
+            $erreurs[] = "erreur de nom, veuillez saisir du text seulement (accents acceptés)";
+        }
+        if ($prenom === "") {
+            $erreurs[] = "Il faut saisir le champ prenom";
+        } else if (!estUntext($prenom)) {
+            $erreurs[] = "erreur de prénom, veuillez saisir du text seulement (accents acceptés)";
         }
 
-        if ($prenom == "") {
-            $erreurs[] = "Il faut saisir le champ prénom";
-        }
-        if ($pseudo == "") {
+        if ($pseudo === "") {
             $erreurs[] = "Il faut saisir le champ pseudo";
+        } else if (!estUnPseudo($pseudo)) {
+            $erreurs[] = "erreur de pseudo, 40 caractères maximume (sont acceptés, majuscules, miniscules et caractères spéciaux  #@_-)";
         }
+
+
         if ($psw == "") {
             $erreurs[] = "Il faut saisir le champ mot de passe";
         } else if (!estUnPwd($psw)) {
@@ -124,16 +127,21 @@ class M_Inscription
         }
         if ($confirm_psw == "") {
             $erreurs[] = "Il faut saisir le champ mot de passe";
-        } 
-       
-        else if ($confirm_psw !== $psw) {
+        } else if ($confirm_psw !== $psw) {
             $erreurs[] = "Le mot de passe et sa confirmation doivent être indentiques ";
         }
-        if ($rue == "") {
-            $erreurs[] = "Il faut saisir le champ rue";
+        if ($rue === "") {
+            $erreurs[] = "Il faut saisir le champ adresse";
+        } else if (!estUntextEtChiffre($rue)) {
+            $erreurs[] = "erreur d'adresse, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
+        }
+        if (!estUntextEtChiffre($complement)) {
+            $erreurs[] = "erreur de complement d'adresse, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
         }
         if ($ville == "") {
             $erreurs[] = "Il faut saisir le champ ville";
+        } else if (!estUntextEtChiffre($ville)) {
+            $erreurs[] = "erreur de ville, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
         }
         if ($cp == "") {
             $erreurs[] = "Il faut saisir le champ Code postal";
@@ -142,18 +150,19 @@ class M_Inscription
         }
         if ($mail == "") {
             $erreurs[] = "Il faut saisir le champ mail";
-        } 
-        else if (!estUnMail($mail)) {
+        } else if (!estUnMail($mail)) {
             $erreurs[] = "erreur de mail";
         }
         if ($telephone == "") {
-            $erreurs[] = "Il faut saisir le champ téléphone";
-        } 
+            $erreurs[] = "Il faut saisir le champ telephone";
+        } else if (!estTelephone($telephone)) {
+            $erreurs[] = "erreur de telephone, veuillez saisir des chiffres entiers";
+        }
         return $erreurs;
     }
-   
-   
-   
+
+
+
     /**
      * Retourne vrai si pas d'erreur
      * Remplie le tableau d'erreur s'il y a
@@ -171,33 +180,29 @@ class M_Inscription
         $erreurs = [];
         if ($nom == "") {
             $erreurs[] = "Il faut saisir le champ nom";
-        }
-        else if (!estUntext($nom)) {
+        } else if (!estUntext($nom)) {
             $erreurs[] = "erreur de nom, veuillez saisir du text seulement (accents acceptés)";
         }
 
         if ($prenom == "") {
             $erreurs[] = "Il faut saisir le champ prénom";
-        }
-        else if (!estUntext($prenom)) {
+        } else if (!estUntext($prenom)) {
             $erreurs[] = "erreur de prenom, veuillez saisir du text seulement (accents acceptés)";
         }
         if ($mail == "") {
             $erreurs[] = "Il faut saisir le champ mail";
-        } 
-        else if (!estUnMail($mail)) {
+        } else if (!estUnMail($mail)) {
             $erreurs[] = "erreur de mail";
         }
         if ($message_contacte == "") {
             $erreurs[] = "Veuillez saisir votre message";
-        } 
-        else if (!estUntextEtChiffre($message_contacte)) {
+        } else if (!estUntextEtChiffre($message_contacte)) {
             $erreurs[] = "erreur de message, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
         }
         return $erreurs;
     }
- 
- 
+
+
     /**
      * Retourne vrai si pas d'erreur
      * Remplie le tableau d'erreur s'il y a
@@ -215,30 +220,26 @@ class M_Inscription
         $erreurs = [];
         if ($propritaire === "") {
             $erreurs[] = "Il faut saisir le champ Nom de propritaire";
-        }
-        else if (!estUntext($propritaire)) {
+        } else if (!estUntext($propritaire)) {
             $erreurs[] = "erreur de Nom de propritaire, veuillez saisir du text seulement (accents acceptés)";
         }
-         
+
         if ($carte == "") {
             $erreurs[] = "Il faut saisir le champ Numéro de carte";
-        }
-         else if (!estEntierCarte($carte)) {
+        } else if (!estEntierCarte($carte)) {
             $erreurs[] = "erreur de Numéro de carte";
         }
         if ($expiration == "") {
             $erreurs[] = "Il faut saisir le champ Date d'expiration ";
-        }
-         else if (!estDateExpiration($expiration)) {
+        } else if (!estDateExpiration($expiration)) {
             $erreurs[] = "erreur de Date d'expiration ";
         }
         if ($crypto == "") {
             $erreurs[] = "Il faut saisir le champ Cryptogramme  ";
-        }
-         else if (!estCrypto($crypto)) {
+        } else if (!estCrypto($crypto)) {
             $erreurs[] = "erreur de Cryptogramme  ";
         }
-    
+
         return $erreurs;
     }
     /**
@@ -255,30 +256,25 @@ class M_Inscription
      */
     public static function estValideIdentifiant($identifiant, $mot_de_passe)
     {
-       
+
         $erreurs = [];
         if ($identifiant == "t") {
             $erreurs[] = "Il faut saisir le pseudo";
         }
-      
+
         if ($mot_de_passe == "t") {
             $erreurs[] = "Il faut saisir le champ mot de passe";
-           
-            
         }
-        
         // if ($mail == "") {
         //     $erreurs[] = "Il faut saisir le champ mail";
         // } 
         // else if (!estUnMail($mail)) {
         //     $erreurs[] = "erreur de mail";
         // }
-     
-        
         return $erreurs;
     }
- 
- 
+
+
     /**
      * Retourne vrai si pas d'erreur
      * Remplie le tableau d'erreur s'il y a
@@ -293,17 +289,33 @@ class M_Inscription
      */
     public static function estValideMot($recherche_mot)
     {
-       
+
         $erreurs = [];
-           if (!estUnMot($recherche_mot)) {
+        if (!estUnMot($recherche_mot)) {
             $erreurs[] = "Veuillez saisir du texte en lettre majuscule au miniscule";
             header('location: index.php?page=v_accueil&action=voirArticlesAccueil');
-
         }
-    
+
         return $erreurs;
     }
 
+    /**
+     * trouve ou creer une ville
+     *
+     * @param [chaîne] $ville
+     * @param [INT] $cp
+     * @return :$id_ville
+     */
+    public static function trouveVille($ville)
+    {
+        // $pdo = AccesDonnees::getPdo();
+        $req = "SELECT lf_villes.id FROM lf_villes WHERE nom_ville = :ville";
+        $statement = AccesDonnees::getPdo()->prepare($req);
+        $statement->bindParam(':ville', $ville, PDO::PARAM_STR);
+        $statement->execute();
+        $id_ville = $statement->fetchColumn();
+        return $id_ville;
+    }
     /**
      * trouve ou creer une ville
      *
@@ -330,6 +342,16 @@ class M_Inscription
         return $id_ville;
     }
 
+    public static function trouveCp($cp)
+    {
+        // $pdo = AccesDonnees::getPdo();
+        $req = "SELECT lf_code_postaux.id FROM lf_code_postaux WHERE code_postal = :cp";
+        $statement = AccesDonnees::getPdo()->prepare($req);
+        $statement->bindParam(':cp', $cp, PDO::PARAM_INT);
+        $statement->execute();
+        $id_cp = $statement->fetchColumn();
+        return $id_cp;
+    }
     public static function trouveOuCreerCp($cp)
     {
         // $pdo = AccesDonnees::getPdo();
@@ -363,19 +385,22 @@ class M_Inscription
     {
 
         $pdo = AccesDonnees::getPdo();
-        $req = "SELECT lf_clients.id FROM lf_clients WHERE nom_client = :nom AND prenom = :prenom AND pseudo = :pseudo AND telephone = :telephone AND email = :mail AND mot_de_passe = :psw";
+        $req = "SELECT lf_clients.id FROM lf_clients WHERE pseudo = :pseudo AND email = :mail";
         $statement = AccesDonnees::getPdo()->prepare($req);
-        $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
-        $statement->bindParam(':prenom', $prenom, PDO::PARAM_STR);
         $statement->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
-        $statement->bindParam(':telephone', $telephone, PDO::PARAM_STR);
         $statement->bindParam(':mail', $mail, PDO::PARAM_STR);
-        $statement->bindParam(':psw', $psw, PDO::PARAM_STR);
         $statement->execute();
         $id_client = $statement->fetchColumn();
-        if ($id_client == false) {
-            $psw = password_hash($psw, PASSWORD_BCRYPT);
+       
 
+
+        if ($id_client == true) {
+            afficheErreur('Client (E-mail et pseudo) est déjà enregistré, veuillez vous connecter à votre compte !!');
+            return $id_client;
+
+        } else if ($id_client == false) {
+            $psw = password_hash($psw, PASSWORD_BCRYPT);
+          
             $req = "INSERT INTO lf_clients (nom_client, prenom, pseudo, telephone, email, mot_de_passe) VALUES (:nom,:prenom,:pseudo,:telephone,:mail, :psw)";
             $statement = AccesDonnees::getPdo()->prepare($req);
             $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
@@ -429,7 +454,7 @@ class M_Inscription
         return $id_Utilisateur;
     }
 
-    public static function changerInfoClient($id_client, $adresse,$complement, $mail, $telephone, $new_ville_id, $new_cp_id)
+    public static function changerInfoClient($id_client, $adresse, $complement, $mail, $telephone, $new_ville_id, $new_cp_id)
     {
         $erreurs = M_Inscription::estProfilValide($adresse, $mail);
         if (count($erreurs) > 0) {
@@ -458,19 +483,25 @@ class M_Inscription
         $stmt2->bindParam(":new_cp_id", $new_cp_id);
         $stmt2->bindParam(":id_client", $id_client);
         $stmt2->execute();
-        
     }
 
     public static function estProfilValide($rue,  $mail)
     {
         $erreurs = [];
 
-        if ($rue == "") {
-            $erreurs[] = "Il faut saisir le champ rue";
+        if ($rue === "") {
+            $erreurs[] = "Il faut saisir le champ adresse";
+        } else if (!estUntextEtChiffre($rue)) {
+            $erreurs[] = "erreur d'adresse, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
         }
         if ($mail == "") {
             $erreurs[] = "Il faut saisir le champ mail";
-        } 
+        } else if (!estUnMail($mail)) {
+            $erreurs[] = "erreur de mail";
+        }
+
+
+
         // else if (!estUnMail($mail)) {
         //     $erreurs[] = "erreur de 1111mail";
         // }

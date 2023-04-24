@@ -2,15 +2,13 @@
     <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="image bannière" style="margin-bottom: 25px;">
 
     <div id="container_panier">
-        <div id="modifier_panier">
-            Modifier mon panier
-        </div>
+
         <div id="valide_mon_panier">
 
             <div id="container_paiement" class="container_paiement">
                 <div class="container_livraison">
 
-                    <form class="ml-3" name="btn_valide_facturation" action="index.php?page=v_adresseLivraison&uc=commander&action=confirmerCommande" method="POST">
+                    <form class="ml-3 p-2" name="btn_valide_facturation" action="index.php?page=v_adresseLivraison&uc=commander&action=confirmerCommande" method="POST">
 
                         <p class="adresse_facturation fs-6 mb-2">Veuillez renseigner une adresse de livraison</p>
                         <div class="mb-3">
@@ -31,12 +29,33 @@
                                 <input type="text" name="complementLiv" id="complementLiv" class="input_connexion modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['complement_rue']; ?>">
                             </div>
                             <div>
+                                <p class="fs-6 fw-light mb-2 mt-2">Nous ne livrons que cette liste de villages, veillez en choisir une:</p>
+                            </div>
+                            <div>
                                 <label for="villeLiv" class="label_livraison fw-bold">Ville: * </label>
-                                <input type="text" name="villeLiv" id="villeLiv" class="input_connexion modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['nom_ville']; ?>" requiried>
+                                <select name="villeLiv" id="villeLiv" class="mb-2">
+                                    <?php
+                                    foreach ($lesVilles as $ville) {
+                                    ?>
+
+                                        <option value="<?php echo $ville['nom_ville'] ?>"><?php echo $ville['nom_ville'] ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </div>
                             <div>
                                 <label for="cpLiv" class="label_livraison fw-bold">Code postal: * </label>
-                                <input type="text" name="cpLiv" id="cpLiv" class="input_connexion modifier_info_input" maxlength="5" size="5" value="<?php echo  $InfoUtilisateur[0]['code_postal']; ?>" requiried>
+                                <select name="cpLiv" id="cpLiv" class="mb-2">
+                                    <?php
+                                    foreach ($lesCPs as $cp) {
+                                    ?>
+
+                                        <option value="<?php echo $cp['code_postal'] ?>"><?php echo $cp['code_postal'] ?></option>
+                                    <?php
+                                    }
+                                    ?>
+                                </select>
                             </div>
                             <div class="d-flex justify-center align-center">
                                 <label for="date_livraison_progamme" class="label_livraison label_livraison_progamme fw-bold">Livraison souhaitée le : (optionel)</label>
@@ -82,10 +101,10 @@
                         </div>
                     </form>
                     <div>
-                        <p class="mt-3 fs-6 fw-light">* Information obligatoire</p>
+                        <p class="mt-3 fs-6 fw-light m-5">* Information obligatoire</p>
                     </div>
                 </div>
-              
+
             </div>
         </div>
 

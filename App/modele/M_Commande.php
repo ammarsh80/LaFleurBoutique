@@ -7,115 +7,63 @@
  */
 class M_Commande
 {
-
-    /**
-     * Crée une commande
-     *
-     * Crée une commande à partir des arguments validés passés en paramètre, l'identifiant est
-     * construit à partir du maximum existant ; crée les lignes de commandes dans la table contenir à partir du
-     * tableau d'idProduit passé en paramètre
-     * @param $iddernierclient
-     * @param $ville_id
-     * @param $listArticles
-     */
-    // public static function creerCommande($idclient, $id_adresse_livraison, $id_adresse_facturation, $listArticles,$commande_cree=false)
-    // {
-    //     $req = "INSERT INTO lf_commande_clients (clients_id, adresses_livraison_id, adresses_facturation_id) 
-    //     VALUES (:idclient, :id_adresse_livraison, :id_adresse_facturation)";
-    //     $statement = AccesDonnees::getPdo()->prepare($req);
-    //     $statement->bindParam(':idclient', $idclient, PDO::PARAM_INT);
-    //     $statement->bindParam(':id_adresse_livraison', $id_adresse_livraison, PDO::PARAM_INT);
-    //     $statement->bindParam(':id_adresse_facturation', $id_adresse_facturation, PDO::PARAM_INT);
-    //     $statement->execute();
-    //     $idDerniereCommande = AccesDonnees::getPdo()->lastInsertId();
-
-    //     foreach ($listArticles as $article) {
-    //         $req = "INSERT INTO lf_ligne_commande_client (commande_client_id, article_id) 
-    //         VALUES (:idDerniereCommande, :article)";
-    //         $statement = AccesDonnees::getPdo()->prepare($req);
-    //         $statement->bindParam(':idDerniereCommande', $idDerniereCommande, PDO::PARAM_INT);
-    //         $statement->bindParam(':article', $article, PDO::PARAM_INT);
-    //         $statement->execute();
-    //     }
-    // }
-
-    public static function creerCommande($idclient, $id_adresse_livraison, $id_adresse_facturation, $listArticles, $commande_cree=false)
-{
-    if(!$commande_cree){
-        $req = "INSERT INTO lf_commande_clients (clients_id, adresses_livraison_id, adresses_facturation_id) 
-        VALUES (:idclient, :id_adresse_livraison, :id_adresse_facturation)";
-        $statement = AccesDonnees::getPdo()->prepare($req);
-        $statement->bindParam(':idclient', $idclient, PDO::PARAM_INT);
-        $statement->bindParam(':id_adresse_livraison', $id_adresse_livraison, PDO::PARAM_INT);
-        $statement->bindParam(':id_adresse_facturation', $id_adresse_facturation, PDO::PARAM_INT);
-        $statement->execute();
-        $idDerniereCommande = AccesDonnees::getPdo()->lastInsertId();
-
-        foreach ($listArticles as $article) {
-            $req = "INSERT INTO lf_ligne_commande_client (commande_client_id, article_id) 
-            VALUES (:idDerniereCommande, :article)";
-            $statement = AccesDonnees::getPdo()->prepare($req);
-            $statement->bindParam(':idDerniereCommande', $idDerniereCommande, PDO::PARAM_INT);
-            $statement->bindParam(':article', $article, PDO::PARAM_INT);
-            $statement->execute();
-            return $idDerniereCommande;
-        }
-    }
-}
-    /**
-     * Crée une commande
-     *
-     * Crée une commande à partir des arguments validés passés en paramètre, l'identifiant est
-     * construit à partir du maximum existant ; crée les lignes de commandes dans la table contenir à partir du
-     * tableau d'idProduit passé en paramètre
-     * @param $iddernierclient
-     * @param $ville_id
-     * @param $listArticles
-     */
-    public static function creerCommandeProrgramer($idclient, $date_livraison_progamme, $id_adresse_livraison, $id_adresse_facturation, $listArticles, $commande_cree=false)
+    public static function creerCommande($idclient, $id_adresse_livraison, $id_adresse_facturation, $listArticles, $commande_cree = false)
     {
-        if(!$commande_cree){
-        $req = "INSERT INTO lf_commande_clients (clients_id, date_livraison_progamme, adresses_livraison_id, adresses_facturation_id) 
-        VALUES (:idclient, :date_livraison_progamme, :id_adresse_livraison, :id_adresse_facturation)";
-        $statement = AccesDonnees::getPdo()->prepare($req);
-        $statement->bindParam(':idclient', $idclient, PDO::PARAM_INT);
-        $statement->bindParam(':date_livraison_progamme', $date_livraison_progamme, PDO::PARAM_STR);
-        $statement->bindParam(':id_adresse_livraison', $id_adresse_livraison, PDO::PARAM_INT);
-        $statement->bindParam(':id_adresse_facturation', $id_adresse_facturation, PDO::PARAM_INT);
-        $statement->execute();
-        $idDerniereCommande = AccesDonnees::getPdo()->lastInsertId();
-
-        foreach ($listArticles as $article) {
-            $req = "INSERT INTO lf_ligne_commande_client (commande_client_id, article_id) 
-            VALUES (:idDerniereCommande, :article)";
+        if (!$commande_cree) {
+            $req = "INSERT INTO lf_commande_clients (clients_id, adresses_livraison_id, adresses_facturation_id) 
+        VALUES (:idclient, :id_adresse_livraison, :id_adresse_facturation)";
             $statement = AccesDonnees::getPdo()->prepare($req);
-            $statement->bindParam(':idDerniereCommande', $idDerniereCommande, PDO::PARAM_INT);
-            $statement->bindParam(':article', $article, PDO::PARAM_INT);
+            $statement->bindParam(':idclient', $idclient, PDO::PARAM_INT);
+            $statement->bindParam(':id_adresse_livraison', $id_adresse_livraison, PDO::PARAM_INT);
+            $statement->bindParam(':id_adresse_facturation', $id_adresse_facturation, PDO::PARAM_INT);
             $statement->execute();
+            $idDerniereCommande = AccesDonnees::getPdo()->lastInsertId();
+
+            foreach ($listArticles as $article) {
+                $req = "INSERT INTO lf_ligne_commande_client (commande_client_id, article_id) 
+            VALUES (:idDerniereCommande, :article)";
+                $statement = AccesDonnees::getPdo()->prepare($req);
+                $statement->bindParam(':idDerniereCommande', $idDerniereCommande, PDO::PARAM_INT);
+                $statement->bindParam(':article', $article, PDO::PARAM_INT);
+                $statement->execute();
+                return $idDerniereCommande;
+            }
         }
     }
-}
-    // public static function creerCommandeProrgramer($idclient, $date_livraison_progamme, $id_adresse_livraison, $id_adresse_facturation, $listArticles)
-    // {
-    //     $req = "INSERT INTO lf_commande_clients (clients_id, date_livraison_progamme, adresses_livraison_id, adresses_facturation_id) 
-    //     VALUES (:idclient, :date_livraison_progamme, :id_adresse_livraison, :id_adresse_facturation)";
-    //     $statement = AccesDonnees::getPdo()->prepare($req);
-    //     $statement->bindParam(':idclient', $idclient, PDO::PARAM_INT);
-    //     $statement->bindParam(':date_livraison_progamme', $date_livraison_progamme, PDO::PARAM_STR);
-    //     $statement->bindParam(':id_adresse_livraison', $id_adresse_livraison, PDO::PARAM_INT);
-    //     $statement->bindParam(':id_adresse_facturation', $id_adresse_facturation, PDO::PARAM_INT);
-    //     $statement->execute();
-    //     $idDerniereCommande = AccesDonnees::getPdo()->lastInsertId();
+    /**
+     * Crée une commande Prorgramer
+     *
+     * Crée une commande à partir des arguments validés passés en paramètre, l'identifiant est
+     * construit à partir du maximum existant ; crée les lignes de commandes dans la table contenir à partir du
+     * tableau d'idProduit passé en paramètre
+     * @param $iddernierclient
+     * @param $ville_id
+     * @param $listArticles
+     */
+    public static function creerCommandeProrgramer($idclient, $date_livraison_progamme, $id_adresse_livraison, $id_adresse_facturation, $listArticles, $commande_cree = false)
+    {
+        if (!$commande_cree) {
+            $req = "INSERT INTO lf_commande_clients (clients_id, date_livraison_progamme, adresses_livraison_id, adresses_facturation_id) 
+        VALUES (:idclient, :date_livraison_progamme, :id_adresse_livraison, :id_adresse_facturation)";
+            $statement = AccesDonnees::getPdo()->prepare($req);
+            $statement->bindParam(':idclient', $idclient, PDO::PARAM_INT);
+            $statement->bindParam(':date_livraison_progamme', $date_livraison_progamme, PDO::PARAM_STR);
+            $statement->bindParam(':id_adresse_livraison', $id_adresse_livraison, PDO::PARAM_INT);
+            $statement->bindParam(':id_adresse_facturation', $id_adresse_facturation, PDO::PARAM_INT);
+            $statement->execute();
+            $idDerniereCommande = AccesDonnees::getPdo()->lastInsertId();
 
-    //     foreach ($listArticles as $article) {
-    //         $req = "INSERT INTO lf_ligne_commande_client (commande_client_id, article_id) 
-    //         VALUES (:idDerniereCommande, :article)";
-    //         $statement = AccesDonnees::getPdo()->prepare($req);
-    //         $statement->bindParam(':idDerniereCommande', $idDerniereCommande, PDO::PARAM_INT);
-    //         $statement->bindParam(':article', $article, PDO::PARAM_INT);
-    //         $statement->execute();
-    //     }
-    // }
+            foreach ($listArticles as $article) {
+                $req = "INSERT INTO lf_ligne_commande_client (commande_client_id, article_id) 
+            VALUES (:idDerniereCommande, :article)";
+                $statement = AccesDonnees::getPdo()->prepare($req);
+                $statement->bindParam(':idDerniereCommande', $idDerniereCommande, PDO::PARAM_INT);
+                $statement->bindParam(':article', $article, PDO::PARAM_INT);
+                $statement->execute();
+                return $idDerniereCommande;
+            }
+        }
+    }
 
     /**
      * Retourne vrai si pas d'erreur
@@ -129,153 +77,76 @@ class M_Commande
      * @param $mail : chaîne
      * @return : array
      */
-    public static function estValide($nom, $prenom, $rue, $complement, $ville, $cp, $nomFac, $prenomFac, $rueFac, $complementFac, $villeFac, $cpFac)
+    public static function estValide($nom, $prenom, $rue, $complement, $nomFac, $prenomFac, $rueFac, $complementFac, $villeFac, $cpFac)
 
     {
         $erreurs = [];
         if ($nom === "") {
-        $erreurs[] = "Il faut saisir le champ nom";
-    }
-    else if (!estUntext($nom)) {
-        $erreurs[] = "erreur de nom, veuillez saisir du text seulement (accents acceptés)";
-    }
+            $erreurs[] = "Il faut saisir le champ nom";
+        } else if (!estUntext($nom)) {
+            $erreurs[] = "erreur de nom, veuillez saisir du text seulement (accents acceptés)";
+        }
         if ($prenom === "") {
-        $erreurs[] = "Il faut saisir le champ prenom";
-    }
-    else if (!estUntext($prenom)) {
-        $erreurs[] = "erreur de prénom, veuillez saisir du text seulement (accents acceptés)";
-    }
+            $erreurs[] = "Il faut saisir le champ prenom";
+        } else if (!estUntext($prenom)) {
+            $erreurs[] = "erreur de prénom, veuillez saisir du text seulement (accents acceptés)";
+        }
         if ($rue === "") {
-        $erreurs[] = "Il faut saisir le champ rue";
-    }
-    else if (!estUntextEtChiffre($rue)) {
-        $erreurs[] = "erreur d'adresse, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
-    }
+            $erreurs[] = "Il faut saisir le champ rue";
+        } else if (!estUntextEtChiffre($rue)) {
+            $erreurs[] = "erreur d'adresse, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
+        }
         if ($complement === "") {
-        $erreurs[] = "Il faut saisir le champ complement";
-    }
-    else if (!estUntextEtChiffre($complement)) {
-        $erreurs[] = "erreur de complément d'adresse, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
-    }
+            $erreurs[] = "Il faut saisir le champ complement";
+        } else if (!estUntextEtChiffre($complement)) {
+            $erreurs[] = "erreur de complément d'adresse, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
+        }
 
-    if ($ville == "") {
-        $erreurs[] = "Il faut saisir le champ ville";
-    }
-    else if (!estUntextEtChiffre($ville)) {
-        $erreurs[] = "erreur de ville, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
-    }
-    if ($cp == "") {
-        $erreurs[] = "Il faut saisir le champ Code postal";
-    }
-     else if (!estUnCp($cp)) {
-        $erreurs[] = "erreur de code postal";
-    }
+        // if ($ville == "") {
+        //     $erreurs[] = "Il faut saisir le champ ville";
+        // }
+        // else if (!estUntextEtChiffre($ville)) {
+        //     $erreurs[] = "erreur de ville, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
+        // }
+        // if ($cp == "") {
+        //     $erreurs[] = "Il faut saisir le champ Code postal";
+        // }
+        //  else if (!estUnCp($cp)) {
+        //     $erreurs[] = "erreur de code postal";
+        // }
         if ($nomFac === "") {
-        $erreurs[] = "Il faut saisir le champ nom adresse de facturation";
-    }
-    else if (!estUntext($nomFac)) {
-        $erreurs[] = "erreur de nom adresse de facturation, veuillez saisir du text seulement (accents acceptés)";
-    }
+            $erreurs[] = "Il faut saisir le champ nom adresse de facturation";
+        } else if (!estUntext($nomFac)) {
+            $erreurs[] = "erreur de nom adresse de facturation, veuillez saisir du text seulement (accents acceptés)";
+        }
         if ($prenomFac === "") {
-        $erreurs[] = "Il faut saisir le champ prenom";
-    }
-    else if (!estUntext($prenomFac)) {
-        $erreurs[] = "erreur de prénom adresse de facturation, veuillez saisir du text seulement (accents acceptés)";
-    }
+            $erreurs[] = "Il faut saisir le champ prenom";
+        } else if (!estUntext($prenomFac)) {
+            $erreurs[] = "erreur de prénom adresse de facturation, veuillez saisir du text seulement (accents acceptés)";
+        }
         if ($rueFac === "") {
-        $erreurs[] = "Il faut saisir le champ rue";
-    }
-    else if (!estUntextEtChiffre($rueFac)) {
-        $erreurs[] = "erreur d'adresse de facturation, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
-    }
+            $erreurs[] = "Il faut saisir le champ rue";
+        } else if (!estUntextEtChiffre($rueFac)) {
+            $erreurs[] = "erreur d'adresse de facturation, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
+        }
         if ($complementFac === "") {
-        $erreurs[] = "Il faut saisir le champ complement";
-    }
-    else if (!estUntextEtChiffre($complementFac)) {
-        $erreurs[] = "erreur de complémentd'adresse de facturation, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
-    }
+            $erreurs[] = "Il faut saisir le champ complement";
+        } else if (!estUntextEtChiffre($complementFac)) {
+            $erreurs[] = "erreur de complémentd'adresse de facturation, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
+        }
 
-    if ($villeFac == "") {
-        $erreurs[] = "Il faut saisir le champ ville";
-    }
-    else if (!estUntextEtChiffre($villeFac)) {
-        $erreurs[] = "erreur de ville adresse de facturation, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
-    }
-    if ($cpFac == "") {
-        $erreurs[] = "Il faut saisir le champ Code postal";
-    }
-     else if (!estUnCp($cpFac)) {
-        $erreurs[] = "erreur de code postal adresse de facturation";
-    }
+        if ($villeFac == "") {
+            $erreurs[] = "Il faut saisir le champ ville";
+        } else if (!estUntextEtChiffre($villeFac)) {
+            $erreurs[] = "erreur de ville adresse de facturation, veuillez saisir du text seulement (accents acceptés), les chiffre sont acceptée aussi";
+        }
+        if ($cpFac == "") {
+            $erreurs[] = "Il faut saisir le champ Code postal";
+        } else if (!estUnCp($cpFac)) {
+            $erreurs[] = "erreur de code postal adresse de facturation";
+        }
 
         return $erreurs;
-    }
-
-
-    /**
-     * trouve ou creer une ville
-     *
-     * @param [chaîne] $ville
-     * @param [INT] $cp
-     * @return :$id_ville
-     */
-    public static function trouveOuCreerVille($ville, $cp)
-    {
-        $pdo = AccesDonnees::getPdo();
-        $req = "SELECT ville.id_ville FROM ville WHERE nom_ville = :ville AND cp= :cp";
-        $statement = AccesDonnees::getPdo()->prepare($req);
-        $statement->bindParam(':ville', $ville, PDO::PARAM_STR);
-        $statement->bindParam(':cp', $cp, PDO::PARAM_INT);
-        $statement->execute();
-        $id_ville = $statement->fetchColumn();
-
-        if ($id_ville == false) {
-            $req = "INSERT INTO ville (nom_ville, cp) VALUES (:ville,:cp)";
-            $statement = AccesDonnees::getPdo()->prepare($req);
-            $statement->bindParam(':ville', $ville, PDO::PARAM_STR);
-            $statement->bindParam(':cp', $cp, PDO::PARAM_INT);
-            $statement->execute();
-            $id_ville = AccesDonnees::getPdo()->lastInsertId();
-        }
-        return $id_ville;
-    }
-
-    /**
-     * crée un nouveau client
-     *
-     * @param [chaîne] $nom
-     * @param [chaîne] $prenom
-     * @param [chaîne] $adresse
-     * @param [chaîne] $email
-     * @param [INT] $ville_id
-     * @return :$idclient
-     */
-    public static function trouveOuCreerClient($nom, $prenom, $adresse, $email, $ville_id)
-    {
-
-        $pdo = AccesDonnees::getPdo();
-        $req = "SELECT id_client FROM client WHERE nom = :nom AND prenom = :prenom AND adresse = :adresse AND email = :email AND ville_id = :ville_id";
-        $statement = AccesDonnees::getPdo()->prepare($req);
-        $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
-        $statement->bindParam(':prenom', $prenom, PDO::PARAM_STR);
-        $statement->bindParam(':adresse', $adresse, PDO::PARAM_STR);
-        $statement->bindParam(':email', $email, PDO::PARAM_STR);
-        $statement->bindParam(':ville_id', $ville_id, PDO::PARAM_INT);
-        $statement->execute();
-        $id_client = $statement->fetchColumn();
-        if ($id_client == false) {
-            $req = "INSERT INTO client (nom, prenom, adresse, email, ville_id) VALUES (:nom,:prenom,:adresse,:email,:ville_id)";
-            $statement = AccesDonnees::getPdo()->prepare($req);
-            $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
-            $statement->bindParam(':prenom', $prenom, PDO::PARAM_STR);
-            $statement->bindParam(':adresse', $adresse, PDO::PARAM_STR);
-            $statement->bindParam(':email', $email, PDO::PARAM_STR);
-            $statement->bindParam(':ville_id', $ville_id, PDO::PARAM_INT);
-            $statement->execute();
-            $id_client = $statement->fetchColumn();
-            $id_client = $pdo->lastInsertId();
-        }
-        return $id_client;
     }
 
     /**
@@ -321,8 +192,6 @@ CONCAT(lf_adresses.rue, ' ', lf_adresses.complement_rue, ' ', lf_code_postaux.co
      */
     public static function afficherInfoUtilisateur($id_client)
     {
-        
-
         $pdo = Accesdonnees::getPdo();
         $stmt = $pdo->prepare("SELECT DISTINCT lf_clients.id, lf_clients.nom_client, lf_clients.prenom, 
         lf_clients.pseudo, lf_clients.telephone, lf_clients.email , lf_clients.mot_de_passe, 
@@ -364,6 +233,23 @@ CONCAT(lf_adresses.rue, ' ', lf_adresses.complement_rue, ' ', lf_code_postaux.co
         return $InfoUtilisateurPourCommander;
     }
 
+    public static function trouveAdresse($rue, $complement, $id_ville, $id_cp)
+    {
+        // $pdo = AccesDonnees::getPdo();
+        $req = "SELECT lf_adresses.id FROM lf_adresses
+        JOIN lf_code_postaux ON lf_adresses.code_postaux_id = lf_code_postaux.id
+        JOIN lf_villes ON lf_adresses.villes_id = lf_villes.id
+        WHERE lf_code_postaux.id = :id_cp AND lf_villes.id = :id_ville AND lf_adresses.rue = :rue AND lf_adresses.complement_rue = :complement";
+        $statement = AccesDonnees::getPdo()->prepare($req);
+        $statement->bindParam(':rue', $rue, PDO::PARAM_STR);
+        $statement->bindParam(':complement', $complement, PDO::PARAM_STR);
+        $statement->bindParam(':id_ville', $id_ville, PDO::PARAM_INT);
+        $statement->bindParam(':id_cp', $id_cp, PDO::PARAM_INT);
+        $statement->execute();
+        $id_adresse = $statement->fetchColumn();
+
+        return $id_adresse;
+    }
     public static function trouveOuCreerAdresse($rue, $complement, $id_ville, $id_cp)
     {
         // $pdo = AccesDonnees::getPdo();

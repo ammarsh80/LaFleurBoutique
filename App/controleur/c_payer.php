@@ -24,10 +24,8 @@ switch ($action) {
                 $idCommande = ($_SESSION['idDerniereCommande']);
                 $idClient = ($_SESSION['id']);
                 $commandesClient = M_Payer::payerCommande($idCommande, $idClient);
-
+                
                 $total_payer = $_SESSION['total_a_payer'];
-                // $_SESSION['total_a_payer'] += $total_payer;
-
                 $_SESSION['total_payer'] = $total_payer;
 
                 $_SESSION['total_a_payer'] = 0;

@@ -21,24 +21,11 @@ class M_Payer
     public static function payerCommande($idCommande, $idClient)
     {
         $etat = 'payée';
-        // $req = "UPDATE lf_commande_clients SET etat = :etat WHERE clients_id = :idClient";
         $req = "UPDATE lf_commande_clients SET etat = :etat WHERE id = :idCommande AND clients_id = :idClient";
         $statement = AccesDonnees::getPdo()->prepare($req);
         $statement->bindParam(':idClient', $idClient, PDO::PARAM_INT);
         $statement->bindParam(':idCommande', $idCommande, PDO::PARAM_INT);
         $statement->bindParam(':etat', $etat, PDO::PARAM_STR);
         $statement->execute();
-        // $idDerniereCommandePaye = AccesDonnees::getPdo()->lastInsertId();
-    
-        // // if ((isset($_SESSION['id']) && (isset($lesArticlesDuPanier)))) {
-        // $_SESSION['idDerniereCommandePaye'] = $idDerniereCommandePaye;
-    
-        // var_dump($_SESSION['idDerniereCommandePaye']);
-        // die;
-
-        // return $idDerniereCommandePaye;
-    
-        // }
     }
-    
 }

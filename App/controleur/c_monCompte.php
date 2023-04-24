@@ -82,7 +82,6 @@ switch ($action) {
       afficheMessage("Vos changements ont bien été enregistrés.");
     }
 
-
     $_SESSION['client'] = M_Inscription::trouverClientParId($_SESSION['id']);
 
     header("Location: index.php?page=v_compte");

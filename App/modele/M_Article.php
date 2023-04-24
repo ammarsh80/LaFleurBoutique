@@ -126,35 +126,6 @@ class M_Article
         return $lesArticles;
     }
 
-
-
-    // /**
-    //  * Retourne sous forme d'un tableau associatif tous les articles de la
-    //  * catégorie passée en argument
-    //  *
-    //  * @param $idCategorie
-    //  * @return un tableau associatif
-    //  */
-    // public static function trouveLesArticleAccueil()
-    // {
-    //     $req = "SELECT lf_articles.id, lf_articles.nombre, lf_articles.description, lf_articles.prix_unitaire, 
-    //     lf_articles.image, lf_articles.etat, lf_categories.nom_categorie, lf_fleurs.nom_fleur, 
-    //     lf_unites.nom_unite, lf_unites.taille, lf_couleurs.couleur 
-    //     FROM lf_articles
-    //     JOIN lf_article_categorie ON `lf_articles`.`id` = `lf_article_categorie`.`article_id`
-    //     JOIN lf_categories ON `lf_article_categorie`.`categorie_id` = `lf_categories`.`id` 
-    //     Join lf_fleurs ON `lf_articles`.`fleurs_id` = `lf_fleurs`.`id`
-    //     Join lf_unites ON `lf_articles`.`unites_id` = `lf_unites`.`id`
-    //     Join lf_couleurs ON `lf_articles`.`couleurs_id` = `lf_couleurs`.`id`
-    //     WHERE `lf_categories`.`nom_categorie` = 'accueil'";
-    //     $res = AccesDonnees::query($req);
-    //     $lesLignes = $res->fetchAll();
-    //     // $lesLignes = $res->fetchAll(PDO::FETCH_ASSOC);
-
-    //     return $lesLignes;
-    // }
-
-
     /**
      * Retourne sous forme d'un tableau associatif tous les articles de la
      * catégorie passée en argument
@@ -176,7 +147,6 @@ class M_Article
         WHERE `lf_categories`.`nom_categorie` = 'accueil'";
         $res = AccesDonnees::query($req);
         $lesLignes = $res->fetchAll();
-        // $lesLignes = $res->fetchAll(PDO::FETCH_ASSOC);
 
         return $lesLignes;
     }
@@ -304,15 +274,7 @@ class M_Article
      */
     public static function trouverAllArticle()
     {
-        //     $reqSQL = "SELECT * FROM exemplaire
-        //    JOIN jeu ON `exemplaire`.`jeu_id` = `jeu`.`id_jeu` 
-        //     JOIN categorie ON `jeu`.`categorie_id` = `categorie`.`id_categorie` 
-        //     JOIN console ON `exemplaire`.`console_id` = `console`.`id_console`";
-        //     $statement = AccesDonnees::getPdo()->prepare($reqSQL);
-        //     $statement->execute();
-        //     $voirTousLesJeux = $statement->fetchAll();
-        //     return $voirTousLesJeux;
-
+    
         $req = "SELECT * FROM lf_articles
         JOIN lf_article_categorie ON `lf_articles`.`id` = `lf_article_categorie`.`article_id`
         JOIN lf_categories ON `lf_article_categorie`.`categorie_id` = `lf_categories`.`id` 
@@ -325,26 +287,6 @@ class M_Article
         return $lesLignes;
     }
 
-
-
-
-    /**
-     * affiche tous les jeux
-     *
-     * @return $voirTousLesJeux
-     */
-    // public static function trouveMot($recherche_mot)
-    // {
-    //     $req = "SELECT * FROM lf_fleurs
-       
-    //     WHERE lf_fleurs.nom_fleur = LIKE '%" . ':recherche_mot' . "%'";
-
-    //     $statement = AccesDonnees::getPdo()->prepare($req);
-    //     $statement->bindParam(':recherche_mot', $recherche_mot, PDO::PARAM_STR);
-    //     $statement->execute();
-    //     $lesLignes = $statement->fetch();
-    //     return $lesLignes;
-    // }
     public static function trouveLesArticleParMot($recherche_mot)
 {
   
@@ -360,9 +302,7 @@ class M_Article
     Join lf_couleurs ON `lf_articles`.`couleurs_id` = `lf_couleurs`.`id`
     WHERE nom_fleur LIKE :recherche_mot
         GROUP BY lf_articles.id";
- 
-    
-    
+     
     // SELECT * FROM lf_fleurs WHERE nom_fleur LIKE :recherche_mot";
     $statement = AccesDonnees::getPdo()->prepare($req);
     $recherche_mot = '%' . $recherche_mot . '%'; // Ajouter les caractères de joker % avant et après la recherche_mot
@@ -372,9 +312,6 @@ class M_Article
     $lesLignes = $statement->fetchAll(PDO::FETCH_ASSOC); // Récupérer toutes les lignes
     return $lesLignes;
 }
-
-
-
 
     /**
      * Retourne les jeux concernés par le tableau des idProduits passée en argument

@@ -2,10 +2,11 @@
 include_once "./App/modele/M_Article.php";
 include_once "./App/modele/M_Categorie.php";
 include_once "./App/modele/M_Inscription.php";
+include_once "./App/modele/M_Consultation.php";
 
 /**
- * Controleur pour la consultation des exemplaires
- * @author Loic LOG
+ * Controleur pour la consultation des articles
+ * @author Ammar SHIHAN
  */
 
 
@@ -47,25 +48,14 @@ switch ($action) {
         break;
 
     case 'voirArticlesDeCategorie':
-        // $idArticle = filter_input(INPUT_GET, 'id');
         $idCategorie = filter_input(INPUT_GET, 'categorie');
 
         $lesArticles = M_Article::trouveLesArticlesDeCategorie($idCategorie);
         $LeNomDeLaCategorie = M_Article::trouveLeNomDeLaCategorie($idCategorie);
-        // var_dump($LeNomDeLaCategorie[0][0]);
-        // die;
-
-
-        // $lesArticles = M_Article::trouverAllArticle($categorie);
-        // header('Location: index.php?uc=accueil&action=voirAll');
-
-
 
     case 'ajouterAuPanier':
         $nom_Categorie = filter_input(INPUT_GET, 'categorie');
         $idArticle = filter_input(INPUT_GET, 'idArticle');
-
-
 
         if (!ajouterAuPanier($idArticle)) {
             afficheErreurs(["Cet article est déjà dans le panier !!"]);
@@ -92,17 +82,18 @@ switch ($action) {
 
 $lesCategories = M_Categorie::trouveLesCategories();
 $lesCouleurs = M_Categorie::trouveLesCouleurs();
+$lesVilles = M_Consultation::trouveLesVillesLivrable();
+$lesCPs = M_Consultation::trouveLesCp();
 
 if (($_SERVER['REQUEST_METHOD'] === 'GET') && (isset($recherche_mot))) {
     // Récupérer les valeurs des inputs
-    $recherche_mot = filter_input(INPUT_GET, "recherche_mot", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Action
+    $recherche_mot = filter_input(INPUT_GET, "recherche_mot", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     $errors = M_Inscription::estValideMot($recherche_mot);
     if (count($errors) > 0) {
         // Si une erreur, on recommence
         afficheErreurs($errors);
     } else {
-        // header('location: index.php?page=v_accueil&action=voirArticlesAccueil');
         $lesArticles = M_Article::trouveLesArticleParMot($recherche_mot);
     }
 }

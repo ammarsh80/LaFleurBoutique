@@ -172,9 +172,13 @@ include_once "./App/controleur/c_moncompte.php";
 
                 </tbody>
             </table>
+
         <?php
+
         }
         ?>
-    </div>
-
+    <a href="index.php?page=v_paiement&uc=payer">
+        <p class="payer_derniere">payer ma dernière commande</p>
+    </a>
+</div>
 </section>

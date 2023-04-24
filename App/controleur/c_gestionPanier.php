@@ -3,12 +3,13 @@
 
 
 include_once "./App/modele/M_Article.php";
+include_once "./App/modele/M_Consultation.php";
 
 
 
 /**
  * Controleur pour la gestion du panier
- * @author Loic LOG
+ * @author Ammar SHIHAN
  */
 switch ($action) {
     case 'supprimerUnArticle':
@@ -30,3 +31,5 @@ switch ($action) {
     default:
         break;
 }
+
+$lesFraisLivraison = M_Consultation::trouveLesFraisLivraison();
