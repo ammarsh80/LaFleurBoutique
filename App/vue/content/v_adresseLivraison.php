@@ -14,19 +14,19 @@
                         <div class="mb-3">
                             <div>
                                 <label for="identiteLiv" class="label_livraison fw-bold">Mme / M : *</label>
-                                <input type="text" name="identiteLiv" id="identiteLiv" class="input_connexion modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['nom_client']; ?>" requiried>
+                                <input type="text" name="identiteLiv" id="identiteLiv" class="input_connexion modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['nom_client']; ?>" minlength="2" maxlength="44" requiried>
                             </div>
                             <div>
                                 <label for="prenomLiv" class="label_livraison fw-bold">Prénom : * </label>
-                                <input type="text" name="prenomLiv" id="prenomLiv" class="input_connexion modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['prenom']; ?>" requiried>
+                                <input type="text" name="prenomLiv" id="prenomLiv" class="input_connexion modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['prenom']; ?>" minlength="2" maxlength="44" requiried>
                             </div>
                             <div>
                                 <label for="adresseLiv" class="label_livraison fw-bold">Adresse: * </label>
-                                <input type="text" name="adresseLiv" id="adresseLiv" class="input_connexion modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['rue']; ?>" requiried>
+                                <input type="text" name="adresseLiv" id="adresseLiv" class="input_connexion modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['rue']; ?>" minlength="2" maxlength="44" requiried>
                             </div>
                             <div>
                                 <label for="complementLiv" class="label_livraison fw-bold">Complément: </label>
-                                <input type="text" name="complementLiv" id="complementLiv" class="input_connexion modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['complement_rue']; ?>">
+                                <input type="text" name="complementLiv" id="complementLiv" class="input_connexion modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['complement_rue']; ?>" minlength="2" maxlength="44">
                             </div>
                             <div>
                                 <p class="fs-6 fw-light mb-2 mt-2">Nous ne livrons que cette liste de villages, veillez en choisir une:</p>
@@ -71,27 +71,27 @@
 
                             <div>
                                 <label for="identiteFac" class="label_livraison fw-bold">Mme / M : *</label>
-                                <input type="text" name="identiteFac" id="identiteFac" class=" modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['nom_client']; ?>" requiried>
+                                <input type="text" name="identiteFac" id="identiteFac" class=" modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['nom_client']; ?>" minlength="2" maxlength="44" requiried>
                             </div>
                             <div>
                                 <label for="prenomFac" class="label_livraison fw-bold">Prénom : *</label>
-                                <input type="text" name="prenomFac" id="prenomFac" class="input_connexion modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['prenom']; ?>" requiried>
+                                <input type="text" name="prenomFac" id="prenomFac" class="input_connexion modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['prenom']; ?>" minlength="2" maxlength="44" requiried>
                             </div>
                             <div>
                                 <label for="adresseFac" class="label_livraison fw-bold">Adresse: *</label>
-                                <input type="text" name="adresseFac" id="adresseFac" class=" modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['rue']; ?>" requiried>
+                                <input type="text" name="adresseFac" id="adresseFac" class=" modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['rue']; ?>" minlength="2" maxlength="44" requiried>
                             </div>
                             <div>
                                 <label for="complementFac" class="label_livraison fw-bold">Complément: *</label>
-                                <input type="text" name="complementFac" id="complementFac" class="input_connexion modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['complement_rue']; ?>" requiried>
+                                <input type="text" name="complementFac" id="complementFac" class="input_connexion modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['complement_rue']; ?>" minlength="2" maxlength="44" requiried>
                             </div>
                             <div>
                                 <label for="villeFac" class="label_livraison fw-bold">Ville: *</label>
-                                <input type="text" name="villeFac" id="villeFac" class=" modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['nom_ville']; ?>" requiried>
+                                <input type="text" name="villeFac" id="villeFac" class=" modifier_info_input" value="<?php echo  $InfoUtilisateur[0]['nom_ville']; ?>" minlength="2" maxlength="44" requiried>
                             </div>
                             <div>
                                 <label for="cpFac" class="label_livraison fw-bold">Code postal: *</label>
-                                <input type="text" name="cpFac" id="cpFac" class=" modifier_info_input" maxlength="5" size="5" value="<?php echo  $InfoUtilisateur[0]['code_postal']; ?>" requiried>
+                                <input type="text" name="cpFac" id="cpFac" class=" modifier_info_input" maxlength="5" size="5" value="<?php echo  $InfoUtilisateur[0]['code_postal']; ?>" minlength="5" maxlength="5" requiried>
 
                                 <div class="container_btn_facturation">
                                     <button type="submit" id="btn_valide_facturation" class="btn_valide_facturation">Valider</button>

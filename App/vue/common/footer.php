@@ -1,3 +1,14 @@
+
+<?php
+    if ((isset($_SESSION['Articles'])) && (count($_SESSION['Articles']) !==0)) {
+        $nArticles = count($_SESSION['Articles']);
+
+        ?>
+
+<span class="nArticles"><?php echo $nArticles ?></span>
+        <?php
+    }
+?>
 <footer>
     <div id="btn_scrole">
         <img src="./public/assets/img/vector-haut.png" onclick="topFunction()" id="topBtn" alt="bouton retour en haut de page">
@@ -52,13 +63,3 @@
     </div>
 
 </footer>
-<?php
-    if ((isset($_SESSION['Articles'])) && (count($_SESSION['Articles']) !==0)) {
-        $nArticles = count($_SESSION['Articles']);
-
-        ?>
-
-<span class="nArticles"><?php echo $nArticles ?></span>
-        <?php
-    }
-?>

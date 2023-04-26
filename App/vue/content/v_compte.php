@@ -108,19 +108,19 @@ include_once "./App/controleur/c_moncompte.php";
                         <div class="container_form_modif">
 
                             <p class="label_modif"> <label for="adresse">Adresse *</label>
-                                <input type="text" id="adresse" name="adresse" value="<?php echo $InfoUtilisateur[0]['rue']; ?>" required>
+                                <input type="text" id="adresse" name="adresse" value="<?php echo $InfoUtilisateur[0]['rue']; ?>" minlength="2" maxlength="44" required>
                             </p>
                             <p class="label_modif"><label for="complement">Complement *</label>
-                                <input type="text" id="complement" name="complement" value="<?php echo $InfoUtilisateur[0]['complement_rue']; ?>" required>
+                                <input type="text" id="complement" name="complement" value="<?php echo $InfoUtilisateur[0]['complement_rue']; ?>" minlength="2" maxlength="44" required>
                             </p>
                             <p class="label_modif"><label for="ville">Ville *</label>
-                                <input type="text" id="ville" name="ville" value="<?php echo $InfoUtilisateur[0]['nom_ville']; ?>" required>
+                                <input type="text" id="ville" name="ville" value="<?php echo $InfoUtilisateur[0]['nom_ville']; ?>" minlength="2" maxlength="44" required>
                             </p>
                             <p class="label_modif"> <label for="cp">Code postal *</label>
-                                <input type="text" id="cp" name="cp" value="<?php echo $InfoUtilisateur[0]['code_postal']; ?>" required>
+                                <input type="text" id="cp" name="cp" value="<?php echo $InfoUtilisateur[0]['code_postal']; ?>" minlength="5" maxlength="5" required>
                             </p>
                             <p class="label_modif"> <label for="mail">E-mail *</label>
-                                <input type="text" id="mail" name="mail" value="<?php echo $InfoUtilisateur[0]['email']; ?>" required>
+                                <input type="text" id="mail" name="mail" value="<?php echo $InfoUtilisateur[0]['email']; ?>" minlength="2" maxlength="44" required>
                             </p>
                             <p class="label_modif"> <label for="telephone">Telephone *</label>
                                 <input type="tel" id="telephone" name="telephone" maxlength="10" size="10" value="<?php echo $InfoUtilisateur[0]['telephone']; ?>" required>

@@ -3,10 +3,22 @@
 /**
  * Requetes sur les commandes
  *
- * @author Loic LOG
+ * @author Ammar SHIHAN
  */
 class M_Commande
 {
+    /**
+     * crée une commande
+     * Crée une commande à partir des arguments validés passés en paramètre, l'identifiant est
+     * construit à partir du maximum existant ; crée les lignes de commandes dans la table contenir à partir du
+     * tableau d'idProduit passé en paramètre
+     * @param [int] $idclient
+     * @param [int] $id_adresse_livraison
+     * @param [int] $id_adresse_facturation
+     * @param [int] $listArticles
+     * @param boolean $commande_cree
+     * @return : id Derniere Commande
+     */
     public static function creerCommande($idclient, $id_adresse_livraison, $id_adresse_facturation, $listArticles, $commande_cree = false)
     {
         if (!$commande_cree) {
@@ -39,6 +51,8 @@ class M_Commande
      * @param $iddernierclient
      * @param $ville_id
      * @param $listArticles
+     * @return : id Derniere Commande
+
      */
     public static function creerCommandeProrgramer($idclient, $date_livraison_progamme, $id_adresse_livraison, $id_adresse_facturation, $listArticles, $commande_cree = false)
     {
@@ -69,12 +83,16 @@ class M_Commande
      * Retourne vrai si pas d'erreur
      * Remplie le tableau d'erreur s'il y a
      *
-     * @param $nom : chaîne
-     * @param $prenom : chaîne
-     * @param $rue : chaîne
-     * @param $ville : chaîne
-     * @param $cp : INT
-     * @param $mail : chaîne
+     * @param [chaine] $nom
+     * @param [chaine] $prenom
+     * @param [chaine] $rue
+     * @param [chaine] $complement
+     * @param [chaine] $nomFac
+     * @param [chaine] $prenomFac
+     * @param [chaine] $rueFac
+     * @param [chaine] $complementFac
+     * @param [chaine] $villeFac
+     * @param [chaine] $cpFac
      * @return : array
      */
     public static function estValide($nom, $prenom, $rue, $complement, $nomFac, $prenomFac, $rueFac, $complementFac, $villeFac, $cpFac)
@@ -150,9 +168,9 @@ class M_Commande
     }
 
     /**
-     *    Affiche toutes les informations des jeux achetés par un client
+     *    Affiche toutes les informations des articles achetés par un client
      *
-     * @param [type] $id_utilisateur
+     * @param [type] $id_client
      * @return $lesCommandes
      */
     public static function afficherCommandes($id_client)
@@ -209,33 +227,17 @@ CONCAT(lf_adresses.rue, ' ', lf_adresses.complement_rue, ' ', lf_code_postaux.co
         return $InfoClients;
     }
 
-
     /**
-     * Affiche toutes les informations de l'utilisateur dans le formulaire de commande
+     * trouve une adresse selon les paramètres passées en arguments
      *
-     * @param [type] $moiUtilisateur
-     * @return $InfoUtilisateurPourCommander
+     * @param [chaine] $rue
+     * @param [chaine] $complement
+     * @param [int] $id_ville
+     * @param [int] $id_cp
+     * @return void
      */
-    public static function infoUtilisateurPourCommander($moiUtilisateur)
-    {
-        $moiUtilisateur = $_SESSION['id'];
-        $pdo = Accesdonnees::getPdo();
-        $stmt = $pdo->prepare("SELECT DISTINCT client.nom, client.prenom, client.adresse,  ville.cp, ville.nom_ville, client.email
-                FROM utilisateur
-                JOIN client
-                ON utilisateur.client_id=client.id_client
-                JOIN ville
-                ON client.ville_id = ville.id_ville
-                WHERE utilisateur.id_utilisateur = :id_utilisateur");
-        $stmt->bindParam(":id_utilisateur", $moiUtilisateur);
-        $stmt->execute();
-        $InfoUtilisateurPourCommander = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $InfoUtilisateurPourCommander;
-    }
-
     public static function trouveAdresse($rue, $complement, $id_ville, $id_cp)
     {
-        // $pdo = AccesDonnees::getPdo();
         $req = "SELECT lf_adresses.id FROM lf_adresses
         JOIN lf_code_postaux ON lf_adresses.code_postaux_id = lf_code_postaux.id
         JOIN lf_villes ON lf_adresses.villes_id = lf_villes.id
@@ -250,9 +252,18 @@ CONCAT(lf_adresses.rue, ' ', lf_adresses.complement_rue, ' ', lf_code_postaux.co
 
         return $id_adresse;
     }
+
+    /**
+     * trouve ou crée une adresse selon les paramètres passées en arguments
+     *
+     * @param [chaine] $rue
+     * @param [chaine] $complement
+     * @param [int] $id_ville
+     * @param [int] $id_cp
+     * @return void
+     */
     public static function trouveOuCreerAdresse($rue, $complement, $id_ville, $id_cp)
     {
-        // $pdo = AccesDonnees::getPdo();
         $req = "SELECT lf_adresses.id FROM lf_adresses
         JOIN lf_code_postaux ON lf_adresses.code_postaux_id = lf_code_postaux.id
         JOIN lf_villes ON lf_adresses.villes_id = lf_villes.id

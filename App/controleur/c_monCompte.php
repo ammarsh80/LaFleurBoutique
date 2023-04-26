@@ -40,17 +40,6 @@ if (!empty($_SESSION['id'])) {
   $InfoUtilisateur = M_Commande::afficherInfoUtilisateur($_SESSION['id']);
 }
 
-
-// switch ($action) {
-//   case 'demandChangerProfil': {
-//       $adresse = '';
-//       $complement = '';
-//       $cp = '';
-//       $ville = '';
-//       $mail = '';
-//       $erreurs = '';
-//     }
-// }
 switch ($action) {
   case "changerProfil":
 
@@ -68,7 +57,6 @@ switch ($action) {
     $ville = filter_input(INPUT_POST, "ville");
     $mail = filter_input(INPUT_POST, "mail");
     $telephone = filter_input(INPUT_POST, "telephone");
-
 
     $erreurs = M_monCompte::estValideModification($adresse, $complement, $cp, $ville, $mail, $telephone);
     if ($erreurs) {

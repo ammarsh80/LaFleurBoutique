@@ -33,7 +33,7 @@
                 <form action="index.php?page=v_paiement&uc=payer&action=payerCommande" method="POST">
                     <div>
                         <label for="propritaire" class="label_livraison fw-bold">Nom de propritaire *</label>
-                        <input type="text" name="propritaire" id="propritaire" class=" modifier_info_input" required>
+                        <input type="text" name="propritaire" id="propritaire" class=" modifier_info_input" minlength="2" maxlength="44" required>
                     </div>
                     <div>
                         <label for="carte" class="label_livraison fw-bold">Numéro de carte *</label>

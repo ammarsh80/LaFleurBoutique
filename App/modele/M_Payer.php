@@ -2,22 +2,19 @@
 
 
 /**
- * Requetes sur les commandes
+ * Paiement
  *
- * @author Loic LOG
+ * @author Ammar SHIHAN
  */
 class M_Payer
 {
-    /**
-     * Crée une commande
-     *
-     * Crée une commande à partir des arguments validés passés en paramètre, l'identifiant est
-     * construit à partir du maximum existant ; crée les lignes de commandes dans la table contenir à partir du
-     * tableau d'idProduit passé en paramètre
-     * @param $iddernierclient
-     * @param $ville_id
-     * @param $listArticles
-     */
+  /**
+   * passe l'état d'une commande à Payée à partir des arguments validés passés en paramètre
+   *
+   * @param [int] $idCommande
+   * @param [int] $idClient
+   * @return void
+   */
     public static function payerCommande($idCommande, $idClient)
     {
         $etat = 'payée';

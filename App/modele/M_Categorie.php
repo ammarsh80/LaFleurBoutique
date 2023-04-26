@@ -19,9 +19,9 @@ class M_Categorie {
         return $lesLignes;
     }
     /**
-     * Retourne toutes les catégories sous forme d'un tableau associatif
+     * Retourne toutes les Couleurs sous forme d'un tableau associatif
      *
-     * @return le tableau associatif des catégories
+     * @return le tableau associatif des Couleurs
      */
     public static function trouveLesCouleurs() {
         $req = "SELECT * FROM lf_couleurs";

@@ -34,9 +34,8 @@
                         <a href="index.php?page=v_accueil&idArticle=<?php echo $idArticle ?>&categorie=Accueil&action=ajouterAuPanier">
                             <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add" />
                         </a>
-
-                        </a> 
-
+                        
+                    </a> 
 
                     </div>
                 </div>

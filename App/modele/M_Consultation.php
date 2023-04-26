@@ -3,9 +3,9 @@
 class M_Consultation
 {
     /**
-     * Retourne toutes les catégories sous forme d'un tableau associatif
+     * Retourne toutes les villes livrable sous forme d'un tableau associatif
      *
-     * @return le tableau associatif des catégories
+     * @return le tableau associatif des villes
      */
     public static function trouveLesVillesLivrable()
     {
@@ -21,9 +21,9 @@ class M_Consultation
         return $lesLignes;
     }
     /**
-     * Retourne toutes les catégories sous forme d'un tableau associatif
+     * Retourne toutes les codes posteaux sous forme d'un tableau associatif
      *
-     * @return le tableau associatif des catégories
+     * @return le tableau associatif des codes posteaux
      */
     public static function trouveLesCp()
     {
@@ -33,9 +33,9 @@ class M_Consultation
         return $lesLignes;
     }
     /**
-     * Retourne toutes les catégories sous forme d'un tableau associatif
+     * Retourne toutes les Frais de Livraison sous forme d'un tableau associatif
      *
-     * @return le tableau associatif des catégories
+     * @return le tableau associatif Frais de Livraison
      */
     public static function trouveLesFraisLivraison()
     {

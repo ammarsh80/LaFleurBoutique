@@ -13,12 +13,24 @@ function initPanier() {
     }
 }
 
+
+// function initPanier()
+// {
+
+//     if (!isset($_SESSION['Articles'])) {
+//         $_SESSION['Articles'] = array(
+//             'Quantite' => array()
+//         );
+//     }
+// }
+
 /**
  * Supprime le panier
  *
  * Supprime la variable de type session 
  */
-function supprimerPanier() {
+function supprimerPanier()
+{
     unset($_SESSION['Articles']);
 }
 
@@ -31,7 +43,8 @@ function supprimerPanier() {
  * @param $idArticle : identifiant de article
  * @return vrai si le article n'était pas dans la variable, faux sinon 
  */
-function ajouterAuPanier($idArticle) {
+function ajouterAuPanier($idArticle)
+{
     $ok = false;
     if (!in_array($idArticle, $_SESSION['Articles'])) {
         $_SESSION['Articles'][] = $idArticle;
@@ -46,10 +59,10 @@ function ajouterAuPanier($idArticle) {
  * Retourne le tableau des identifiants de article
  * @return : le tableau
  */
-function getLesIdArticlesDuPanier() {
-   
+function getLesIdArticlesDuPanier()
+{
+
     return $_SESSION['Articles'];
-    
 }
 
 /**
@@ -59,13 +72,13 @@ function getLesIdArticlesDuPanier() {
  * et retourne le nombre d'éléments de la variable session
  * @return : le nombre 
  */
-function nbArticlesDuPanier() {
+function nbArticlesDuPanier()
+{
     $n = 0;
     if (isset($_SESSION['Articles'])) {
         $n = count($_SESSION['Articles']);
     }
     return $n;
- 
 }
 
 /**
@@ -76,7 +89,8 @@ function nbArticlesDuPanier() {
  * @param $idProduit : identifiant de article
 
  */
-function retirerDuPanier($idProduit) {
+function retirerDuPanier($idProduit)
+{
     $index = array_search($idProduit, $_SESSION['Articles']);
     unset($_SESSION['Articles'][$index]);
 }
@@ -85,12 +99,13 @@ function retirerDuPanier($idProduit) {
  * Affiche une liste d'erreur
  * @param array $msgErreurs
  */
-function afficheErreurs(array $msgErreurs) {
+function afficheErreurs(array $msgErreurs)
+{
     echo '<div class="erreur"><ul>';
     foreach ($msgErreurs as $erreur) {
-        ?>     
+?>
         <li><?php echo $erreur ?></li>
-        <?php
+<?php
     }
     echo '</ul></div>';
 }
@@ -101,28 +116,31 @@ function afficheErreurs(array $msgErreurs) {
  * @param string $msgErreur
  * @return $msgErreur
  */
-function afficheErreur(string $msgErreur) {
+function afficheErreur(string $msgErreur)
+{
     echo '<div class="erreur">' . $msgErreur . '</div>';
-
 }
 /**
  * Affiche un message bleu
  * @param string $msg
  */
-function afficheMessage(string $msg) {
-    echo '<div class="message">'.$msg.'</div>';
+function afficheMessage(string $msg)
+{
+    echo '<div class="message">' . $msg . '</div>';
 }
 /**
  * Affiche un message bleu
  * @param string $msg
  */
-function afficheMessageConnexion(string $msg) {
-    echo '<div class="messageConnexion">'.$msg.'</div>';
+function afficheMessageConnexion(string $msg)
+{
+    echo '<div class="messageConnexion">' . $msg . '</div>';
 }
 /**
  * Affiche un message bleu
  * @param string $msg
  */
-function afficheMessagePanierVide(string $msg) {
-    echo '<div class="messagePanierVide">'.$msg.'</div>';
+function afficheMessagePanierVide(string $msg)
+{
+    echo '<div class="messagePanierVide">' . $msg . '</div>';
 }

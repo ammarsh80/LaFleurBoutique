@@ -17,27 +17,10 @@ if (isset($_SESSION['id'])) {
 }
 
 
-
-
-/**
- * Controleur pour les commandes
- * @author Loic LOG
- */
 switch ($action) {
     case 'passerCommande':
         $n = nbArticlesDuPanier();
         if ($n > 0) {
-            // $identiteLiv = '';
-            // $adresseLiv = '';
-            // $complementLiv = '';
-            // $villeLiv = '';
-            // $cpLiv = '';
-            // $identiteFac = '';
-            // $adresseFac = '';
-            // $complementFac = '';
-            // $villeFac = '';
-            // $cpFac = '';
-
             $InfoUtilisateur = [];
 
             $InfoUtilisateur = M_Commande::afficherInfoUtilisateur($_SESSION['id']);
@@ -133,7 +116,7 @@ switch ($action) {
         $ville = filter_input(INPUT_POST, 'villeLiv');
         $cp = filter_input(INPUT_POST, 'cpLiv');
         $date_livraison_progamme = filter_input(INPUT_POST, 'date_livraison_progamme');
-         
+
         $nomFac = filter_input(INPUT_POST, 'identiteFac');
         $prenomFac = filter_input(INPUT_POST, 'prenomFac');
         $rueFac = filter_input(INPUT_POST, 'adresseFac');

@@ -1,10 +1,18 @@
 <?php
 
+/**requettes pour inscription et vérifications si les paramètres passées en arguments sont valides 
+ *  @author Ammar SHIHAN
+ */
 class M_Inscription
 {
 
     /**
-     * Fonction qui vérifie que l'identification saisie est correcte.
+     *Fonction qui vérifie que l'identification saisie est correcte.
+
+     *
+     * @param [int] $identifiant
+     * @param [int] $mot_de_passe
+     * @return boolean
      */
     function utilisateur_existe($identifiant, $mot_de_passe): bool
     {
@@ -29,24 +37,6 @@ class M_Inscription
             $existe = false;
         }
         return (bool) $existe;
-    }
-    /**
-     * enregister un utilisateur (mot de passe cripté)
-     *
-     * @param String $pseudo
-     * @param String $psw
-     * @return boolean
-     */
-    function register(String $pseudo, String $psw): bool
-    {
-        $conn = AccesDonnees::getPdo();
-        $psw = password_hash($psw, PASSWORD_BCRYPT);
-        $sql = "INSERT INTO utilisateur (identifiant, mot_de_passe)
-        VALUES(:pseudo, :psw);";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(":pseudo", $pseudo);
-        $stmt->bindParam(":psw", $psw);
-        return $stmt->execute();
     }
 
     /**
@@ -89,14 +79,18 @@ class M_Inscription
 
     /**
      * Retourne vrai si pas d'erreur
-     * Remplie le tableau d'erreur s'il y a
-     *
-     * @param $nom : chaîne
-     * @param $prenom : chaîne
-     * @param $rue : chaîne
-     * @param $ville : chaîne
-     * @param $cp : INT
-     * @param $mail : chaîne
+     * Remplie le tableau d'erreur s'il y a *
+     * @param [chaine] $nom
+     * @param [chaine] $prenom
+     * @param [chaine] $pseudo
+     * @param [chaine] $psw
+     * @param [chaine] $confirm_psw
+     * @param [chaine] $rue
+     * @param [chaine] $complement
+     * @param [chaine] $ville
+     * @param [int] $cp
+     * @param [chaine] $mail
+     * @param [int] $telephone
      * @return : array
      */
     public static function estValideInscription($nom, $prenom, $pseudo, $psw, $confirm_psw, $rue, $complement, $ville, $cp, $mail, $telephone)
@@ -167,13 +161,11 @@ class M_Inscription
      * Retourne vrai si pas d'erreur
      * Remplie le tableau d'erreur s'il y a
      *
-     * @param $nom : chaîne
-     * @param $prenom : chaîne
-     * @param $rue : chaîne
-     * @param $ville : chaîne
-     * @param $cp : INT
-     * @param $mail : chaîne
-     * @return : array
+     * @param [type] $nom
+     * @param [type] $prenom
+     * @param [type] $mail
+     * @param [type] $message_contacte
+     * @return void
      */
     public static function estValideContact($nom, $prenom, $mail, $message_contacte)
     {
@@ -204,16 +196,14 @@ class M_Inscription
 
 
     /**
-     * Retourne vrai si pas d'erreur
+     *     Retourne vrai si pas d'erreur
      * Remplie le tableau d'erreur s'il y a
      *
-     * @param $nom : chaîne
-     * @param $prenom : chaîne
-     * @param $rue : chaîne
-     * @param $ville : chaîne
-     * @param $cp : INT
-     * @param $mail : chaîne
-     * @return : array
+     * @param [chaine] $propritaire
+     * @param [int] $carte
+     * @param [int] $expiration
+     * @param [int] $crypto
+     * @return void
      */
     public static function estValideCarte($propritaire, $carte, $expiration, $crypto)
     {
@@ -244,52 +234,38 @@ class M_Inscription
     }
     /**
      * Retourne vrai si pas d'erreur
-     * Remplie le tableau d'erreur s'il y a
-     *
-     * @param $nom : chaîne
-     * @param $prenom : chaîne
-     * @param $rue : chaîne
-     * @param $ville : chaîne
-     * @param $cp : INT
-     * @param $mail : chaîne
+     * Remplie le tableau d'erreur s'il y a *
+     * @param [chaine] $identifiant
+     * @param [chaine] $mot_de_passe
      * @return : array
      */
     public static function estValideIdentifiant($identifiant, $mot_de_passe)
     {
 
         $erreurs = [];
-        if ($identifiant == "t") {
+        if ($identifiant == "") {
             $erreurs[] = "Il faut saisir le pseudo";
+        } 
+        else if (!estUnPseudo($identifiant)) {
+            $erreurs[] = "erreur de pseudo";
         }
-
-        if ($mot_de_passe == "t") {
+        if ($mot_de_passe == "") {
             $erreurs[] = "Il faut saisir le champ mot de passe";
+        } else if (!estUnPwd($mot_de_passe)) {
+            $erreurs[] = "erreur de mot de passe";
         }
-        // if ($mail == "") {
-        //     $erreurs[] = "Il faut saisir le champ mail";
-        // } 
-        // else if (!estUnMail($mail)) {
-        //     $erreurs[] = "erreur de mail";
-        // }
         return $erreurs;
     }
 
 
     /**
      * Retourne vrai si pas d'erreur
-     * Remplie le tableau d'erreur s'il y a
-     *
-     * @param $nom : chaîne
-     * @param $prenom : chaîne
-     * @param $rue : chaîne
-     * @param $ville : chaîne
-     * @param $cp : INT
-     * @param $mail : chaîne
+     * Remplie le tableau d'erreur s'il y a *
+     * @param [type] $recherche_mot
      * @return : array
      */
     public static function estValideMot($recherche_mot)
     {
-
         $erreurs = [];
         if (!estUnMot($recherche_mot)) {
             $erreurs[] = "Veuillez saisir du texte en lettre majuscule au miniscule";
@@ -300,15 +276,13 @@ class M_Inscription
     }
 
     /**
-     * trouve ou creer une ville
+     * trouve id d'une ville
      *
-     * @param [chaîne] $ville
-     * @param [INT] $cp
-     * @return :$id_ville
+     * @param [chaine] $ville
+     * @return : id_ville
      */
     public static function trouveVille($ville)
     {
-        // $pdo = AccesDonnees::getPdo();
         $req = "SELECT lf_villes.id FROM lf_villes WHERE nom_ville = :ville";
         $statement = AccesDonnees::getPdo()->prepare($req);
         $statement->bindParam(':ville', $ville, PDO::PARAM_STR);
@@ -319,9 +293,8 @@ class M_Inscription
     /**
      * trouve ou creer une ville
      *
-     * @param [chaîne] $ville
-     * @param [INT] $cp
-     * @return :$id_ville
+     * @param [chaine] $ville
+     * @return : id_ville
      */
     public static function trouveOuCreerVille($ville)
     {
@@ -342,9 +315,15 @@ class M_Inscription
         return $id_ville;
     }
 
+
+    /**
+     * trouve code postal
+     *
+     * @param [int] $cp
+     * @return : id_cp
+     */
     public static function trouveCp($cp)
     {
-        // $pdo = AccesDonnees::getPdo();
         $req = "SELECT lf_code_postaux.id FROM lf_code_postaux WHERE code_postal = :cp";
         $statement = AccesDonnees::getPdo()->prepare($req);
         $statement->bindParam(':cp', $cp, PDO::PARAM_INT);
@@ -352,9 +331,15 @@ class M_Inscription
         $id_cp = $statement->fetchColumn();
         return $id_cp;
     }
+
+    /**
+     * trouve ou crée code postal
+     *
+     * @param [int] $cp
+     * @return : id_cp
+     */
     public static function trouveOuCreerCp($cp)
     {
-        // $pdo = AccesDonnees::getPdo();
         $req = "SELECT lf_code_postaux.id FROM lf_code_postaux WHERE code_postal = :cp";
         $statement = AccesDonnees::getPdo()->prepare($req);
         $statement->bindParam(':cp', $cp, PDO::PARAM_INT);
@@ -374,12 +359,14 @@ class M_Inscription
     /**
      * crée un nouveau client
      *
-     * @param [chaîne] $nom
-     * @param [chaîne] $prenom
-     * @param [chaîne] $adresse
-     * @param [chaîne] $email
-     * @param [INT] $ville_id
-     * @return :$idclient
+     * @param [chaine] $nom
+     * @param [chaine] $prenom
+     * @param [chaine] $pseudo
+     * @param [int] $telephone
+     * @param [chaine] $mail
+     * @param [chiane] $psw
+     * @param [int] $adresses_id
+     * @return : id_client
      */
     public static function trouveOuCreerClient($nom, $prenom, $pseudo, $telephone, $mail, $psw, $adresses_id)
     {
@@ -391,16 +378,15 @@ class M_Inscription
         $statement->bindParam(':mail', $mail, PDO::PARAM_STR);
         $statement->execute();
         $id_client = $statement->fetchColumn();
-       
+
 
 
         if ($id_client == true) {
             afficheErreur('Client (E-mail et pseudo) est déjà enregistré, veuillez vous connecter à votre compte !!');
             return $id_client;
-
         } else if ($id_client == false) {
             $psw = password_hash($psw, PASSWORD_BCRYPT);
-          
+
             $req = "INSERT INTO lf_clients (nom_client, prenom, pseudo, telephone, email, mot_de_passe) VALUES (:nom,:prenom,:pseudo,:telephone,:mail, :psw)";
             $statement = AccesDonnees::getPdo()->prepare($req);
             $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
@@ -423,37 +409,19 @@ class M_Inscription
         }
         return $id_client;
     }
-    /**
-     * creer un nouveau utilisateur
-     *
-     * @param [chaîne] $pseudo
-     * @param [chaîne] $psw
-     * @return void
-     */
-    public static function creerUtilisateur($pseudo, $psw, $id_client)
-    {
-
-        $pdo = AccesDonnees::getPdo();
-        $req = "SELECT id_utilisateur FROM utilisateur WHERE identifiant = :pseudo";
-        $statement = AccesDonnees::getPdo()->prepare($req);
-        $statement->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
-        $statement->execute();
-        $id_Utilisateur = $statement->fetchColumn();
-
-        if ($id_Utilisateur == false) {
-            $psw = password_hash($psw, PASSWORD_BCRYPT);
-            $req = "INSERT INTO utilisateur (identifiant, mot_de_passe, client_id) VALUES (:pseudo,:psw, :client_id)";
-            $statement = AccesDonnees::getPdo()->prepare($req);
-            $statement->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
-            $statement->bindParam(':psw', $psw, PDO::PARAM_STR);
-            $statement->bindParam(':client_id', $id_client, PDO::PARAM_INT);
-            $statement->execute();
-            $id_Utilisateur = $statement->fetchColumn();
-            $id_Utilisateur = $pdo->lastInsertId();
-        }
-        return $id_Utilisateur;
-    }
-
+   
+/**
+ * après vérification Modifie info personnelles du client selon paramètrtes passées en argument
+ *
+ * @param [int] $id_client
+ * @param [chaine] $adresse
+ * @param [chaine] $complement
+ * @param [chaine] $mail
+ * @param [int] $telephone
+ * @param [int] $new_ville_id
+ * @param [int] $new_cp_id
+ * @return void
+ */
     public static function changerInfoClient($id_client, $adresse, $complement, $mail, $telephone, $new_ville_id, $new_cp_id)
     {
         $erreurs = M_Inscription::estProfilValide($adresse, $mail);
@@ -485,6 +453,13 @@ class M_Inscription
         $stmt2->execute();
     }
 
+    /**
+     * Retourne vrai si pas d'erreur
+     * Remplie le tableau d'erreur s'il y a *
+     * @param [chaine] $rue
+     * @param [chaine] $mail
+     * @return : array
+     */
     public static function estProfilValide($rue,  $mail)
     {
         $erreurs = [];
@@ -500,20 +475,15 @@ class M_Inscription
             $erreurs[] = "erreur de mail";
         }
 
-
-
-        // else if (!estUnMail($mail)) {
-        //     $erreurs[] = "erreur de 1111mail";
-        // }
         return $erreurs;
     }
 
-    /**
-     * cherche le client dont l'id = l'id utilisateur
-     *
-     * @param [type] $id_client
-     * @return $client
-     */
+/**
+     * cherche le client selon paramètre (id) passé en argument 
+ *
+ * @param [type] $id_client
+ * @return : array
+ */
     public static function trouverClientParId($id_client)
     {
         $pdo = AccesDonnees::getPdo();

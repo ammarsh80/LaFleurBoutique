@@ -13,27 +13,27 @@ include_once "./App/modele/M_Consultation.php";
 switch ($action) {
 
     case 'voirArticlesAccueil':
-        // $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesAccueil');
+        $voirTousLesArticles = filter_input(INPUT_GET, 'voirArticlesAccueil');
         $lesArticles = M_Article::trouveLesArticleAccueil();
         break;
     case 'voirArticlesAmour':
-        // $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesAmour');
+        $voirTousLesArticles = filter_input(INPUT_GET, 'voirArticlesAmour');
         $lesArticles = M_Article::trouveLesArticleAmour();
         break;
     case 'voirArticlesMariage':
-        // $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesMariage');
+        $voirTousLesArticles = filter_input(INPUT_GET, 'voirArticlesMariage');
         $lesArticles = M_Article::trouveLesArticleMariage();
         break;
     case 'voirArticlesNaissance':
-        // $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesNaissance');
+        $voirTousLesArticles = filter_input(INPUT_GET, 'voirArticlesNaissance');
         $lesArticles = M_Article::trouveLesArticleNaissance();
         break;
     case 'voirArticlesRemerciement':
-        // $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesRemerciement');
+        $voirTousLesArticles = filter_input(INPUT_GET, 'voirArticlesRemerciement');
         $lesArticles = M_Article::trouveLesArticleRemerciement();
         break;
     case 'voirArticlesAnniversaire':
-        // $voirTousLesJeux = filter_input(INPUT_GET, 'voirArticlesAnniversaire');
+        $voirTousLesArticles = filter_input(INPUT_GET, 'voirArticlesAnniversaire');
         $lesArticles = M_Article::trouveLesArticleAnniversaire();
         break;
     case 'voirArticlesCouleur':
@@ -43,7 +43,7 @@ switch ($action) {
 
 
     case 'voirAll':
-        $voirTousLesJeux = filter_input(INPUT_GET, 'voirAll');
+        $voirTousLesArticles = filter_input(INPUT_GET, 'voirAll');
         $lesArticles = M_Article::trouverAllArticle();
         break;
 
@@ -56,6 +56,7 @@ switch ($action) {
     case 'ajouterAuPanier':
         $nom_Categorie = filter_input(INPUT_GET, 'categorie');
         $idArticle = filter_input(INPUT_GET, 'idArticle');
+        $quantite = filter_input(INPUT_GET, 'quantite');
 
         if (!ajouterAuPanier($idArticle)) {
             afficheErreurs(["Cet article est déjà dans le panier !!"]);

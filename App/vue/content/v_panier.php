@@ -40,13 +40,13 @@
                                         <a href="index.php?page=v_panier&uc=panier&idArticle=<?= $idArticle ?>&action=supprimerUnArticle" onclick="return confirm('Voulez-vous vraiment retirer cet article ?');">
                                             <?php
                                             ?>
-                                            <img src="./public/assets/img/panier_delete.jpg" title="Ajouter au panier" class="add panier_delete" />
+                                            <img src="./public/assets/img/panier_delete.jpg" title="enlever du panier" class="add panier_delete" />
                                         </a>
                                     </div>
-                                    <div>
+                                    <!-- <div>
                                         <span>Quantité</span>
                                         <input name="quantite_commande" id="quantite_commande" type="number" min=1 max=10 maxlength="2" value="1" style="width: 40px;">
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
