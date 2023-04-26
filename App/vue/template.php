@@ -1,12 +1,12 @@
 <body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-<script src="public/assets/monjs/jquery.spritely.js"></script>
-<script src="public/assets/monjs/jquery.backgroundposition.js"></script>
-<script src="public/assets/monjs/slot.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+  <script src="public/assets/monjs/jquery.spritely.js"></script>
+  <script src="public/assets/monjs/jquery.backgroundposition.js"></script>
+  <script src="public/assets/monjs/slot.js"></script>
 
-<script src="public/assets/monjs/external-api.js"></script>
-<script src="public/assets/monjs/single-file-hooks-frames.js"></script>
+  <script src="public/assets/monjs/external-api.js"></script>
+  <script src="public/assets/monjs/single-file-hooks-frames.js"></script>
 
   <main>
     <?php
@@ -22,7 +22,9 @@
     $couleur = filter_input(INPUT_GET, "couleur", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $recherche_mot = filter_input(INPUT_GET, "recherche_mot", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-
+    if (isset($recherche_mot)) {
+      include 'content/v_ParMot.php';
+    }
 
     if (!isset($page) || (($page !== 'v_accueil')
       && ($page !== 'v_amour')
@@ -41,17 +43,50 @@
       && ($page !== 'v_parCouleur')
       && ($page !== 'v_paiement')
       && ($page !== 'v_confirmationPayement')
+      && ($page !== 'v_ParMot')
     )) {
 
-      include 'content/v_accueil.php';
-      // include 'content/error.php';
-      // die;
-    }
+      // include 'content/v_accueil.php';
+      include 'content/error.php';
+      die;
+    } else {
 
-    else {
+      
       include './App/vue/content/' . $page . '.php';
+      
     }
 
+    if (isset($action)
+      && ($action !== 'voirArticlesAccueil')
+      && ($action !== 'voirArticlesAmour')
+      &&  ($action !== 'voirArticlesMariage')
+      && ($action !== 'voirArticlesNaissance')
+      && ($action !== 'voirArticlesRemerciement')
+      && ($action !== 'voirArticlesAnniversaire')
+      && ($action !== 'voirArticlesCouleur')
+      && ($action !== 'voirAll')
+      && ($action !== 'voirArticlesDeCategorie')
+      && ($action !== 'ajouterAuPanier')
+      && ($action !== 'v_remerciement')
+      && ($action !== 'ajouterAuPanierDepuisCouleur')
+      && ($action !== 'passerCommande')
+      && ($action !== 'confirmerCommande')
+      && ($action !== 'nousContacter')
+      && ($action !== 'supprimerUnArticle')
+      && ($action !== 'voirPanier')
+      && ($action !== 'demandeInscription')
+      && ($action !== 'confirmerInscription')
+      && ($action !== 'loginClient')
+      && ($action !== 'logoutClient')
+      && ($action !== 'changerProfil')
+      && ($action !== 'payerCommande')
+      && ($action !== 'ajouterAuPanierDepuisRechercheMot')
+    ) {
+
+      // include 'content/v_accueil.php';
+      include 'content/error.php';
+      die;
+    }
     include './App/vue/common/footer.php';
     ?>
   </main>

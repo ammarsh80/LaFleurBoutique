@@ -29,6 +29,7 @@ if ($recherche_mot) {
     include 'App/controleur/c_consultation.php';
 }
 
+
 // Controleur principale
 switch ($uc) {
     case 'v_accueil':
@@ -36,6 +37,7 @@ switch ($uc) {
         break;
 
     case 'visite':
+
         include 'App/controleur/c_consultation.php';
         break;
 

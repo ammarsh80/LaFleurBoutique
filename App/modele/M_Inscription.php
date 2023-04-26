@@ -165,7 +165,7 @@ class M_Inscription
      * @param [type] $prenom
      * @param [type] $mail
      * @param [type] $message_contacte
-     * @return void
+     * @return : array
      */
     public static function estValideContact($nom, $prenom, $mail, $message_contacte)
     {
@@ -203,7 +203,7 @@ class M_Inscription
      * @param [int] $carte
      * @param [int] $expiration
      * @param [int] $crypto
-     * @return void
+     * @return : array
      */
     public static function estValideCarte($propritaire, $carte, $expiration, $crypto)
     {

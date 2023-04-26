@@ -3,6 +3,6 @@
             <p>Error 404</p>
             <p>The page you're trying to reach doesn't exist!</p>
             <div class="go_back" style="margin-top: 90px;">
-                <a href="index.php?page=v_accueil" style="text-decoration: underline;">Go back to home page </a>
+                <a href="index.php?page=v_accueil&action=voirArticlesAccueil" style="text-decoration: underline;">Go back to home page </a>
             </div>
     </section>

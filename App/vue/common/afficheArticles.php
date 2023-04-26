@@ -1,16 +1,9 @@
-<section id="amour">
-    <div class="banniere" style="background-image: url(./public/assets/img/amour/baniere_amour.jpg);">
-        <h1> Amour et sentiments</h1>
-    </div>
-    <?php
-    include './App/vue/common/recherche_couleur.php';
-    ?>
-    <div id="container_all_article">
-
-
-        <?php
-                if ($lesArticles) {
-
+<?php
+        
+        if ($lesArticles) {
+            ?>
+            <div id="container_all_article">
+            <?php
         foreach ($lesArticles as $unArticle) {
             $idArticle = $unArticle['id'];
             $description = $unArticle['description'];
@@ -33,20 +26,23 @@
 
                     <div id="prix_panier">
                         <p><?= $prix ?> Euros</p>
-                        <a href="index.php?page=v_amour&idArticle=<?php echo $idArticle ?>&categorie=Amour%20et%20sentiments&action=ajouterAuPanier">
-
+                        <a href="index.php?page=v_accueil&idArticle=<?php echo $idArticle ?>&categorie=Accueil&action=ajouterAuPanier">
                             <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add" />
                         </a>
+                        
+                    </a> 
+
                     </div>
                 </div>
             </div>
         <?php
         }
     }
-        ?>
+       
+    ?>
     </div>
 
-    <div id="container_all_article_repture">
+            <div id="container_all_article_repture">
             <?php
        if (isset($lesArticlesEnRepture)) {
         foreach ($lesArticlesEnRepture as $unArticle) {
@@ -84,21 +80,3 @@
 
         ?>
     </div>
-    
-    <div id="container_blog">
-        <p>Journal Lafleur</p>
-        <div id="container_articles">
-
-            <div id="article">
-                <a href="https://shihan.needemand.com/projets_web/la_fleur_wordpress/?p=53">
-                    <img src="./public/assets/img/blog/paysages.jpg" alt="phoho paysages"></a>
-                <p>Les magnifiques paysages de notre Région</p>
-            </div>
-            <div id="article">
-                <a href="https://shihan.needemand.com/projets_web/la_fleur_wordpress/?p=28">
-                    <img src="./public/assets/img/blog/mimosa.jpg" alt="phoho mimosa"> </a>
-                <p>Le Mimosa</p>
-            </div>
-        </div>
-    </div>
-</section>

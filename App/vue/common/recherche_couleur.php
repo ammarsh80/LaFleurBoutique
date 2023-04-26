@@ -8,10 +8,15 @@ include_once 'App/controleur/c_consultation.php';
 
     <div id="recherche_couleur">
 
-        <form method="GET">
+    <form action="index.php?page=v_ParMot&uc=visite&ajouterAuPanierDepuisRechercheMot" method="GET">
             <input type="text" name="recherche_mot" placeholder="Rechercher une fleur">
             <input type="submit" value="ok"></button>
         </form>
+
+        <!-- <form action="index.php?page=v_ParMot&uc=visite&ajouterAuPanierDepuisRechercheMot" method="GET">
+            <input type="text" name="recherche_mot" id="recherche_mot" placeholder="Rechercher une fleur">
+            <input type="submit">Ok</input>
+        </form> -->
         <!-- <p id="rechercher_par_couleur">Rechercher par couleur</p> -->
         <!-- <div id="rechercher_par_couleur">Rechercher par couleur</div> -->
         <!-- <p id="rechercher_par_couleur">Rechercher par couleur</p> -->

@@ -701,7 +701,7 @@ header h1 {
 }
 
 .go_back {
-  margin-top: 130px;
+  margin-top: 130px !important;
 }
 
 .go_back a {
@@ -717,6 +717,14 @@ header h1 {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+}
+#container_all_article_repture {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+pointer-events: none;
+opacity: 0.5;
 }
 
 #container_article {

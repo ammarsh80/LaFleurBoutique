@@ -6,10 +6,10 @@
  * Crée une variable de type session dans le cas
  * où elle n'existe pas 
  */
-function initPanier() {
+function initPanier()
+{
     if (!isset($_SESSION['Articles'])) {
         $_SESSION['Articles'] = array();
-
     }
 }
 
@@ -50,6 +50,8 @@ function ajouterAuPanier($idArticle)
         $_SESSION['Articles'][] = $idArticle;
         $ok = true;
     }
+    
+
     return $ok;
 }
 

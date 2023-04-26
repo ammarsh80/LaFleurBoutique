@@ -16,7 +16,7 @@ class M_monCompte
      * @param [chaine] $ville
      * @param [chaine] $mail
      * @param [int] $telephone
-     * @return void
+     * @return : array
      */
     public static function estValideModification($adresse, $complement, $cp, $ville, $mail, $telephone)
     {
