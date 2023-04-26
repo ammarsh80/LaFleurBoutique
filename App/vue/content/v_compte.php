@@ -1,14 +1,6 @@
 <?php
 include_once "./App/controleur/c_moncompte.php";
 
-
-// $adresse = '';
-// $complement = '';
-// $ville = '';
-// $cp = '';
-// $mail = '';
-// $telephone = '';
-
 ?>
 
 <section id="compte">

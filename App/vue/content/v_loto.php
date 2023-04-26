@@ -2,7 +2,6 @@
 	<div class="banniere" style="background-image: url(./public/assets/img/baniere.jpg);">
 		<h1  style="color:#2c3138; font-size: 40px; font-weight: bold;"> Lafleur vous souhaite bonne chance</h1>
 	</div>
-	<!-- <img class="banniere" src="./public/assets/img/amour/baniere_amour.jpg" alt="image fleurs amour"> -->
 	<div id="container_all_article">
 
 		<div class="hd">

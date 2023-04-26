@@ -11,7 +11,6 @@
     <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="image bannière">
 <div class="message">Entrez correctement votre identifiant et votre mot de passe ou veuillez renseigner le formulaire d'inscription avant de vous connectez</div>
     <div id="container_connexion">
-        <!-- <form action="index.php?page=v_connexion&uc=administrer&action=loginClient" method="post"> -->
         <form action="index.php?page=v_connexion&uc=inscription&action=loginClient" method="POST">
 
             <div>

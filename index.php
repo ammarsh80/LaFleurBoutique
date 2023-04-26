@@ -2,13 +2,7 @@
 <html lang="fr">
 
 <?php
-// $page = filter_input(INPUT_GET, "page", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-// $recherche_mot = filter_input(INPUT_GET, "recherche_mot", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
 session_start();
-
-
-
 
 // Pour afficher les erreurs PHP
 error_reporting(E_ALL);
@@ -26,17 +20,14 @@ if (!empty($_SESSION['client'])) {
 
 $uc = filter_input(INPUT_GET, "uc", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Use Case
 $action = filter_input(INPUT_GET, "action", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Action
-$page = filter_input(INPUT_GET, "page", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Action
-$recherche_mot = filter_input(INPUT_GET, "recherche_mot", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Action
+$page = filter_input(INPUT_GET, "page", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // page
+$recherche_mot = filter_input(INPUT_GET, "recherche_mot", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // recherche_mot
 initPanier();
 
 
 if ($recherche_mot) {
     include 'App/controleur/c_consultation.php';
 }
-// if (!$uc) {
-//     $uc = 'v_accueil';
-// }
 
 // Controleur principale
 switch ($uc) {
@@ -83,6 +74,5 @@ switch ($uc) {
     default:
         break;
 }
-
 
 include_once("./App/vue/template.php");

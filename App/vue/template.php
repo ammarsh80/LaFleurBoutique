@@ -43,22 +43,10 @@
       && ($page !== 'v_confirmationPayement')
     )) {
 
-      // var_dump($recherche_mot);
-      // die;
-
       include 'content/v_accueil.php';
-
-
       // include 'content/error.php';
       // die;
     }
-
-
-
-    // if (isset($recherche_mot)) {
-    //   // include './App/vue/content/' . $page . '.php';
-    //   include './App/vue/common/footer.php';
-    // } 
 
     else {
       include './App/vue/content/' . $page . '.php';

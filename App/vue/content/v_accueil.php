@@ -1,12 +1,10 @@
 <section id="amour">
     <div class="banniere" style="background-image: url(./public/assets/img/baniere.jpg);">
-        <!-- <h1> Amour et sentiments</h1> -->
     </div>
 
     <?php
     include './App/vue/common/recherche_couleur.php';
 ?>
-    <!-- <img class="banniere" src="./public/assets/img/amour/baniere_amour.jpg" alt="image fleurs amour"> -->
     <div id="container_all_article">
         <?php
         foreach ($lesArticles as $unArticle) {
