@@ -148,6 +148,7 @@ include_once "./App/controleur/c_moncompte.php";
                         <th class="table_commande_ligne">Prix (euros)</th>
                         <th class="table_commande_ligne">Adresse de livraison</th>
                         <th class="table_commande_ligne">État</th>
+                        <th class="table_commande_ligne">Lot gagné</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -168,6 +169,7 @@ include_once "./App/controleur/c_moncompte.php";
         <?php
 
         }
+
         ?>
     <a href="index.php?page=v_paiement&uc=payer">
         <p class="payer_derniere">payer ma dernière commande</p>

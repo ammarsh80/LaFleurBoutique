@@ -237,13 +237,14 @@ p {
 .message {
   position: absolute;
   padding: 2px 20px 4px 20px;
-  top: 340px;
+  top: 336px;
   font-size: 1em;
   display: block;
   background-color: var(--green);
   color: var(--white);
   border-radius: 3px;
 }
+
 .nArticles {
   position: absolute;
   padding: 2px 5px 4px 5px;
@@ -284,6 +285,7 @@ header {
   background-color: var(--primary-light);
   display: flex;
   justify-content: space-between;
+  /* position: fixed; */
 }
 
 header img {
@@ -293,7 +295,7 @@ header img {
 }
 
 #lafleur {
-  padding-left: 13vw;
+  padding-left: 4vw;
   padding-top: 15px;
 }
 
@@ -305,6 +307,16 @@ header h1 {
   color: var(--green);
   z-index: 0;
 }
+
+#lafleur h1:hover {
+  transform: translateY(5px);
+  color: var(--primary-color);
+
+}
+
+#img_logo:hover {
+  transform: scale(1.1,1.1);
+  }
 
 #nav_right {
   padding-right: 20px;
@@ -371,9 +383,10 @@ header h1 {
 /* *************************************************************************************************************************** */
 
 /* navigation */
-#div_nav{
+#div_nav {
   display: none;
 }
+
 #navigation {
   position: relative;
   width: 100%;
@@ -386,6 +399,7 @@ header h1 {
 
 #nav_bar {
   position: absolute;
+  
   top: -75px;
   height: 58px;
   padding: 20px;
@@ -403,6 +417,10 @@ header h1 {
 
 #nav_bar>a {
   margin-left: 30px;
+}
+#nav_bar>a:hover {
+color: var(--secondary-light);
+transform: scale(1.1,1.1);
 }
 
 .ligne_banniere {
@@ -465,15 +483,15 @@ header h1 {
 } */
 
 #couleur {
-  width: 164.33px;
+  width: 195px;
   padding: 3px 10px;
   background-color: var(--green);
   color: var(--white);
   border: none;
   border-radius: 3px;
   font-size: 14px;
-  margin-left: -32.5px;
-  margin-top: 4px;
+margin-right: 0px; 
+ margin-top: 4px;
 
 }
 
@@ -482,6 +500,7 @@ header h1 {
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 10px;
   border-radius: 5px;
 
 }
@@ -636,8 +655,8 @@ header h1 {
   background-color: var(--white);
   border-radius: 4px;
   padding: 10px;
-  margin-left:10px ;
-  margin-right:10px ;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 #logo_reseaux_sociaux img {
@@ -718,13 +737,14 @@ header h1 {
   justify-content: center;
   align-items: center;
 }
+
 #container_all_article_repture {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-pointer-events: none;
-opacity: 0.5;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 #container_article {
@@ -807,11 +827,13 @@ opacity: 0.5;
   font-weight: normal;
 
 }
+
 #prix_panier img {
   width: 25px;
   margin-top: 5px;
   margin-left: 10px;
 }
+
 #prix_panier>a {
   /* margin-left: 40px; */
   margin-bottom: 0px;
@@ -1011,10 +1033,11 @@ opacity: 0.5;
   padding: 20px 10px;
 }
 
-.label_livraison_progamme{
-  font-size: 16px;
-  margin-right: 5px;
+.label_livraison_progamme {
+  font-size: 14px;
+  margin-right: 2px;
 }
+
 .titres_compte {
   width: 100%;
   height: 50px;
@@ -1157,11 +1180,12 @@ opacity: 0.5;
   background-color: var(--secondary-light);
 }
 
-.payer_derniere{
+.payer_derniere {
   background-color: salmon;
   padding: 10px;
   border-radius: 5px;
 }
+
 .btn_envoyer_modification {
   width: 100px;
   height: 30px;
@@ -1401,7 +1425,7 @@ textarea#message_contacte {
 }
 
 .adresse_facturation {
-  width: 100%;
+  width: 95%;
   padding: 10px;
   border-radius: 5px;
   color: var(--secondary-light);
@@ -1445,12 +1469,12 @@ textarea#message_contacte {
 }
 
 .container_loto {
-  width: 60%;
-  background-color: var(--primary-light);
+  width: 100%;
+  /* background-color: var(--primary-light); */
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   padding: 20px 10px;
 
@@ -1470,7 +1494,7 @@ textarea#message_contacte {
 
 }
 
-.a_jour{
+.a_jour {
   width: 60%;
   background-color: var(--secondary-light);
   padding: 15px;
@@ -1481,7 +1505,8 @@ textarea#message_contacte {
   margin-bottom: 100px;
   line-height: 1.5;
 }
-.a_jour_retour{
+
+.a_jour_retour {
   background-color: var(--primary-light);
   padding: 10px;
   display: flex;
@@ -1490,6 +1515,7 @@ textarea#message_contacte {
   border-radius: 5px;
   margin-bottom: 100px;
 }
+
 /*  Fin Panier */
 
 /* *************************************************************************************************************************** */
@@ -1556,8 +1582,77 @@ button {
   clear: both;
 }
 
+
+
 /*  Fin Loto */
 
+/*  Loto2*/
+.reel {
+  width: 200px;
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.reel img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  position: absolute;
+  top: 10;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  display: block;
+}
+
+.spin-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+
+.block {
+  display: block;
+}
+
+.none {
+  display: none;
+}
+
+.container_cage {
+  /* margin: 100px; */
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.container_cage img {
+  width: 150px;
+  height: 100px;
+  margin: 0 35px;
+
+}
+.spin-button{
+  padding: 20px;
+  background-color: var(--green);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: normal;
+}
+/*  Fin Loto2*/
 /* *************************************************************************************************************************** */
 /* ************************************************************ */
 
@@ -1587,16 +1682,17 @@ button {
     border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
-  
+
     align-items: center;
     color: var(--white);
     font-size: 14px;
-  
+
   }
-  
+
   #nav_bar>a {
     margin-left: 30px;
   }
+
   .myIframe {
     width: 90vw;
     height: 400px;
@@ -1604,10 +1700,19 @@ button {
   }
 
 
+  #btn_scrole {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10px 30px;
+
   }
 
-  /* Articles Blog ***********************************/
-#container_blog{
+
+}
+
+/* Articles Blog ***********************************/
+#container_blog {
   width: 95%;
   margin-left: 2.5vw;
   display: flex;
@@ -1623,7 +1728,7 @@ button {
 
 }
 
-#container_blog > p{
+#container_blog>p {
   background-color: var(--primary-light);
   padding: 20px 120px;
   display: flex;
@@ -1633,7 +1738,8 @@ button {
   font-weight: bold;
 
 }
-#container_articles{
+
+#container_articles {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -1648,15 +1754,16 @@ button {
   border-radius: 10px;
 }
 
-#article> p{
+#article>p {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0px 0 30px 20px;
-font-weight: bold;
+  font-weight: bold;
 }
 
-  /* Fin Articles Blog ***********************************/
+
+/* Fin Articles Blog ***********************************/
 
 /* Début_MEDIA QUERIES **********************************768px */
 
@@ -1665,7 +1772,7 @@ font-weight: bold;
   .message {
     position: absolute;
     padding: 2px 20px 4px 10px;
-    top: 313px;
+    top: 275px;
     font-size: 0.8em;
     display: block;
     background-color: var(--green);
@@ -1698,12 +1805,12 @@ font-weight: bold;
     color: rgb(203, 28, 128);
   }
 
-  #div_nav{
+  #div_nav {
     display: block;
   }
 
 
-  
+
 
   #img_logo {
     width: 60px;
@@ -1713,8 +1820,9 @@ font-weight: bold;
   #lafleur h1 {
     font-size: 40px;
     margin-top: 0px;
-margin-left: 3vw;
+    margin-left: 3vw;
   }
+
 
   #div_connexion {
     position: absolute;
@@ -1757,9 +1865,7 @@ margin-left: 3vw;
     height: 120px;
   }
 
-  /* .banniere {
-position: fixed;
-  } */
+
 
   /* Burger Menu */
   #nav_bar {
@@ -1771,7 +1877,7 @@ position: fixed;
     text-align: center;
   }
 
-.remerciement {
+  .remerciement {
     font-size: 40px;
     text-align: center;
     color: var(--primary-light) !important;
@@ -1911,18 +2017,20 @@ position: fixed;
   }
 
 
-#footer_container > div{
-font-size: 14px;
-}
-.propos,
-#livraison,
-.contacter{
+  #footer_container>div {
+    font-size: 14px;
+  }
 
-font-size: 18px;
-}
-#livraison{
-margin-top: 30px;
-}
+  .propos,
+  #livraison,
+  .contacter {
+
+    font-size: 18px;
+  }
+
+  #livraison {
+    margin-top: 30px;
+  }
 
   .message_inscription {
     font-size: 16px;
@@ -1952,21 +2060,22 @@ margin-top: 30px;
     box-shadow: 2px 2px 2px 2px var(--green);
     /* pointer-events: none; */
   }
-  
-#container_livraison{
-  padding-left: 20px !important;
-}
+
+  #container_livraison {
+    padding-left: 20px !important;
+  }
 
 
-#date_livraison_progamme{
-  width: 150px;
-}
+  #date_livraison_progamme {
+    width: 120px;
+  }
+
   .container_paiement p {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 40px;
   }
-  
+
   .container_btn_inscription {
     width: 100%;
     display: flex;
@@ -2020,14 +2129,7 @@ margin-top: 30px;
   }
 
 
-  /* 
-  .container_loto{
-    margin-top: 0;
-  }
 
-  .container_paiement{
-    margin-bottom: 0;
-  } */
 
   .container_loto h1 {
     font-size: 14px;
@@ -2047,13 +2149,21 @@ margin-top: 30px;
 
 
   /* Articles blog */
-   #article img {
+  #article img {
     width: 60vw;
   }
-  
-  #article> p{
+
+  #article>p {
     margin: 0px 0 30px 0px;
-  font-size: 12px;
+    font-size: 12px;
   }
-  
+
+
+  .btn_se_connecter {
+    padding: 10px;
+
+    font-size: 12px;
+
+  }
+
 }

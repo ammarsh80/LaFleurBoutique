@@ -22,9 +22,9 @@
     $couleur = filter_input(INPUT_GET, "couleur", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $recherche_mot = filter_input(INPUT_GET, "recherche_mot", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    if (isset($recherche_mot)) {
-      include 'content/v_ParMot.php';
-    }
+    // if (isset($recherche_mot)) {
+    //   include 'content/v_parMot.php';
+    // }
 
     if (!isset($page) || (($page !== 'v_accueil')
       && ($page !== 'v_amour')
@@ -43,14 +43,15 @@
       && ($page !== 'v_parCouleur')
       && ($page !== 'v_paiement')
       && ($page !== 'v_confirmationPayement')
-      && ($page !== 'v_ParMot')
+      && ($page !== 'v_parMot')
     )) {
 
-      // include 'content/v_accueil.php';
-      include 'content/error.php';
-      die;
+      
+      include 'content/v_accueil.php';
+      // include 'content/error.php';
+      // die;
     } else {
-
+   
       
       include './App/vue/content/' . $page . '.php';
       
@@ -64,7 +65,6 @@
       && ($action !== 'voirArticlesRemerciement')
       && ($action !== 'voirArticlesAnniversaire')
       && ($action !== 'voirArticlesCouleur')
-      && ($action !== 'voirAll')
       && ($action !== 'voirArticlesDeCategorie')
       && ($action !== 'ajouterAuPanier')
       && ($action !== 'v_remerciement')
@@ -83,9 +83,9 @@
       && ($action !== 'ajouterAuPanierDepuisRechercheMot')
     ) {
 
-      // include 'content/v_accueil.php';
-      include 'content/error.php';
-      die;
+      include 'content/v_accueil.php';
+      // include 'content/error.php';
+      // die;
     }
     include './App/vue/common/footer.php';
     ?>

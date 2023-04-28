@@ -63,7 +63,7 @@ switch ($action) {
                 // Préparation des informations de l'email
                 $to = 'ammarsh80@hotmail.com';
                 $subject = 'Envoi depuis page Contact';
-                $message = '<h1>Message envoyé depuis la page Contact de monsite.fr</h1>
+                $message = '<h1 style="font-size:1.2em; color:green;">Message envoyé depuis la page Contact de LaFleur.fr</h1>
                 <p><b>Nom : </b>' . htmlspecialchars($_POST['nom']) . '<br>
                 <p><b>Prenom : </b>' . htmlspecialchars($_POST['prenom']) . '<br>
                 <b>Email : </b>' . htmlspecialchars($_POST['mail']) . '<br>

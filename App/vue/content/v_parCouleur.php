@@ -14,7 +14,7 @@ $id_couleur = filter_var($_GET['couleur'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     ?>
     <div id="container_all_article">
         <?php
-        foreach ($lesArticles as $unArticle) {
+        foreach ($lesArticlesCouleur as $unArticle) {
             $idArticle = $unArticle['id'];
             $description = $unArticle['description'];
             $etat = $unArticle['etat'];
@@ -53,8 +53,8 @@ $id_couleur = filter_var($_GET['couleur'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
     <div id="container_all_article_repture">
             <?php
-       if (isset($lesArticlesEnRepture)) {
-        foreach ($lesArticlesEnRepture as $unArticle) {
+       if (isset($lesArticlesEnReptureCouleur)) {
+        foreach ($lesArticlesEnReptureCouleur as $unArticle) {
             $idArticle = $unArticle['id'];
             $description = $unArticle['description'];
             $etat = $unArticle['etat'];

@@ -71,8 +71,9 @@ function estUntext($nom)
  */
 function estUntextEtChiffre($message_contacte)
 {
-    return preg_match('/^[a-zA-ZÀ-ÖØ-öø-ÿàçéîïôöêù0-9\s_-]{2,1000}$/u', $message_contacte);
+    return preg_match('/^[a-zA-ZÀ-ÖØ-öø-ÿàçéîïôöêù0-9\s_\-\.,!?]{2,1000}$/u', $message_contacte);
 }
+
 
 /**
  * test si le texte est que des lettres avec ou sans accents chiffre acceptés

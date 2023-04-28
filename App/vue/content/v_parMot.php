@@ -33,7 +33,7 @@
 
                     <div id="prix_panier">
                         <p><?= $prix ?> Euros</p>
-                        <a href="index.php?page=v_ParMot&idArticle=<?php echo $idArticle ?>&action=ajouterAuPanierDepuisRechercheMot">
+                        <a href="index.php?page=v_parMot&idArticle=<?php echo $idArticle ?>&action=ajouterAuPanierDepuisRechercheMot">
 
                             <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add" />
                         </a>

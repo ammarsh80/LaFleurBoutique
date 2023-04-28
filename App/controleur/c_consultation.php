@@ -22,48 +22,52 @@ switch ($action) {
 
         break;
     case 'voirArticlesAmour':
+
+        
         $voirTousLesArticles = filter_input(INPUT_GET, 'voirArticlesAmour');
-        $lesArticles = M_Article::trouveLesArticleAmour();
+        $lesArticlesAmour = M_Article::trouveLesArticleAmour();
 
 
-        if ($lesArticlesEnRepture = M_Article::trouveLesArticleAmourEnRepture()) {
-            $lesArticlesEnRepture = M_Article::trouveLesArticleAmourEnRepture();
+           if ($lesArticlesEnReptureAmour = M_Article::trouveLesArticleAmourEnRepture()) {
+            $lesArticlesEnReptureAmour = M_Article::trouveLesArticleAmourEnRepture();
         }
+      
 
         break;
     case 'voirArticlesMariage':
         $voirTousLesArticles = filter_input(INPUT_GET, 'voirArticlesMariage');
-        $lesArticles = M_Article::trouveLesArticleMariage();
-        if ($lesArticlesEnRepture = M_Article::trouveLesArticleMariageEnRepture()) {
-            $lesArticlesEnRepture = M_Article::trouveLesArticleMariageEnRepture();
+        $lesArticlesMariage = M_Article::trouveLesArticleMariage();
+        if ($lesArticlesEnReptureMariage = M_Article::trouveLesArticleMariageEnRepture()) {
+            $lesArticlesEnReptureMariage = M_Article::trouveLesArticleMariageEnRepture();
         }
         break;
     case 'voirArticlesNaissance':
         $voirTousLesArticles = filter_input(INPUT_GET, 'voirArticlesNaissance');
-        $lesArticles = M_Article::trouveLesArticleNaissance();
-        if ($lesArticlesEnRepture = M_Article::trouveLesArticleNaissanceEnRepture()) {
-            $lesArticlesEnRepture = M_Article::trouveLesArticleNaissanceEnRepture();
+        $lesArticlesNaissance = M_Article::trouveLesArticleNaissance();
+        if ($lesArticlesEnReptureNaissance = M_Article::trouveLesArticleNaissanceEnRepture()) {
+            $lesArticlesEnReptureNaissance = M_Article::trouveLesArticleNaissanceEnRepture();
         }
         break;
     case 'voirArticlesRemerciement':
         $voirTousLesArticles = filter_input(INPUT_GET, 'voirArticlesRemerciement');
-        $lesArticles = M_Article::trouveLesArticleRemerciement();
-        if ($lesArticlesEnRepture = M_Article::trouveLesArticleRemerciementEnRepture()) {
-            $lesArticlesEnRepture = M_Article::trouveLesArticleRemerciementEnRepture();
+        $lesArticlesRemerciement = M_Article::trouveLesArticleRemerciement();
+        if ($lesArticlesEnReptureRemerciement = M_Article::trouveLesArticleRemerciementEnRepture()) {
+            $lesArticlesEnReptureRemerciement = M_Article::trouveLesArticleRemerciementEnRepture();
         }
         break;
     case 'voirArticlesAnniversaire':
         $voirTousLesArticles = filter_input(INPUT_GET, 'voirArticlesAnniversaire');
-        $lesArticles = M_Article::trouveLesArticleAnniversaire();
-        if ($lesArticlesEnRepture = M_Article::trouveLesArticleAnniversaireEnRepture()) {
-            $lesArticlesEnRepture = M_Article::trouveLesArticleAnniversaireEnRepture();
+        $lesArticlesAnniversaire = M_Article::trouveLesArticleAnniversaire();
+        if ($lesArticlesEnReptureAnniversaire = M_Article::trouveLesArticleAnniversaireEnRepture()) {
+            $lesArticlesEnReptureAnniversaire = M_Article::trouveLesArticleAnniversaireEnRepture();
         }
         break;
     case 'voirArticlesCouleur':
+      
         $id_couleur = filter_input(INPUT_GET, 'couleur');
-        $lesArticles = M_Article::trouveLesArticleDeCouleur($id_couleur);
-        if ($lesArticlesEnRepture = M_Article::trouveLesArticleDeCouleurEnRepture($id_couleur)) {
-            $lesArticlesEnRepture = M_Article::trouveLesArticleDeCouleurEnRepture($id_couleur);
+        $lesArticlesCouleur = M_Article::trouveLesArticleDeCouleur($id_couleur);
+        if ($lesArticlesEnReptureCouleur = M_Article::trouveLesArticleDeCouleurEnRepture($id_couleur)) {
+            $lesArticlesEnReptureCouleur = M_Article::trouveLesArticleDeCouleurEnRepture($id_couleur);
         }
         break;
 
@@ -78,6 +82,8 @@ switch ($action) {
 
         $lesArticles = M_Article::trouveLesArticlesDeCategorie($idCategorie);
         $LeNomDeLaCategorie = M_Article::trouveLeNomDeLaCategorie($idCategorie);
+      
+       break;
 
     case 'ajouterAuPanier':
         $nom_Categorie = filter_input(INPUT_GET, 'categorie');
@@ -90,12 +96,84 @@ switch ($action) {
             afficheMessage("Cet article a été ajouté au panier ");
         }
         $lesArticles = M_Article::trouveLesArticlesDeCategorieNom($nom_Categorie);
-
-
         if ($lesArticlesEnRepture = M_Article::trouveLesArticlesDeCategorieNomEnRepture($nom_Categorie)) {
             $lesArticlesEnRepture = M_Article::trouveLesArticlesDeCategorieNomEnRepture($nom_Categorie);
         }
+        break;
+    case 'ajouterAuPanierAmour':
+        $nom_Categorie = filter_input(INPUT_GET, 'categorie');
+        $idArticle = filter_input(INPUT_GET, 'idArticle');
+        $quantite = filter_input(INPUT_GET, 'quantite');
 
+        if (!ajouterAuPanier($idArticle)) {
+            afficheErreurs(["Cet article est déjà dans le panier !!"]);
+        } else {
+            afficheMessage("Cet article a été ajouté au panier ");
+        }
+        $lesArticlesAmour = M_Article::trouveLesArticlesDeCategorieNom($nom_Categorie);
+        if ($lesArticlesEnReptureAmour = M_Article::trouveLesArticlesDeCategorieNomEnRepture($nom_Categorie)) {
+            $lesArticlesEnReptureAmour = M_Article::trouveLesArticlesDeCategorieNomEnRepture($nom_Categorie);
+        }
+        break;
+    case 'ajouterAuPanierMariage':
+        $nom_Categorie = filter_input(INPUT_GET, 'categorie');
+        $idArticle = filter_input(INPUT_GET, 'idArticle');
+        $quantite = filter_input(INPUT_GET, 'quantite');
+
+        if (!ajouterAuPanier($idArticle)) {
+            afficheErreurs(["Cet article est déjà dans le panier !!"]);
+        } else {
+            afficheMessage("Cet article a été ajouté au panier ");
+        }
+        $lesArticlesMariage = M_Article::trouveLesArticlesDeCategorieNom($nom_Categorie);
+        if ($lesArticlesEnReptureMariage = M_Article::trouveLesArticlesDeCategorieNomEnRepture($nom_Categorie)) {
+            $lesArticlesEnReptureMariage = M_Article::trouveLesArticlesDeCategorieNomEnRepture($nom_Categorie);
+        }
+        break;
+    case 'ajouterAuPanierNaissance':
+        $nom_Categorie = filter_input(INPUT_GET, 'categorie');
+        $idArticle = filter_input(INPUT_GET, 'idArticle');
+        $quantite = filter_input(INPUT_GET, 'quantite');
+
+        if (!ajouterAuPanier($idArticle)) {
+            afficheErreurs(["Cet article est déjà dans le panier !!"]);
+        } else {
+            afficheMessage("Cet article a été ajouté au panier ");
+        }
+        $lesArticlesNaissance = M_Article::trouveLesArticlesDeCategorieNom($nom_Categorie);
+        if ($lesArticlesEnReptureNaissance = M_Article::trouveLesArticlesDeCategorieNomEnRepture($nom_Categorie)) {
+            $lesArticlesEnReptureNaissance = M_Article::trouveLesArticlesDeCategorieNomEnRepture($nom_Categorie);
+        }
+        break;
+    case 'ajouterAuPanierRemerciement':
+        $nom_Categorie = filter_input(INPUT_GET, 'categorie');
+        $idArticle = filter_input(INPUT_GET, 'idArticle');
+        $quantite = filter_input(INPUT_GET, 'quantite');
+
+        if (!ajouterAuPanier($idArticle)) {
+            afficheErreurs(["Cet article est déjà dans le panier !!"]);
+        } else {
+            afficheMessage("Cet article a été ajouté au panier ");
+        }
+        $lesArticlesRemerciement = M_Article::trouveLesArticlesDeCategorieNom($nom_Categorie);
+        if ($lesArticlesEnReptureRemerciement = M_Article::trouveLesArticlesDeCategorieNomEnRepture($nom_Categorie)) {
+            $lesArticlesEnReptureRemerciement = M_Article::trouveLesArticlesDeCategorieNomEnRepture($nom_Categorie);
+        }
+        break;
+    case 'ajouterAuPanierAnniversaire':
+        $nom_Categorie = filter_input(INPUT_GET, 'categorie');
+        $idArticle = filter_input(INPUT_GET, 'idArticle');
+        $quantite = filter_input(INPUT_GET, 'quantite');
+
+        if (!ajouterAuPanier($idArticle)) {
+            afficheErreurs(["Cet article est déjà dans le panier !!"]);
+        } else {
+            afficheMessage("Cet article a été ajouté au panier ");
+        }
+        $lesArticlesAnniversaire = M_Article::trouveLesArticlesDeCategorieNom($nom_Categorie);
+        if ($lesArticlesEnReptureAnniversaire = M_Article::trouveLesArticlesDeCategorieNomEnRepture($nom_Categorie)) {
+            $lesArticlesEnReptureAnniversaire = M_Article::trouveLesArticlesDeCategorieNomEnRepture($nom_Categorie);
+        }
         break;
 
     case 'ajouterAuPanierDepuisCouleur':
@@ -106,16 +184,18 @@ switch ($action) {
         } else {
             afficheMessage("Cet article a été ajouté au panier ");
         }
-        $lesArticles = M_Article::trouveLesArticleDeCouleur($id_couleur);
+        $lesArticlesCouleur = M_Article::trouveLesArticleDeCouleur($id_couleur);
 
-        if ($lesArticlesEnRepture = M_Article::trouveLesArticleDeCouleur($id_couleur)) {
-            $lesArticlesEnRepture = M_Article::trouveLesArticleDeCouleur($id_couleur);
+        if ($lesArticlesEnReptureCouleur = M_Article::trouveLesArticleDeCouleurEnRepture($id_couleur)) {
+            $lesArticlesEnReptureCouleur = M_Article::trouveLesArticleDeCouleurEnRepture($id_couleur);
         }
         break;
     case 'ajouterAuPanierDepuisRechercheMot':
         $idArticle = filter_input(INPUT_GET, 'idArticle');
         $recherche_mot = filter_input(INPUT_GET, "recherche_mot", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+       
+        
         if (!ajouterAuPanier($idArticle)) {
             afficheErreurs(["Cet article est déjà dans le panier !!"]);
         } else {
@@ -138,7 +218,7 @@ $lesCouleurs = M_Categorie::trouveLesCouleurs();
 $lesVilles = M_Consultation::trouveLesVillesLivrable();
 $lesCPs = M_Consultation::trouveLesCp();
 
-if (($_SERVER['REQUEST_METHOD'] === 'GET') && (isset($recherche_mot))) {
+// if (($_SERVER['REQUEST_METHOD'] === 'GET') && (isset($recherche_mot))) {
     // Récupérer les valeurs des inputs
     $recherche_mot = filter_input(INPUT_GET, "recherche_mot", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
@@ -152,4 +232,4 @@ if (($_SERVER['REQUEST_METHOD'] === 'GET') && (isset($recherche_mot))) {
             $lesArticlesEnRepture = M_Article::trouveLesArticleParMotEnRepture($recherche_mot);
         }
     }
-}
+// }

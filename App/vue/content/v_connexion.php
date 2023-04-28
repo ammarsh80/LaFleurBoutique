@@ -74,7 +74,7 @@
                     <input type="text" name="mail" id="mail" class="input_connexion" required>
                 </div>
 
-                <div class="d-flex">
+                <div class="d-flex flex-wrap">
                     <label for="telephone" class="label_connexion">Téléphone *</label>
                     <input type="text" name="telephone" id="telephone" class="input_connexion" placeholder="0630303030" maxlength="10" size="10" required>
                 </div>

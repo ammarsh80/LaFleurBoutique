@@ -23,7 +23,7 @@
     if (isset($_SESSION['idDerniereCommande']) && (isset($_SESSION['total_a_payer'])) && $_SESSION['total_a_payer'] > 0) {
     ?>
         <p class="mb-2">Commande enregistrée !!</p>
-        <p class="mb-4">Une fois la commande payée, nous procéderons à sa préparation, À vous !</p>
+        <p class="mb-4 p-3 text-center">Une fois la commande payée, nous procéderons à sa préparation, À vous !</p>
 
 
         <div class="cadre_paiement">
@@ -32,7 +32,7 @@
                 <p style="width: 100%; text-align: center; margin-top: 10px; margin-bottom: 10px;">Total à payer (TTC) <?php echo $_SESSION['total_a_payer'] ?> euros</p>
                 <form action="index.php?page=v_paiement&uc=payer&action=payerCommande" method="POST">
                     <div>
-                        <label for="propritaire" class="label_livraison fw-bold">Nom de propritaire *</label>
+                        <label for="propritaire" class="label_livraison fw-bold">Titulaire de carte *</label>
                         <input type="text" name="propritaire" id="propritaire" class=" modifier_info_input" minlength="2" maxlength="44" required>
                     </div>
                     <div>

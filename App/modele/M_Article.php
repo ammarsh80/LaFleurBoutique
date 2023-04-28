@@ -231,6 +231,8 @@ class M_Article
      */
     public static function trouveLesArticleAmour()
     {
+
+
         $req = "SELECT lf_articles.id, lf_articles.nombre, lf_articles.description, lf_articles.prix_unitaire, 
         lf_articles.image, lf_articles.etat, lf_articles.quantite_stock, lf_categories.nom_categorie, lf_fleurs.nom_fleur, 
         lf_unites.nom_unite, lf_unites.taille, lf_couleurs.couleur  
@@ -572,5 +574,25 @@ class M_Article
             }
         }
         return $lesProduits;
+    }
+    /**
+     * insert l'id de lot gagné (passé en argument) dans la commande dont l'id est passé en argument
+     *
+     * @param [int] $idlot
+     * @param [int] $idcommande
+     * @return void
+     */
+    public static function recupererMonlot($idlot, $idcommande)
+    {
+        $req = "UPDATE lf_commande_clients SET gain_loteries_id = :idlot WHERE id = :idcommande";
+        $statement = AccesDonnees::getPdo()->prepare($req);
+        $statement->bindParam(':idlot', $idlot, PDO::PARAM_STR);
+        $statement->bindParam(':idcommande', $idcommande, PDO::PARAM_INT);
+        $statement->execute();
+            if (isset($_COOKIE['gagne'])) {
+                unset($_COOKIE['gagne']);
+                setcookie('gagne', '', time() - 3600); // définit une date d'expiration passée pour le cookie
+            }
+        header('location: index.php?page=v_compte');
     }
 }

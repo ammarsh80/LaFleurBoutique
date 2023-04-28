@@ -9,7 +9,7 @@
 
 
     <?php
-        foreach ($lesArticles as $unArticle) {
+        foreach ($lesArticlesRemerciement as $unArticle) {
             $idArticle = $unArticle['id'];
             $description = $unArticle['description'];
             $etat = $unArticle['etat'];
@@ -31,7 +31,7 @@
                     
                     <div id="prix_panier">
                         <p><?= $prix ?> Euros</p>
-                        <a href="index.php?page=v_remerciement&idArticle=<?php echo $idArticle ?>&categorie=Remerciement&action=ajouterAuPanier">
+                        <a href="index.php?page=v_remerciement&idArticle=<?php echo $idArticle ?>&categorie=Remerciement&action=ajouterAuPanierRemerciement">
                         <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add" />
                         </a>
                     </div>
@@ -44,8 +44,8 @@
 
     <div id="container_all_article_repture">
             <?php
-       if (isset($lesArticlesEnRepture)) {
-        foreach ($lesArticlesEnRepture as $unArticle) {
+       if (isset($lesArticlesEnReptureRemerciement)) {
+        foreach ($lesArticlesEnReptureRemerciement as $unArticle) {
             $idArticle = $unArticle['id'];
             $description = $unArticle['description'];
             $etat = $unArticle['etat'];

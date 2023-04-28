@@ -2,7 +2,12 @@
 <html lang="fr">
 
 <?php
+
+
+// date_default_timezone_set('Europe/Paris');
+
 session_start();
+ini_set('date.timezone', 'Europe/Paris');
 
 // Pour afficher les erreurs PHP
 error_reporting(E_ALL);
@@ -78,3 +83,21 @@ switch ($uc) {
 }
 
 include_once("./App/vue/template.php");
+
+
+// unset($_COOKIE['gagne']);
+if(isset($_COOKIE['gagne'])){
+    $gagne = $_COOKIE['gagne'];
+    echo "La valeur de gagne est : " . $gagne;
+  
+}
+
+// $clientGagne = [];
+// if (!empty($_SESSION['Gagne'])) {
+//     $clientGagne = $_SESSION['Gagne'];
+// }
+//     if (!in_array($gagne, $_SESSION['gagne'])) {
+//         $_SESSION['Gagne'][] = $gagne;
+//     }
+
+

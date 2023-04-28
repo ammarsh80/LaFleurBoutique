@@ -22,7 +22,7 @@ switch ($action) {
         if ($n > 0) {
             $desIdArticle = getLesIdArticlesDuPanier();
 
-         
+
             $lesArticlesDuPanier = M_Article::trouveLesArticlesDuTableau($desIdArticle);
         } else {
             afficheMessagePanierVide("Panier Vide !!");
@@ -30,6 +30,17 @@ switch ($action) {
         }
 
         break;
+    case 'monlot':
+      
+        $monlot = filter_input(INPUT_GET, 'monlot');
+        $idcommande = ($_SESSION["idDerniereCommande"]);
+        if (isset($monlot) && (!empty($monlot))){
+        if (isset($idcommande) && (!empty($idcommande))){
+            $id_lot = M_Article::recupererMonlot($monlot, $idcommande);
+        }
+    }
+        break;
+
     default:
         break;
 }

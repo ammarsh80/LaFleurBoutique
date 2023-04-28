@@ -77,6 +77,11 @@ class M_Commande
                 $statement->bindParam(':article', $article, PDO::PARAM_INT);
                 $statement->execute();
             }
+            if (isset($_COOKIE['block'])) {
+                unset($_COOKIE['block']);
+                setcookie('gagne', '', time() - 3600); // définit une date d'expiration passée pour le cookie
+            }
+
             return $idDerniereCommande;
         }
     }
@@ -127,6 +132,12 @@ class M_Commande
                 $statement->bindParam(':quantiteStock', $quantiteStock, PDO::PARAM_INT);
                 $statement->bindParam(':article', $article, PDO::PARAM_INT);
                 $statement->execute();
+            }
+
+            if (isset($_COOKIE['block'])) {
+
+                unset($_COOKIE['block']);
+                setcookie('gagne', '', time() - 3600); // définit une date d'expiration passée pour le cookie
             }
             return $idDerniereCommande;
         }
@@ -230,12 +241,15 @@ class M_Commande
     {
         $pdo = Accesdonnees::getPdo();
         $stmt = $pdo->prepare(
-            "SELECT lf_commande_clients.id, lf_commande_clients.commande_le, 
+            "SELECT lf_commande_clients.id, 
+            DATE_ADD(lf_commande_clients.commande_le, INTERVAL 2 HOUR) AS plus_2h, 
             
-CONCAT(lf_fleurs.nom_fleur) AS fleur,        
-CONCAT(lf_articles.nombre, ' ', lf_unites.nom_unite) AS detail,        
-lf_articles.prix_unitaire, 
-CONCAT(lf_adresses.rue, ' ', lf_adresses.complement_rue, ' ', lf_code_postaux.code_postal, ' ', lf_villes.nom_ville) AS adresse, lf_commande_clients.etat
+        CONCAT(lf_fleurs.nom_fleur) AS fleur,        
+        CONCAT(lf_articles.nombre, ' ', lf_unites.nom_unite) AS detail,        
+        lf_articles.prix_unitaire, 
+        CONCAT(lf_adresses.rue, ' ', lf_adresses.complement_rue, ' ', lf_code_postaux.code_postal, ' ', lf_villes.nom_ville) AS adresse, 
+        lf_commande_clients.etat, 
+        lf_gain_loteries.lot
        FROM lf_commande_clients
        JOIN lf_clients ON lf_commande_clients.clients_id = lf_clients.id 
        JOIN lf_ligne_commande_client ON lf_commande_clients.id = lf_ligne_commande_client.commande_client_id
@@ -246,6 +260,7 @@ CONCAT(lf_adresses.rue, ' ', lf_adresses.complement_rue, ' ', lf_code_postaux.co
        JOIN lf_adresses ON lf_commande_clients.adresses_livraison_id = lf_adresses.id
        JOIN lf_code_postaux ON lf_adresses.code_postaux_id = lf_code_postaux.id
        JOIN lf_villes ON lf_adresses.villes_id = lf_villes.id
+       LEFT JOIN lf_gain_loteries ON lf_commande_clients.gain_loteries_id = lf_gain_loteries.id
             WHERE lf_clients.id = :id_client
             ORDER BY lf_commande_clients.commande_le"
         );

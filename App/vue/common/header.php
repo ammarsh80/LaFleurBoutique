@@ -58,7 +58,15 @@ if (isset($_SESSION["id"])) { ?>
     </header>
 
     <div id="div_connexion">
-        <span id="deconnexion_info">Bonjour <?php echo $InfoUtilisateur[0]['prenom'] . " " ?>! vous êtes connecté</span>
+        <span id="deconnexion_info">Bonjour 
+            <?php 
+            if (isset($InfoUtilisateur)) {
+                echo $InfoUtilisateur[0]['prenom'] . " ";
+            }
+                ?>
+
+            
+            ! vous êtes connecté</span>
         <!-- <form action="index.php?page=v_compte" id="form_mon_compte">
             </form> -->
         <a href="index.php?page=v_compte">

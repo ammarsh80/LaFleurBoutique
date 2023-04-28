@@ -2,31 +2,58 @@
 	<div class="banniere" style="background-image: url(./public/assets/img/baniere.jpg);">
 		<h1  style="color:#2c3138; font-size: 40px; font-weight: bold;"> Lafleur vous souhaite bonne chance</h1>
 	</div>
-	<div id="container_all_article">
 
-		<div class="hd">
-		</div>
-		<div class="bd">
-			<div class="container" style="width: 284px;">
-				<div class="slot-wrapper">
-					<div id="slot1" class="slot"></div>
-					<div id="slot2" class="slot"></div>
-					<div id="slot3" class="slot"></div>
-					<div class="clear"></div>
-				</div>
-				<div id="result"></div>
-				<div><button id="control">Je tente ma chance</button></div>
-			</div>
-			<div><a href="https://odhyan.com/blog/2011/05/slot-machine-in-javascript/">Learn how to build this</a></div>
-			<div class="credits">
-				<div>Author: <a href="https://odhyan.com/blog/">Saurabh Odhyan</a></div>
-				<div class="browsers">Tested in Firefox, Chrome and IE8</div>
-			</div>
-		</div>
-	</div>
+
+<div class="container_cage">
+<img src="./public/assets/img/loto/cage.PNG" alt="Image 1" />
+<img src="./public/assets/img/loto/cage.PNG" alt="Image 1" />
+<img src="./public/assets/img/loto/cage.PNG" alt="Image 1" />
+<img src="./public/assets/img/loto/cage.PNG" alt="Image 1" />
+<img src="./public/assets/img/loto/cage.PNG" alt="Image 1" />
+</div>
+
+
+<div class="container_loto">
+
+<div class="reel-container">
+      <div class="reel" data-speed="2">
+        <img src="./public/assets/img/loto/ballon1.PNG" alt="Image 1" />
+
+      </div>
+      <div class="reel" data-speed="4">
+        <img src="./public/assets/img/loto/ballon1.PNG" alt="Image 1" />
+      </div>
+      <div class="reel" data-speed="6">
+        <img src="./public/assets/img/loto/ballon1.PNG" alt="Image 1" />
+       </div>
+      <div class="reel" data-speed="6">
+        <img src="./public/assets/img/loto/ballon1.PNG" alt="Image 1" />
+       </div>
+      <div class="reel" data-speed="6">
+        <img src="./public/assets/img/loto/ballon1.PNG" alt="Image 1" />
+       </div>
+    </div>
+    <button class="spin-button">Tirer</button>
+    <span class="mb-2">vous avez un seul essai</span>
+    <!-- <a href="index.php?page=v_loto">
+      <p class="ajout_lot mb-3">Reclamer mon lot</p> 
+     </a>  -->
+<?php
+if (isset($_COOKIE['gagne']) && $_COOKIE['gagne'] > 0){
+  ?>
+
+<a href="index.php?uc=panier&action=monlot&monlot=<?php echo $_COOKIE['gagne']?>">
+<p class="ajout_lot mb-5">Ajouter mon lot gagné à ma commande</p> </a>
+
+<?php
+}
+?>
+<a href="index.php?page=v_compte"> <p class="mb-3">voir ma commande</p></a> 
+</div>
+
 </section>
 
-<script>
+<!-- <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -34,4 +61,4 @@
 
   ga('create', 'UA-18343038-1', 'auto');
   ga('send', 'pageview');
-</script>
+</script> -->

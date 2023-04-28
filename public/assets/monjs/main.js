@@ -33,16 +33,7 @@ btn.addEventListener("click", (e) => {
 });
 
 
-
-
-//  $params = array('page' => 'v_parCouleur', 'couleur' => $idCouleur);
-//  $url = 'index.php?' . http_build_query($params);
-
-
-//  function redirectToUrl(url) {
-//   window.location.href = url;
-// }
-
+// redirectToUrl(url);
 var page = 'v_parCouleur';
 var couleur = '<?php echo $idCouleur; ?>';
 var params = { 'page': page, 'couleur': couleur };
@@ -52,139 +43,123 @@ function redirectToUrl(url) {
   window.location.href = url;
 }
 
-// redirectToUrl(url);
+
+// Loto ///////////////////////////////////////////////////////////////
+
+function getCookie(name) {
+  const cookies = document.cookie.split("; ");
+  for (const cookie of cookies) {
+    const [cookieName, cookieValue] = cookie.split("=");
+    if (cookieName === name) {
+      return parseInt(cookieValue);
+    }
+  }
+  return 0;
+}
+
+var essai = 0;
+var comt_essai = 0;
+
+const reels = document.querySelectorAll('.reel');
+const spinButton = document.querySelector('.spin-button');
+const symbols = [
+  'image1.jpg',
+  'image1.jpg',
+  'image1.jpg',
+  'image1.jpg',
+  'image1.jpg',
+  'image1.jpg',
+];
+let isSpinning = false;
+
+let block = 0;
+function spinReels() {
+  if (isSpinning || essai > 0 || getCookie("block") > 0) {
+    return;
+  }
+
+  essai++;
+  block++;
+
+  document.cookie = "block=" + block + "; SameSite=None; Secure";
+console.log(document.cookie);
 
 
+  isSpinning = true;
+  spinButton.disabled = true;
 
+  const speeds = [];
+  const destinations = [];
+  reels.forEach((reel) => {
+    const speed = Math.floor(Math.random());
 
-// let somme_total = document.getElementById('somme_total');
-// // Checked l'input frais (> 50 euros ou > 50)/////////////////////////////////////////////////////
-// // Accéder au contenu de la div
+    const randomIndex = Math.floor(Math.random() * 5);
+    const destination = randomIndex * 100;
 
-//   let contenu_div = parseInt(somme_total.innerHTML);
-//   if (contenu_div >= 50) {
-//     frais_offert.checked = true;
-//   }
-//   else if (contenu_div > 0) {
-//     frais_payant.checked = true;
-  
-// }
+    speeds.push(speed);
+    destinations.push(destination);
+    reel.style.transition = 'transform 0.2s ease-out';
+    reel.style.transform = 'rotate(15deg)';
+    reel.style.transform = `translateY(-${destination}px) rotate(-40deg)`;
+    
+  });
 
+  setTimeout(() => {
+    checkWin();
+    isSpinning = false;
+    spinButton.disabled = false;
+  }, 1200);
+}
 
-// // Bloquer ou activer la modification du panier pour passer au paiement/////////////////////////////////////////////////////
-// var btn_valide_facturation = document.querySelector('.btn_valide_payement');
-// btn_valide_facturation.addEventListener('click', (e) => {
-//   var container_livraison = document.querySelector('.container_livraison');
-//   var cadre_paiement = document.querySelector('.cadre_paiement');
-//    container_livraison.style.pointerEvents = 'none';
-//   container_livraison.style.opacity = '0.5';
-//   cadre_paiement.style.pointerEvents = 'all';
-//   cadre_paiement.style.opacity = '1';
-//   // }
-// });
+function checkWin() {
+  const destination = [];
+  reels.forEach((reel, index) => {
+    const position = Math.abs(parseInt(reel.style.transform.slice(11))) % (symbols.length * 100) / 100;
+    destination.push(position);
+  });
+  let isWinner = false;
 
+const prizeMap = {
+  1: 'un stylo “Lafleur”',
+  2: 'un Sac réutilisables en tissus “Lafleur”',
+  3: 'un Porte-clés “Lafleur”',
+  4: 'un Rose Rouge “Lafleur”',
+  5: 'un Bouquets de roses “Lafleur”'
+};
 
+let count = 0;
 
+destination.forEach((number) => {
+  if (number === 2) {
+    count++;
+  }
+});
+const gagne = parseInt(`${count}`);
 
+document.cookie = "gagne=" + gagne + "; SameSite=None; Secure";
 
-// Checked l'input frais (> 50 euros ou > 50)/////////////////////////////////////////////////////
-// Accéder au contenu de la div
+if (count > 0 && count <= 5) {
+  const prize = prizeMap[count];
+  isWinner = true;
+  alert(`Bravo, vous avez marqué ${count} but et vous gagnez ${prize} !`);
+  reels.forEach((reel) => {
+    reel.style.transition = 'transform 0.01s ease-out';
+    reel.style.transform = `translateY(0px)`;
+  });
+  spinButton.disabled = false;
+  location.reload();
+} 
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   let sommeTotal = document.getElementById('somme_Total');
-//   let fraisOffert = document.getElementById('frais_offert');
-//   let fraisPayant = document.getElementById('frais_payant');
-//   if (sommeTotal) {
-//     if (parseInt(contenu_div) >= 50) {
-//       fraisOffert.checked = true;
-//     }
-//     else if (parseInt(contenu_div) > 0) {
-//       fraisPayant.checked = true;
-//     }
-//   }
-// });
+else {
+  reels.forEach((reel) => {
+    reel.style.transition = 'transform 0.01s ease-out';
+    reel.style.transform = `translateY(0px)`;
+  });
+  spinButton.disabled = false;
+}
+}
+spinButton.addEventListener('click', (e)=> {
+  spinReels();
 
-
-  
-
-
-
-
-
-
-
-
-
-
-// // Stocke les éléments HTML dans des variables
-// const frais_offert = document.getElementById('frais-offert');
-// const frais_payant = document.getElementById('frais-payant');
-
-// // Envoie une requête AJAX pour récupérer la valeur de "somme_total"
-// let xhr = new XMLHttpRequest();
-// xhr.open('GET', 'index.php', true);
-// xhr.onload = function() {
-//     // Vérifie si la requête s'est bien passée
-//     if (xhr.status === 200) {
-//         // Analyse la réponse de la page PHP pour récupérer la valeur de "somme_total"
-//         const contenu_div = parseInt(xhr.responseText);
-//         console.log(contenu_div);
-//         // Vérifie la valeur de "somme_total" et coche les cases correspondantes
-//         if (contenu_div >= 50) {
-//             frais_offert.checked = true;
-//         }
-//         else if (contenu_div > 0) {
-//             frais_payant.checked = true;
-//         }
-//     } else {
-//         console.error('La requête a échoué avec une erreur ' + xhr.status);
-//     }
-// };
-// xhr.send();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// window.onload = function () {
-//   var modifier_panier = document.getElementById('modifier_panier');
-//   modifier_panier.addEventListener('click', (e) => {
-//     var container_paiement = document.getElementById('container_paiement');
-//     var modifier_panier = document.getElementById('modifier_panier');
-//     var valide_articles = document.querySelector('.valide_articles');
-
-//     if (parseInt(contenu_div) > 0) {
-//       container_paiement.style.pointerEvents = 'none';
-//       container_paiement.style.opacity = '0.50';
-//       modifier_panier.style.display = 'none';
-//       valide_articles.style.pointerEvents = 'all';
-//       valide_articles.style.opacity = '1';
-//     }
-//   });
-// };
-
-
-
-
-
-
-
-
-
-
-
+} );
+  // Fin lotoooooooooooo//////////////////////////////////////////////////////////////////////////////////////////////

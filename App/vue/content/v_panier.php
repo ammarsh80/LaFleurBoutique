@@ -3,9 +3,9 @@
 
     <div id="container_panier">
         <p class="titres_compte valide_panier">Je valide mon panier</p>
-        <div id="modifier_panier">
+        <!-- <div id="modifier_panier">
             Modifier mon panier
-        </div>
+        </div> -->
         <div id="valide_mon_panier">
 
             <div class="valide_articles">
@@ -97,15 +97,17 @@
                                 euros
                             </label>
                         </div>
-                <?php
+               
+                        <p class="mt-3 fs-6">(Les frais de livraison son offert à partir de 50 euros d'achat)</p>
+                        <p class="mt-3 fw-bold">Total à payer (TTC)</p>
+               
+               <?php
                     }
                 }
                 ?>
 
 
 
-                <p class="mt-3 fs-6">(Les frais de livraison son offert à partir de 50 euros d'achat)</p>
-                <p class="mt-3 fw-bold">Total à payer (TTC)</p>
 
                 <?php
 
@@ -133,11 +135,13 @@
                         ?>
                     </div>
 
-                <?php
+                    <?php
+                    ?>
+                    <p class="mt-3">Veuillez valider votre panier pour passer au paiement</p>
 
+                <?php
                 }
                 ?>
-                <p class="mt-3">Veuillez valider votre panier pour passer au paiement</p>
 
                 <?php
 
@@ -169,7 +173,7 @@
                 }
 
                 if (isset($_SESSION['id']) && (isset($lesArticlesDuPanier))) {
-                    ?>
+                ?>
                     <a href="index.php?page=v_adresseLivraison&uc=commander&action=passerCommande">
                         <!-- <form action="index.php?page=v_adresseLivraison&uc=commander&action=passerCommande" method="POST"> -->
 
