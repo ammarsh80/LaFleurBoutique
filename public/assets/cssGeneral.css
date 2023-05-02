@@ -295,7 +295,8 @@ header img {
 }
 
 #lafleur {
-  padding-left: 4vw;
+  width: 100%;
+  padding-left: 2.7vw;
   padding-top: 15px;
 }
 
@@ -315,8 +316,8 @@ header h1 {
 }
 
 #img_logo:hover {
-  transform: scale(1.1,1.1);
-  }
+  transform: scale(1.1, 1.1);
+}
 
 #nav_right {
   padding-right: 20px;
@@ -399,7 +400,7 @@ header h1 {
 
 #nav_bar {
   position: absolute;
-  
+
   top: -75px;
   height: 58px;
   padding: 20px;
@@ -418,9 +419,10 @@ header h1 {
 #nav_bar>a {
   margin-left: 30px;
 }
+
 #nav_bar>a:hover {
-color: var(--secondary-light);
-transform: scale(1.1,1.1);
+  color: var(--secondary-light);
+  transform: scale(1.1, 1.1);
 }
 
 .ligne_banniere {
@@ -447,6 +449,10 @@ transform: scale(1.1,1.1);
   font-size: 70px;
   /* background-image: url(../assets/img/amour/baniere_amour.jpg); */
   margin-bottom: 20px;
+}
+
+.banniere h1:hover {
+  color: salmon !important;
 }
 
 #container_recherche_couleur {
@@ -490,8 +496,8 @@ transform: scale(1.1,1.1);
   border: none;
   border-radius: 3px;
   font-size: 14px;
-margin-right: 0px; 
- margin-top: 4px;
+  margin-right: 0px;
+  margin-top: 4px;
 
 }
 
@@ -1642,7 +1648,8 @@ button {
   margin: 0 35px;
 
 }
-.spin-button{
+
+.spin-button {
   padding: 20px;
   background-color: var(--green);
   color: var(--white);
@@ -1652,7 +1659,34 @@ button {
   font-size: 30px;
   font-weight: normal;
 }
+
+#bonne_chance {
+  color: #2c3138 !important;
+
+}
+
+
 /*  Fin Loto2*/
+#container_fete_des_mere h1 {
+  padding: 0 10px;
+  text-align: center;
+}
+
+#container_fete_des_mere {
+  margin: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#img_fete_des_mere {
+  width: 300px !important;
+  height: 300px !important;
+  border-radius: 30% !important;
+}
+
+
 /* *************************************************************************************************************************** */
 /* ************************************************************ */
 
@@ -1760,6 +1794,25 @@ button {
   align-items: center;
   margin: 0px 0 30px 20px;
   font-weight: bold;
+}
+
+/*  Loto2*/
+.container_cage img {
+  width: 110px;
+  height: 90px;
+  margin: 0 20px;
+
+}
+
+.reel-container {
+  margin-top: 50px;
+}
+
+.reel {
+  width: 125px;
+  height: 100px;
+
+  margin-right: 20px;
 }
 
 
@@ -1886,17 +1939,15 @@ button {
   .box {
     position: absolute;
     top: -110px;
-    right: 20px;
+    right: 0px;
   }
 
   .cont-lignes {
     width: 60px;
     height: 42px;
     cursor: pointer;
-    position: absolute;
-    /* top: 50%;
-  left: 50%; */
-    /* transform: translate(-50%, -50%); */
+    margin-left: 20px;
+
   }
 
   .lignes {
@@ -2166,4 +2217,107 @@ button {
 
   }
 
+  /*  Loto2*/
+  .container_cage img {
+    width: 60px;
+    height: 50px;
+    margin: 0 5px;
+
+  }
+
+  .reel-container {
+    margin-top: 80px;
+  }
+
+  .reel {
+    width: 45px;
+    height: 100px;
+
+    margin-right: 20px;
+  }
+
+
+  .reel img {
+    width: 20px;
+    height: 20px;
+  }
+
+  #bonne_chance {
+    color: #2c3138 !important;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1.5;
+  }
+
+
+
+}
+
+
+
+
+/* Fin Articles Blog ***********************************/
+
+/* Début_MEDIA QUERIES **********************************368px */
+
+@media (max-width:368px) {
+
+  /*  Loto2*/
+  .container_cage img {
+    width: 60px;
+    height: 50px;
+    margin: 0 5px;
+
+  }
+
+  .reel-container {
+    margin-top: 80px;
+  }
+
+  .reel {
+    width: 45px;
+    height: 100px;
+
+    margin-right: 20px;
+  }
+
+
+  .reel img {
+    width: 20px;
+    height: 20px;
+  }
+
+  #bonne_chance {
+    color: #2c3138;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 1.5;
+  }
+
+  .box {
+    position: absolute;
+    top: -110px;
+    right: 0px;
+  }
+
+  .cont-lignes {
+    width: 60px;
+    height: 42px;
+    cursor: pointer;
+    margin-left: 20px;
+  }
+
+  #logo_reseaux_sociaux {
+    width: 244px;
+
+    border-radius: 4px;
+    padding: 10px;
+    margin-left: 0px;
+
+  }
+
+  #reseaux_sociaux {
+    padding-left: 0;
+
+  }
 }

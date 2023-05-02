@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Requettes pour affichage mon compte
+ * Vérifications des ifnos saisis pour modification les infos personnelles du client
  */
 class M_monCompte
 {

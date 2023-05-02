@@ -77,11 +77,6 @@ class M_Commande
                 $statement->bindParam(':article', $article, PDO::PARAM_INT);
                 $statement->execute();
             }
-            if (isset($_COOKIE['block'])) {
-                unset($_COOKIE['block']);
-                setcookie('gagne', '', time() - 3600); // définit une date d'expiration passée pour le cookie
-            }
-
             return $idDerniereCommande;
         }
     }
@@ -132,12 +127,6 @@ class M_Commande
                 $statement->bindParam(':quantiteStock', $quantiteStock, PDO::PARAM_INT);
                 $statement->bindParam(':article', $article, PDO::PARAM_INT);
                 $statement->execute();
-            }
-
-            if (isset($_COOKIE['block'])) {
-
-                unset($_COOKIE['block']);
-                setcookie('gagne', '', time() - 3600); // définit une date d'expiration passée pour le cookie
             }
             return $idDerniereCommande;
         }

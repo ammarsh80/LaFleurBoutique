@@ -81,6 +81,8 @@
                                 <input type="checkbox" name="frais_payant" id="frais_payant"> <?php echo $lesFraisLivraison[1]['somme']; ?>
                             </label>
                         </div>
+                        <p class="mt-3 fs-6">(Les frais de livraison son offert à partir de 50 euros d'achat)</p>
+                        <p class="mt-3 fw-bold">Total à payer (TTC)</p>
                     <?php
                     } else {
                         $total_a_payer = (number_format($sommePrixUnitaires, 2) + 2.99);

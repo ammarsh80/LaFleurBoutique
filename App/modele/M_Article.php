@@ -589,10 +589,26 @@ class M_Article
         $statement->bindParam(':idlot', $idlot, PDO::PARAM_STR);
         $statement->bindParam(':idcommande', $idcommande, PDO::PARAM_INT);
         $statement->execute();
+
+        $req = "SELECT quantite_disponible FROM lf_gain_loteries 
+        WHERE id = :idlot";
+        $statement = AccesDonnees::getPdo()->prepare($req);
+        $statement->bindParam(':idlot', $idlot, PDO::PARAM_INT);
+        $statement->execute();
+        $quantiteDisponible = $statement->fetchColumn();
+        $quantiteDisponible--;
+       
+        $req = "UPDATE lf_gain_loteries SET quantite_disponible = :quantiteDisponible WHERE id = :idlot";
+        $statement = AccesDonnees::getPdo()->prepare($req);
+        $statement->bindParam(':quantiteDisponible', $quantiteDisponible, PDO::PARAM_INT);
+        $statement->bindParam(':idlot', $idlot, PDO::PARAM_INT);
+        $statement->execute();
+
             if (isset($_COOKIE['gagne'])) {
                 unset($_COOKIE['gagne']);
                 setcookie('gagne', '', time() - 3600); // définit une date d'expiration passée pour le cookie
             }
+
         header('location: index.php?page=v_compte');
     }
 }

@@ -80,10 +80,8 @@ function spinReels() {
 
   essai++;
   block++;
-
   document.cookie = "block=" + block + "; SameSite=None; Secure";
 console.log(document.cookie);
-
 
   isSpinning = true;
   spinButton.disabled = true;
@@ -93,7 +91,7 @@ console.log(document.cookie);
   reels.forEach((reel) => {
     const speed = Math.floor(Math.random());
 
-    const randomIndex = Math.floor(Math.random() * 5);
+    const randomIndex = Math.floor(Math.random() * 4);
     const destination = randomIndex * 100;
 
     speeds.push(speed);

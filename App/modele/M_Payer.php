@@ -24,5 +24,10 @@ class M_Payer
         $statement->bindParam(':idCommande', $idCommande, PDO::PARAM_INT);
         $statement->bindParam(':etat', $etat, PDO::PARAM_STR);
         $statement->execute();
+
+        if (isset($_COOKIE['block'])) {
+            unset($_COOKIE['block']);
+            setcookie('gagne', '', time() - 3600); // définit une date d'expiration passée pour le cookie
+        }
     }
 }

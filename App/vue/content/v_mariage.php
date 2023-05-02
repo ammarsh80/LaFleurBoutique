@@ -42,7 +42,16 @@
     }
     ?>
 </div>
+<?php
+        $today = date('Y-m-d'); // Obtenir la date actuelle au format YYYY-MM-DD
+        $start_date = date('Y') . '-05-01'; // Date de début de la plage de dates
+        $end_date = date('Y') . '-06-10'; // Date de fin de la plage de dates
 
+        // Vérifier si la date actuelle est comprise entre les deux dates spécifiées
+        if ($today >= $start_date && $today <= $end_date) {
+            include './App/vue/common/pub.feteDesMeres.php'; // Inclure le fichier si la condition est vraie
+        }
+        ?>
 <div id="container_all_article_repture">
             <?php
        if (isset($lesArticlesEnReptureMariage)) {
