@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 
+
+
 <?php
 
 
@@ -22,6 +24,40 @@ $clientSession = [];
 if (!empty($_SESSION['client'])) {
     $clientSession = $_SESSION['client'];
 }
+if (isset($_SESSION['clientIP'])  && (empty($_SESSION['clientIP']))) {
+    $clientIP = $_SESSION['clientIP'];
+    $clientIP = ($_SERVER['REMOTE_ADDR']);
+    $_SESSION['clientIP'][]=$clientIP; 
+    
+}
+
+?>
+
+
+<!-- <h1>Html géolocalisation</h1>
+  Latitude : <span id="latitude">Loading...</span><br>
+  Longitude : <span id="longitude">Loading...</span> -->
+
+<?php
+
+
+// if (isset($_SESSION['latitude']) && isset($_SESSION['longitude'])) {
+//   // Les valeurs de latitude et de longitude ont déjà été stockées dans des variables de session
+//   // Ne rien faire
+// } else if (isset($_GET['latitude']) && isset($_GET['longitude'])) {
+//   // Les valeurs de latitude et de longitude ont été envoyées en tant que paramètres GET
+//   // Stocker les valeurs dans des variables de session
+//   $_SESSION['latitude'] = $_GET['latitude'];
+//   $_SESSION['longitude'] = $_GET['longitude'];
+// } else {
+//   // Les valeurs de latitude et de longitude n'ont pas encore été stockées
+//   // Rediriger vers une page qui envoie les valeurs en tant que paramètres GET
+// //   header('Location: get_coordinates.php');
+// //   exit();
+// }
+
+
+
 
 $uc = filter_input(INPUT_GET, "uc", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Use Case
 $action = filter_input(INPUT_GET, "action", FILTER_SANITIZE_FULL_SPECIAL_CHARS); // Action

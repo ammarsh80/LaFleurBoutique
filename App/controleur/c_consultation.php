@@ -23,15 +23,15 @@ switch ($action) {
         break;
     case 'voirArticlesAmour':
 
-        
+
         $voirTousLesArticles = filter_input(INPUT_GET, 'voirArticlesAmour');
         $lesArticlesAmour = M_Article::trouveLesArticleAmour();
 
 
-           if ($lesArticlesEnReptureAmour = M_Article::trouveLesArticleAmourEnRepture()) {
+        if ($lesArticlesEnReptureAmour = M_Article::trouveLesArticleAmourEnRepture()) {
             $lesArticlesEnReptureAmour = M_Article::trouveLesArticleAmourEnRepture();
         }
-      
+
 
         break;
     case 'voirArticlesMariage':
@@ -63,7 +63,7 @@ switch ($action) {
         }
         break;
     case 'voirArticlesCouleur':
-      
+
         $id_couleur = filter_input(INPUT_GET, 'couleur');
         $lesArticlesCouleur = M_Article::trouveLesArticleDeCouleur($id_couleur);
         if ($lesArticlesEnReptureCouleur = M_Article::trouveLesArticleDeCouleurEnRepture($id_couleur)) {
@@ -82,16 +82,17 @@ switch ($action) {
 
         $lesArticles = M_Article::trouveLesArticlesDeCategorie($idCategorie);
         $LeNomDeLaCategorie = M_Article::trouveLeNomDeLaCategorie($idCategorie);
-      
-       break;
+
+        break;
 
     case 'ajouterAuPanier':
         $nom_Categorie = filter_input(INPUT_GET, 'categorie');
         $idArticle = filter_input(INPUT_GET, 'idArticle');
-        $quantite = filter_input(INPUT_GET, 'quantite');
+        $quantite = 1;
 
-        if (!ajouterAuPanier($idArticle)) {
-            afficheErreurs(["Cet article est déjà dans le panier !!"]);
+        if (!ajouterAuPanier($idArticle, $quantite)) {
+
+            afficheErreurs(["Cet article est déjà dans le panier, veuillez gérer la quantité demandée depuis le panier !!"]);
         } else {
             afficheMessage("Cet article a été ajouté au panier ");
         }
@@ -100,13 +101,34 @@ switch ($action) {
             $lesArticlesEnRepture = M_Article::trouveLesArticlesDeCategorieNomEnRepture($nom_Categorie);
         }
         break;
+
+    case 'ajouterAuPanierPanier':
+        $nom_Categorie = filter_input(INPUT_GET, 'categorie');
+        $idArticle = filter_input(INPUT_GET, 'idArticle');
+        $quantite = $_POST['quantite'];
+
+
+
+        if (!ajouterAuPanierPanier($idArticle, $quantite)) {
+
+            afficheErreurs(["Cet article est déjà dans le panier, veuillez gérer la quantité demandée depuis le panier !!"]);
+        } else {
+            afficheMessage("Cet article a été ajouté au panier ");
+        }
+        // $lesArticles = M_Article::trouveLesArticlesDeCategorieNom($nom_Categorie);
+        // if ($lesArticlesEnRepture = M_Article::trouveLesArticlesDeCategorieNomEnRepture($nom_Categorie)) {
+        //     $lesArticlesEnRepture = M_Article::trouveLesArticlesDeCategorieNomEnRepture($nom_Categorie);
+        // }
+
+        header('location: index.php?page=v_panier&uc=panier&action=voirPanier');
+        break;
     case 'ajouterAuPanierAmour':
         $nom_Categorie = filter_input(INPUT_GET, 'categorie');
         $idArticle = filter_input(INPUT_GET, 'idArticle');
-        $quantite = filter_input(INPUT_GET, 'quantite');
+        $quantite = 1;
 
-        if (!ajouterAuPanier($idArticle)) {
-            afficheErreurs(["Cet article est déjà dans le panier !!"]);
+        if (!ajouterAuPanier($idArticle, $quantite)) {
+            afficheErreurs(["Cet article est déjà dans le panier, veuillez gérer la quantité demandée depuis le panier !!"]);
         } else {
             afficheMessage("Cet article a été ajouté au panier ");
         }
@@ -118,10 +140,10 @@ switch ($action) {
     case 'ajouterAuPanierMariage':
         $nom_Categorie = filter_input(INPUT_GET, 'categorie');
         $idArticle = filter_input(INPUT_GET, 'idArticle');
-        $quantite = filter_input(INPUT_GET, 'quantite');
+        $quantite = 1;
 
-        if (!ajouterAuPanier($idArticle)) {
-            afficheErreurs(["Cet article est déjà dans le panier !!"]);
+        if (!ajouterAuPanier($idArticle, $quantite)) {
+            afficheErreurs(["Cet article est déjà dans le panier, veuillez gérer la quantité demandée depuis le panier !!"]);
         } else {
             afficheMessage("Cet article a été ajouté au panier ");
         }
@@ -133,10 +155,10 @@ switch ($action) {
     case 'ajouterAuPanierNaissance':
         $nom_Categorie = filter_input(INPUT_GET, 'categorie');
         $idArticle = filter_input(INPUT_GET, 'idArticle');
-        $quantite = filter_input(INPUT_GET, 'quantite');
+        $quantite = 1;
 
-        if (!ajouterAuPanier($idArticle)) {
-            afficheErreurs(["Cet article est déjà dans le panier !!"]);
+        if (!ajouterAuPanier($idArticle, $quantite)) {
+            afficheErreurs(["Cet article est déjà dans le panier, veuillez gérer la quantité demandée depuis le panier !!"]);
         } else {
             afficheMessage("Cet article a été ajouté au panier ");
         }
@@ -148,10 +170,10 @@ switch ($action) {
     case 'ajouterAuPanierRemerciement':
         $nom_Categorie = filter_input(INPUT_GET, 'categorie');
         $idArticle = filter_input(INPUT_GET, 'idArticle');
-        $quantite = filter_input(INPUT_GET, 'quantite');
+        $quantite = 1;
 
-        if (!ajouterAuPanier($idArticle)) {
-            afficheErreurs(["Cet article est déjà dans le panier !!"]);
+        if (!ajouterAuPanier($idArticle, $quantite)) {
+            afficheErreurs(["Cet article est déjà dans le panier, veuillez gérer la quantité demandée depuis le panier !!"]);
         } else {
             afficheMessage("Cet article a été ajouté au panier ");
         }
@@ -163,10 +185,10 @@ switch ($action) {
     case 'ajouterAuPanierAnniversaire':
         $nom_Categorie = filter_input(INPUT_GET, 'categorie');
         $idArticle = filter_input(INPUT_GET, 'idArticle');
-        $quantite = filter_input(INPUT_GET, 'quantite');
+        $quantite = 1;
 
-        if (!ajouterAuPanier($idArticle)) {
-            afficheErreurs(["Cet article est déjà dans le panier !!"]);
+        if (!ajouterAuPanier($idArticle, $quantite)) {
+            afficheErreurs(["Cet article est déjà dans le panier, veuillez gérer la quantité demandée depuis le panier !!"]);
         } else {
             afficheMessage("Cet article a été ajouté au panier ");
         }
@@ -179,8 +201,10 @@ switch ($action) {
     case 'ajouterAuPanierDepuisCouleur':
         $id_couleur = filter_input(INPUT_GET, 'couleur');
         $idArticle = filter_input(INPUT_GET, 'idArticle');
-        if (!ajouterAuPanier($idArticle)) {
-            afficheErreurs(["Cet article est déjà dans le panier !!"]);
+        $quantite = 1;
+
+        if (!ajouterAuPanier($idArticle, $quantite)) {
+            afficheErreurs(["Cet article est déjà dans le panier, veuillez gérer la quantité demandée depuis le panier !!"]);
         } else {
             afficheMessage("Cet article a été ajouté au panier ");
         }
@@ -194,10 +218,12 @@ switch ($action) {
         $idArticle = filter_input(INPUT_GET, 'idArticle');
         $recherche_mot = filter_input(INPUT_GET, "recherche_mot", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-       
-        
-        if (!ajouterAuPanier($idArticle)) {
-            afficheErreurs(["Cet article est déjà dans le panier !!"]);
+
+
+        $quantite = 1;
+
+        if (!ajouterAuPanier($idArticle, $quantite)) {
+            afficheErreurs(["Cet article est déjà dans le panier, veuillez gérer la quantité demandée depuis le panier !!"]);
         } else {
             afficheMessage("Cet article a été ajouté au panier ");
         }
@@ -219,17 +245,19 @@ $lesVilles = M_Consultation::trouveLesVillesLivrable();
 $lesCPs = M_Consultation::trouveLesCp();
 
 // if (($_SERVER['REQUEST_METHOD'] === 'GET') && (isset($recherche_mot))) {
-    // Récupérer les valeurs des inputs
-    $recherche_mot = filter_input(INPUT_GET, "recherche_mot", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+// Récupérer les valeurs des inputs
+$recherche_mot = filter_input(INPUT_GET, "recherche_mot", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-    $errors = M_Inscription::estValideMot($recherche_mot);
-    if (count($errors) > 0) {
-        // Si une erreur, on recommence
-        afficheErreurs($errors);
-    } else {
-        $lesArticles = M_Article::trouveLesArticleParMot($recherche_mot);
-        if ($lesArticlesEnRepture = M_Article::trouveLesArticleParMotEnRepture($recherche_mot)) {
-            $lesArticlesEnRepture = M_Article::trouveLesArticleParMotEnRepture($recherche_mot);
-        }
+$errors = M_Inscription::estValideMot($recherche_mot);
+if (count($errors) > 0) {
+    // Si une erreur, on recommence
+    afficheErreurs($errors);
+} else {
+    $lesArticles = M_Article::trouveLesArticleParMot($recherche_mot);
+    if ($lesArticlesEnRepture = M_Article::trouveLesArticleParMotEnRepture($recherche_mot)) {
+        $lesArticlesEnRepture = M_Article::trouveLesArticleParMotEnRepture($recherche_mot);
     }
+}
 // }
+
+// $saveSession = M_monCompte::saveSession();

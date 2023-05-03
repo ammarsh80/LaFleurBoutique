@@ -109,6 +109,8 @@ switch ($action) {
             break;
         }
     case 'confirmerCommande':
+
+      
         $nom = filter_input(INPUT_POST, 'identiteLiv');
         $prenom = filter_input(INPUT_POST, 'prenomLiv');
         $rue = filter_input(INPUT_POST, 'adresseLiv');
@@ -134,12 +136,12 @@ switch ($action) {
             afficheErreurs($errors);
             break;
         }
-
+      
         if ((!isset($_SESSION['Articles'])) || (empty($_SESSION['Articles']))) {
-
+           
             return;
         }
-
+       
         if (isset($date_livraison_progamme) && !empty($date_livraison_progamme)) {
             $id_ville_livraison = M_Inscription::trouveVille($ville);
 
@@ -160,27 +162,35 @@ switch ($action) {
 
             $uc = '';
             $_SESSION['idDerniereCommande']  = $idDerniereCommande;
+    
+         
+
             header('location: index.php?page=v_paiement&uc=payer');
             return $idDerniereCommande;
         } else {
+
+           
+
             $id_ville_livraison = M_Inscription::trouveVille($ville);
             $id_ville_facturation = M_Inscription::trouveOuCreerVille($villeFac);
             $id_cp_livraison = M_Inscription::trouveCp($cp);
             $id_cp_facturation = M_Inscription::trouveOuCreerCp($cpFac);
             $id_adresse_livraison = M_Commande::trouveOuCreerAdresse($rue, $complement, $id_ville_livraison, $id_cp_livraison);
             $id_adresse_facturation = M_Commande::trouveOuCreerAdresse($rueFac, $complementFac, $id_ville_facturation, $id_cp_facturation);
-
+           
             $idclient = $_SESSION['id'];
 
             $listArticles = getLesIdArticlesDuPanier();
-            $idDerniereCommande =  M_Commande::creerCommande($idclient, $id_adresse_livraison, $id_adresse_facturation, $listArticles);
 
+           
+            $idDerniereCommande =  M_Commande::creerCommande($idclient, $id_adresse_livraison, $id_adresse_facturation, $listArticles);
+          
             supprimerPanier();
             afficheMessage("Commande enregistrée !! une fois la commande payée, nous procéderons à sa préparation, À VOUS !");
 
             $uc = '';
             $_SESSION['idDerniereCommande']  = $idDerniereCommande;
-
+          
             header('location: index.php?page=v_paiement&uc=payer');
             return $idDerniereCommande;
             // }

@@ -24,11 +24,22 @@ switch ($action) {
                 $idCommande = ($_SESSION['idDerniereCommande']);
                 $idClient = ($_SESSION['id']);
                 $commandesClient = M_Payer::payerCommande($idCommande, $idClient);
-                
-                $total_payer = $_SESSION['total_a_payer'];
-                $_SESSION['total_payer'] = $total_payer;
 
+                $total_payer = $_SESSION['total_a_payer'];
+
+                $_SESSION['total_payer'] = $total_payer;
                 $_SESSION['total_a_payer'] = 0;
+
+
+                // $index = array_search($idProduit, $_SESSION['Articles']);
+                // unset($_SESSION['Articles'][$index]);
+                unset($_SESSION['Articles']);
+                unset($_SESSION['Panier']);
+
+               
+                
+
+                // unset($_SESSION['Articles']);
 
                 header('location: index.php?page=v_confirmationPayement&uc=payer');
                 break;

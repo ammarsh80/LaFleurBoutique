@@ -57,7 +57,9 @@
                                     ?>
                                 </select>
                             </div>
-                            <div class="d-flex justify-center align-center">
+                            <div class="d-flex justify-center align-center flex-column">
+                                <p class="mt-3 mb-0 p-1 text-bg-danger fs-5 text-center fw-light">Toutes les livraisons sont assurées sous 24 heures</p>
+                                <p class="mt-2 mb-2 p-1 text-bg-danger fs-5 text-center fw-light">Mais vous pouvez aussi programmer une livraison, à vous !</p>
                                 <label for="date_livraison_progamme" class="label_livraison label_livraison_progamme fw-bold">Livraison souhaitée le : (optionel)</label>
                                 <input type="date" name="date_livraison_progamme" id="date_livraison_progamme" class="input_connexion modifier_info_input">
                             </div>

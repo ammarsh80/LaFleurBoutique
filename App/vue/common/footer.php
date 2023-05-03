@@ -2,8 +2,9 @@
 <?php
     if ((isset($_SESSION['Articles'])) && (count($_SESSION['Articles']) !==0)) {
         $nArticles = count($_SESSION['Articles']);
-
-        ?>
+      
+      ?>
+        
 
 <span class="nArticles"><?php echo $nArticles ?></span>
         <?php

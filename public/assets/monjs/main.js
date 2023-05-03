@@ -44,6 +44,40 @@ function redirectToUrl(url) {
 }
 
 
+// // géolocalisation///////////
+// if (navigator.geolocation)
+// {
+//   navigator.geolocation.getCurrentPosition(function(position) {
+//     let latitude = position.coords.latitude;
+//     let longitude = position.coords.longitude;
+//     document.getElementById("latitude").innerHTML = latitude;
+//     document.getElementById("longitude").innerHTML = longitude;
+//   });
+// }
+// else { alert("Votre navigateur ne supporte pas la géolocalisation"); }
+
+
+// // En ajax
+// $(document).ready(function() {
+//   // Envoyer une requête AJAX pour récupérer les valeurs de latitude et de longitude
+//   $.ajax({
+//     url: "index.php?page=v_accueil&action=voirArticlesAccueil",
+//     method: "GET",
+//     success: function(response) {
+//       // Analyser la réponse JSON et stocker les valeurs de latitude et de longitude dans des variables JavaScript
+//       var data = JSON.parse(response);
+//       var latitude = data.latitude;
+//       var longitude = data.longitude;
+//       // Mettre à jour les éléments HTML avec les valeurs de latitude et de longitude
+//       $("#latitude").html(latitude);
+//       $("#longitude").html(longitude);
+//     }
+//   });
+// });
+
+// Fin géolocalisation///////////
+
+
 // Loto ///////////////////////////////////////////////////////////////
 
 function getCookie(name) {
@@ -91,14 +125,14 @@ console.log(document.cookie);
   reels.forEach((reel) => {
     const speed = Math.floor(Math.random());
 
-    const randomIndex = Math.floor(Math.random() * 4);
+    const randomIndex = Math.floor(Math.random() * 5);
     const destination = randomIndex * 100;
 
     speeds.push(speed);
     destinations.push(destination);
-    reel.style.transition = 'transform 0.2s ease-out';
+    reel.style.transition = 'transform 3s ease-out';
     reel.style.transform = 'rotate(15deg)';
-    reel.style.transform = `translateY(-${destination}px) rotate(-40deg)`;
+    reel.style.transform = `translateY(-${destination}px) rotate(-5440deg)`;
     
   });
 
@@ -106,7 +140,7 @@ console.log(document.cookie);
     checkWin();
     isSpinning = false;
     spinButton.disabled = false;
-  }, 1200);
+  }, 4000);
 }
 
 function checkWin() {
@@ -149,6 +183,8 @@ if (count > 0 && count <= 5) {
 } 
 
 else {
+  alert(`Désolé, vous avez pas gagné cette fois ! à bientôt `);
+
   reels.forEach((reel) => {
     reel.style.transition = 'transform 0.01s ease-out';
     reel.style.transform = `translateY(0px)`;
