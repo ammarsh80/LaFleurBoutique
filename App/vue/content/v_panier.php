@@ -68,7 +68,7 @@
 
                 <?php
                 if (isset($lesArticlesDuPanier)) {
-                    if ($sommeTTC >= 50) {
+                    if ($total_a_payer >= 50) {
                 ?>
                         <div class="w-100 d-flex justify-content-evenly mt-2" style="pointer-events: none !important;">
                             <span class="fw-bold">Frais de livraison :</span>
@@ -107,7 +107,6 @@
                     <p class="mt-3 fw-bold">Total à payer (TTC)</p>
                     <p class="somme_total">
                     <?php
-
                     echo ($total_a_payer);
                 }
 

@@ -1,11 +1,7 @@
 <?php
-
-
-
 include_once "./App/modele/M_Article.php";
 include_once "./App/modele/M_Consultation.php";
-
-
+include_once "./App/modele/M_Payer.php";
 
 /**
  * Controleur pour la gestion du panier
@@ -17,9 +13,6 @@ switch ($action) {
         retirerDuPanier($idArticle);
         afficheMessage("cet article a été retiré du panier!!");
 
-
-        // $_SESSION['Panier'][$idArticle]['quantite'] = 0;
-
         $index = array_search($idArticle, $_SESSION['Articles']);
         if ($_SESSION['Panier'][$idArticle]['quantite'] == 0) {
             unset($_SESSION['Articles'][$index]);
@@ -29,30 +22,10 @@ switch ($action) {
     case 'voirPanier':
         $n = nbArticlesDuPanier();
         if ($n > 0) {
+            $total_a_payer = M_Payer::calculePanier();
             $desIdArticle = getLesIdArticlesDuPanier();
             $lesArticlesDuPanier = M_Article::trouveLesArticlesDuTableau($desIdArticle);
 
-            $sommePrixUnitaires = array_sum(array_map(function ($article) {
-                return $article['prix_unitaire'] * $_SESSION['Panier'][$article['id']]['quantite'];
-            }, $lesArticlesDuPanier));
-        
-            $sommeTTC = number_format($sommePrixUnitaires, 2, '.', '');
-            $lesFraisLivraison = M_Consultation::trouveLesFraisLivraison();
-
-            if ($sommePrixUnitaires >= 50) {
-                $total_a_payer = $sommePrixUnitaires + ($lesFraisLivraison[0]['somme']);
-
-                $_SESSION['total_a_payer'] = $total_a_payer;
-                $total_payer = $_SESSION['total_a_payer'];
-                $_SESSION['total_payer'] = $total_payer;
-
-            } else {
- 
-                $total_a_payer = $sommePrixUnitaires  + ($lesFraisLivraison[1]['somme']);
-                $_SESSION['total_a_payer'] = $total_a_payer;
-                $total_payer = $_SESSION['total_a_payer'];
-                $_SESSION['total_payer'] = $total_payer;             
-            }
         } else {
             afficheMessagePanierVide("Panier Vide !!");
             $uc = '';

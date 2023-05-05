@@ -117,7 +117,7 @@ class M_Inscription
         if ($psw == "") {
             $erreurs[] = "Il faut saisir le champ mot de passe";
         } else if (!estUnPwd($psw)) {
-            $erreurs[] = "Votre mot de passe doit contenir au moins 8 caractères dont: 1 lettre, 1 chiffre et 1 caractère spécial";
+            $erreurs[] = "Votre mot de passe doit contenir (8 à 14) caractères dont: 1 lettre majuscule, 1 lettre minuscule, 1 chiffre et 1 caractère spécial";
         }
         if ($confirm_psw == "") {
             $erreurs[] = "Il faut saisir le champ mot de passe";

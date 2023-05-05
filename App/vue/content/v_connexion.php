@@ -15,11 +15,11 @@
 
             <div>
                 <label for="identifiant" class="label_connexion">Pseudo *</label>
-                <input type="text" name="identifiant" id="identifiant" class="input_connexion input_identification" required>
+                <input type="text" name="identifiant" id="identifiant" class="input_connexion input_identification" placeholder="votre pseudo" required>
             </div>
             <div>
                 <label for="mot_de_passe" class="label_connexion">Mot de passe *</label>
-                <input type="password" name="mot_de_passe" id="mot_de_passe" class="input_connexion input_identification" required>
+                <input type="password" name="mot_de_passe" id="mot_de_passe" class="input_connexion input_identification" placeholder="votre mot de passe" required>
             </div>
             <button type="submit" id="btn_se_connecter" class="btn_se_connecter">Me connecter</button>
         </form>
@@ -32,15 +32,15 @@
             <div id="container_formaulaire_inscription_left">
                 <div>
                     <label for="nom" class="label_connexion">Nom *</label>
-                    <input type="nom" name="nom" id="nom" class="input_connexion" required>
+                    <input type="nom" name="nom" id="nom" class="input_connexion" placeholder="votre nom" required>
                 </div>
                 <div>
                     <label for="prenom" class="label_connexion">Prénom *</label>
-                    <input type="text" name="prenom" id="prenom" class="input_connexion" required>
+                    <input type="text" name="prenom" id="prenom" class="input_connexion" placeholder="votre prénom" required>
                 </div>
                 <div>
                     <label for="pseudo" class="label_connexion">Pseudo *</label>
-                    <input type="text" name="pseudo" id="pseudo" class="input_connexion" required>
+                    <input type="text" name="pseudo" id="pseudo" class="input_connexion" placeholder="exemple@" required>
                 </div>
                 <div>
                     <label for="psw" class="label_connexion">Mot de passe *</label>
@@ -54,11 +54,11 @@
             <div id="container_formaulaire_inscription_right">
                 <div>
                     <label for="rue" class="label_connexion">Rue *</label>
-                    <input type="text" name="rue" id="rue" class="input_connexion" required>
+                    <input type="text" name="rue" id="rue" class="input_connexion" placeholder="numéro et nom de la rue" required>
                 </div>
                 <div>
                     <label for="complement" class="label_connexion">Complément </label>
-                    <input type="text" name="complement" id="complement" class="input_connexion" required>
+                    <input type="text" name="complement" id="complement" class="input_connexion" placeholder="complément d'adresse" required>
                 </div>
                 <div>
                     <label for="ville" class="label_connexion">Ville *</label>
@@ -71,7 +71,7 @@
 
                 <div>
                     <label for="mail" class="label_connexion">E-mail *</label>
-                    <input type="text" name="mail" id="mail" class="input_connexion" required>
+                    <input type="text" name="mail" id="mail" class="input_connexion" placeholder="exemple@ttt.com" required>
                 </div>
 
                 <div class="d-flex flex-wrap">

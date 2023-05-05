@@ -140,8 +140,7 @@ console.log(document.cookie);
     checkWin();
     isSpinning = false;
     spinButton.disabled = false;
-  }, 4000);
-}
+  }, 4000)}
 
 function checkWin() {
   const destination = [];
