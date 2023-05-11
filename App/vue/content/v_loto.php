@@ -5,11 +5,11 @@
 
 
   <div class="container_cage">
-    <img src="./public/assets/img/loto/cage.PNG" alt="Image 1" />
-    <img src="./public/assets/img/loto/cage.PNG" alt="Image 1" />
-    <img src="./public/assets/img/loto/cage.PNG" alt="Image 1" />
-    <img src="./public/assets/img/loto/cage.PNG" alt="Image 1" />
-    <img src="./public/assets/img/loto/cage.PNG" alt="Image 1" />
+    <img src="./public/assets/img/loto/cage.PNG" alt="Image 1">
+    <img src="./public/assets/img/loto/cage.PNG" alt="Image 1">
+    <img src="./public/assets/img/loto/cage.PNG" alt="Image 1">
+    <img src="./public/assets/img/loto/cage.PNG" alt="Image 1">
+    <img src="./public/assets/img/loto/cage.PNG" alt="Image 1">
   </div>
 
 
@@ -17,20 +17,20 @@
 
     <div class="reel-container">
       <div class="reel" data-speed="2">
-        <img src="./public/assets/img/loto/ballon1.PNG" alt="Image 1" />
+        <img src="./public/assets/img/loto/ballon1.PNG" alt="Image 1">
 
       </div>
       <div class="reel" data-speed="4">
-        <img src="./public/assets/img/loto/ballon1.PNG" alt="Image 1" />
+        <img src="./public/assets/img/loto/ballon1.PNG" alt="Image 1">
       </div>
       <div class="reel" data-speed="6">
-        <img src="./public/assets/img/loto/ballon1.PNG" alt="Image 1" />
+        <img src="./public/assets/img/loto/ballon1.PNG" alt="Image 1">
       </div>
       <div class="reel" data-speed="6">
-        <img src="./public/assets/img/loto/ballon1.PNG" alt="Image 1" />
+        <img src="./public/assets/img/loto/ballon1.PNG" alt="Image 1">
       </div>
       <div class="reel" data-speed="6">
-        <img src="./public/assets/img/loto/ballon1.PNG" alt="Image 1" />
+        <img src="./public/assets/img/loto/ballon1.PNG" alt="Image 1">
       </div>
     </div>
     <button class="spin-button">Tirer</button>
@@ -55,13 +55,3 @@
   </div>
 
 </section>
-
-<!-- <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-18343038-1', 'auto');
-  ga('send', 'pageview');
-</script> -->

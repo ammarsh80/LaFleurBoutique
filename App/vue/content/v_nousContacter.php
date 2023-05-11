@@ -1,5 +1,5 @@
 <section id="connexion">
-    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="image bannière">
+    <div class="banniere" style="background-image: url(./public/assets/img/baniere.jpg);"></div>
 
 
     <div id="container_inscription" class="container_contacte">

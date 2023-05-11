@@ -1,5 +1,5 @@
 <section id="panier">
-    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="image bannière" style="margin-bottom: 25px;">
+    <div class="banniere" style="background-image: url(./public/assets/img/baniere.jpg);"></div>
 
     <div id="container_panier">
         <p class="titres_compte valide_panier">Je valide mon panier</p>
@@ -31,17 +31,17 @@
 
                         ?>
                             <div id="article_panier">
-                                <img id="image_article_panier" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>" />
+                                <img id="image_article_panier" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>">
                                 <div id="description_article_panier">
                                     <p><?= $nom_fleur . " " . $couleur ?></p>
                                     <p><?= $nombre . " " . $unite . " " . $taille  ?></p>
 
-                                    <div id="prix_panier">
+                                    <div class="prix_panier">
                                         <p><?= $prix ?> Euros</p>
                                         <a href="index.php?page=v_panier&uc=panier&idArticle=<?= $idArticle ?>&action=supprimerUnArticle" onclick="return confirm('Voulez-vous vraiment retirer cet article ?');">
                                             <?php
                                             ?>
-                                            <img src="./public/assets/img/panier_delete.jpg" title="enlever du panier" class="add panier_delete" />
+                                            <img src="./public/assets/img/panier_delete.jpg" title="enlever du panier" class="add panier_delete">
                                         </a>
                                     </div>
                                     <div>

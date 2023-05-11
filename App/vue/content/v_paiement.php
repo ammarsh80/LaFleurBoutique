@@ -1,7 +1,9 @@
 <section id="panier">
-    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="image bannière" style="margin-bottom: 25px;">
+<div class="banniere" style="background-image: url(./public/assets/img/baniere.jpg);"></div>
     <?php
+   
     if (!isset($_SESSION['idDerniereCommande']) && (!isset($_SESSION['total_a_payer']))) {
+      
     ?>
 
         <p class="a_jour">Si vous avez une commande en état (enregistrée) et que vous n'avez pas encore payé, veuillez renouvler votre commande, votre commande étant considérée comme annulée.</p>

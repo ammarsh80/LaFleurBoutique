@@ -23,17 +23,17 @@
 
             
         ?>
-            <div id="container_article">
-                <img  id="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>" />
-                <div id="description_article">
+            <div class="container_article">
+                <img  class="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>">
+                <div class="description_article">
                     <p><?= $nom_fleur. " " .$couleur ?></p>
                     <p><?= $nombre. " ".$unite. " ".$taille  ?></p>
                     
-                    <div id="prix_panier">
+                    <div class="prix_panier">
                         <p><?= $prix ?> Euros</p>
 
                         <a href="index.php?page=v_anniversaire&idArticle=<?php echo $idArticle ?>&categorie=Anniversaire&action=ajouterAuPanierAnniversaire">
-                        <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add" />
+                        <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add">
                         </a>
                     </div>
                 </div>
@@ -69,18 +69,15 @@
 
 
         ?>
-            <div id="container_article">
-                <img id="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>" />
-                <div id="description_article">
+            <div class="container_article">
+                <img class="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>">
+                <div class="description_article">
                     <p><?= $nom_fleur . " " . $couleur ?></p>
                     <p><?= $nombre . " " . $unite . " " . $taille  ?></p>
 
-                    <div id="prix_panier">
+                    <div class="prix_panier">
                         <p><?= $prix ?> Euros &nbsp;</p> <br>
                       <p>(Article en repture de stock)</p>
-                        
-                    </a> 
-
                     </div>
                 </div>
             </div>
@@ -94,12 +91,12 @@
     <p>Journal Lafleur</p>
     <div id="container_articles">
 
-        <div id="article">
+        <div class="article">
             <a href="https://shihan.needemand.com/projets_web/la_fleur_wordpress/?p=53">
                 <img src="./public/assets/img/blog/paysages.jpg" alt="phoho paysages"></a>
             <p>Les magnifiques paysages de notre Région</p>
         </div>
-        <div id="article">
+        <div class="article">
             <a href="https://shihan.needemand.com/projets_web/la_fleur_wordpress/?p=41">
                 <img src="./public/assets/img/blog/vera.jpg" alt="phoho aloé vera"> </a>
             <p>L’aloé vera</p>

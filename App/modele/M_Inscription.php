@@ -40,7 +40,7 @@ class M_Inscription
     }
 
     /**
-     * vérifie le mdp pour la connexion
+     * vérifie le mot de passe et le pseudo pour la connexion
      *
      * @param String $pseudo
      * @param String $psw
@@ -49,7 +49,8 @@ class M_Inscription
     public static function checkPassword(String $pseudo, String $psw)
     {
         $conn = AccesDonnees::getPdo();
-        $sql = "SELECT lf_clients.id, lf_clients.mot_de_passe, lf_clients.pseudo FROM lf_clients 
+        $sql = "SELECT lf_clients.id, lf_clients.mot_de_passe, lf_clients.pseudo 
+        FROM lf_clients 
         WHERE lf_clients.pseudo = :pseudo";
         // prepare and bind
         $stmt = $conn->prepare($sql);
@@ -59,21 +60,18 @@ class M_Inscription
         if ($stmt->rowCount() > 0) {
             $data = $stmt->fetch();
             $psw_bdd = $data['mot_de_passe'];
-            // Le reste du code ici
         }
         if ($stmt->rowCount() == 0) {
-
             header('Location: index.php?page=v_connexion');
-            afficheMessage("L'identifiant ou le mot de passe est incorrecte, Entrez votre identifiant et votre mot de passe Correctement ou enregistrez-vous sur la page 'S'inscrire', merci !");
+            afficheMessage("Entrez correctement votre identifiant et votre mot de passe 
+            ou veuillez renseigner le formulaire d'inscription avant de vous connectez");
             die;
         }
-
         if (password_verify($psw, $psw_bdd)) {
             $id_clients = $data['id'];
             $identifiant = $data['pseudo'];
             return $id_clients;
         }
-
         return false;
     }
 
@@ -245,8 +243,7 @@ class M_Inscription
         $erreurs = [];
         if ($identifiant == "") {
             $erreurs[] = "Il faut saisir le pseudo";
-        } 
-        else if (!estUnPseudo($identifiant)) {
+        } else if (!estUnPseudo($identifiant)) {
             $erreurs[] = "erreur de pseudo";
         }
         if ($mot_de_passe == "") {
@@ -370,7 +367,6 @@ class M_Inscription
      */
     public static function trouveOuCreerClient($nom, $prenom, $pseudo, $telephone, $mail, $psw, $adresses_id)
     {
-
         $pdo = AccesDonnees::getPdo();
         $req = "SELECT lf_clients.id FROM lf_clients WHERE pseudo = :pseudo AND email = :mail";
         $statement = AccesDonnees::getPdo()->prepare($req);
@@ -378,16 +374,14 @@ class M_Inscription
         $statement->bindParam(':mail', $mail, PDO::PARAM_STR);
         $statement->execute();
         $id_client = $statement->fetchColumn();
-
-
-
         if ($id_client == true) {
-            afficheErreur('Client (E-mail et pseudo) est déjà enregistré, veuillez vous connecter à votre compte !!');
+            afficheErreur('Client (E-mail et pseudo) est déjà enregistré, 
+            veuillez vous connecter à votre compte !!');
             return $id_client;
         } else if ($id_client == false) {
             $psw = password_hash($psw, PASSWORD_BCRYPT);
-
-            $req = "INSERT INTO lf_clients (nom_client, prenom, pseudo, telephone, email, mot_de_passe) VALUES (:nom,:prenom,:pseudo,:telephone,:mail, :psw)";
+            $req = "INSERT INTO lf_clients (nom_client, prenom, pseudo, telephone, email, mot_de_passe) 
+            VALUES (:nom,:prenom,:pseudo,:telephone,:mail, :psw)";
             $statement = AccesDonnees::getPdo()->prepare($req);
             $statement->bindParam(':nom', $nom, PDO::PARAM_STR);
             $statement->bindParam(':prenom', $prenom, PDO::PARAM_STR);
@@ -398,8 +392,8 @@ class M_Inscription
             $statement->execute();
             $id_client = $statement->fetchColumn();
             $id_client = $pdo->lastInsertId();
-
-            $req = "INSERT INTO lf_adresse_client (clients_id, adresses_id) VALUES (:id_client,:adresses_id)";
+            $req = "INSERT INTO lf_adresse_client (clients_id, adresses_id) 
+            VALUES (:id_client,:adresses_id)";
             $statement = AccesDonnees::getPdo()->prepare($req);
             $statement->bindParam(':id_client', $id_client, PDO::PARAM_INT);
             $statement->bindParam(':adresses_id', $adresses_id, PDO::PARAM_INT);
@@ -409,19 +403,19 @@ class M_Inscription
         }
         return $id_client;
     }
-   
-/**
- * après vérification Modifie info personnelles du client selon paramètrtes passées en argument
- *
- * @param [int] $id_client
- * @param [chaine] $adresse
- * @param [chaine] $complement
- * @param [chaine] $mail
- * @param [int] $telephone
- * @param [int] $new_ville_id
- * @param [int] $new_cp_id
- * @return void
- */
+
+    /**
+     * après vérification Modifie info personnelles du client selon paramètrtes passées en argument
+     *
+     * @param [int] $id_client
+     * @param [chaine] $adresse
+     * @param [chaine] $complement
+     * @param [chaine] $mail
+     * @param [int] $telephone
+     * @param [int] $new_ville_id
+     * @param [int] $new_cp_id
+     * @return void
+     */
     public static function changerInfoClient($id_client, $adresse, $complement, $mail, $telephone, $new_ville_id, $new_cp_id)
     {
         $erreurs = M_Inscription::estProfilValide($adresse, $mail);
@@ -478,12 +472,12 @@ class M_Inscription
         return $erreurs;
     }
 
-/**
+    /**
      * cherche le client selon paramètre (id) passé en argument 
- *
- * @param [type] $id_client
- * @return : array
- */
+     *
+     * @param [type] $id_client
+     * @return : array
+     */
     public static function trouverClientParId($id_client)
     {
         $pdo = AccesDonnees::getPdo();

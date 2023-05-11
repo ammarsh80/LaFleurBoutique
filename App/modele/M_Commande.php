@@ -46,6 +46,7 @@ class M_Commande
     public static function creerCommande($idclient, $id_adresse_livraison, $id_adresse_facturation, $listArticles, $commande_cree = false)
     {
         if (!$commande_cree) {
+
             $req = "INSERT INTO lf_commande_clients (clients_id, adresses_livraison_id, adresses_facturation_id) 
             VALUES (:idclient, :id_adresse_livraison, :id_adresse_facturation)";
             $statement = AccesDonnees::getPdo()->prepare($req);
@@ -55,12 +56,37 @@ class M_Commande
             $statement->execute();
             $idDerniereCommande = AccesDonnees::getPdo()->lastInsertId();
 
+            // foreach ($listArticles as $article) {
+            //     $req = "INSERT INTO lf_ligne_commande_client (commande_client_id, article_id) 
+            //     VALUES (:idDerniereCommande, :article)";
+            //     $statement = AccesDonnees::getPdo()->prepare($req);
+            //     $statement->bindParam(':idDerniereCommande', $idDerniereCommande, PDO::PARAM_INT);
+            //     $statement->bindParam(':article', $article, PDO::PARAM_INT);
+            //     $statement->execute();
+    
+ 
+        
+            //     foreach ($_SESSION['Articles'] as $id_article) {
+            //     $req = "INSERT INTO lf_ligne_commande_client (quantite) 
+            //     VALUES (:quantitearticle)";
+            //     $statement = AccesDonnees::getPdo()->prepare($req);
+            //     $statement->bindParam(':quantitearticle', $_SESSION['Panier'][$id_article]['quantite'], PDO::PARAM_INT);
+            //     $statement->execute();
+            //     }
+
+
             foreach ($listArticles as $article) {
-                $req = "INSERT INTO lf_ligne_commande_client (commande_client_id, article_id) 
-                VALUES (:idDerniereCommande, :article)";
+                $req = "INSERT INTO lf_ligne_commande_client (commande_client_id, article_id, quantite) 
+                        VALUES (:idDerniereCommande, :article, :quantite)";
                 $statement = AccesDonnees::getPdo()->prepare($req);
                 $statement->bindParam(':idDerniereCommande', $idDerniereCommande, PDO::PARAM_INT);
                 $statement->bindParam(':article', $article, PDO::PARAM_INT);
+            
+                if (in_array($article, $_SESSION['Articles'])) {
+                    $quantite = $_SESSION['Panier'][$article]['quantite'];
+                } 
+            
+                $statement->bindParam(':quantite', $quantite, PDO::PARAM_INT);
                 $statement->execute();
 
                 $req = "SELECT quantite_stock FROM lf_articles 
@@ -84,7 +110,6 @@ class M_Commande
 
     /**
      * Crée une commande Prorgramer
-     *
      * Crée une commande à partir des arguments validés passés en paramètre, l'identifiant est
      * construit à partir du maximum existant ; crée les lignes de commandes dans la table contenir à partir du
      * tableau d'idProduit passé en paramètre
@@ -92,12 +117,13 @@ class M_Commande
      * @param $ville_id
      * @param $listArticles
      * @return : id Derniere Commande
-
      */
-    public static function creerCommandeProrgramer($idclient, $date_livraison_progamme, $id_adresse_livraison, $id_adresse_facturation, $listArticles, $commande_cree = false)
+    public static function creerCommandeProrgramer($idclient, $date_livraison_progamme, 
+    $id_adresse_livraison, $id_adresse_facturation, $listArticles, $commande_cree = false)
     {
         if (!$commande_cree) {
-            $req = "INSERT INTO lf_commande_clients (clients_id, date_livraison_progamme, adresses_livraison_id, adresses_facturation_id) 
+            $req = "INSERT INTO lf_commande_clients (clients_id, date_livraison_progamme, 
+            adresses_livraison_id, adresses_facturation_id) 
         VALUES (:idclient, :date_livraison_progamme, :id_adresse_livraison, :id_adresse_facturation)";
             $statement = AccesDonnees::getPdo()->prepare($req);
             $statement->bindParam(':idclient', $idclient, PDO::PARAM_INT);
@@ -106,21 +132,36 @@ class M_Commande
             $statement->bindParam(':id_adresse_facturation', $id_adresse_facturation, PDO::PARAM_INT);
             $statement->execute();
             $idDerniereCommande = AccesDonnees::getPdo()->lastInsertId();
+            // foreach ($listArticles as $article) {
+            //     $req = "INSERT INTO lf_ligne_commande_client (commande_client_id, article_id) 
+            // VALUES (:idDerniereCommande, :article)";
+            //     $statement = AccesDonnees::getPdo()->prepare($req);
+            //     $statement->bindParam(':idDerniereCommande', $idDerniereCommande, PDO::PARAM_INT);
+            //     $statement->bindParam(':article', $article, PDO::PARAM_INT);
+            //     $statement->execute();
+
+
 
             foreach ($listArticles as $article) {
-                $req = "INSERT INTO lf_ligne_commande_client (commande_client_id, article_id) 
-            VALUES (:idDerniereCommande, :article)";
+                $req = "INSERT INTO lf_ligne_commande_client (commande_client_id, article_id, quantite) 
+                        VALUES (:idDerniereCommande, :article, :quantite)";
                 $statement = AccesDonnees::getPdo()->prepare($req);
                 $statement->bindParam(':idDerniereCommande', $idDerniereCommande, PDO::PARAM_INT);
                 $statement->bindParam(':article', $article, PDO::PARAM_INT);
+            
+                if (in_array($article, $_SESSION['Articles'])) {
+                    $quantite = $_SESSION['Panier'][$article]['quantite'];
+                } 
+           
+                $statement->bindParam(':quantite', $quantite, PDO::PARAM_INT);
                 $statement->execute();
+
                 $req = "SELECT quantite_stock FROM lf_articles 
                 WHERE id = :article";
                 $statement = AccesDonnees::getPdo()->prepare($req);
                 $statement->bindParam(':article', $article, PDO::PARAM_INT);
                 $statement->execute();
                 $quantiteStock = $statement->fetchColumn();
-
                 $quantiteStock--;
                 $req = "UPDATE lf_articles SET quantite_stock = :quantiteStock WHERE id = :article";
                 $statement = AccesDonnees::getPdo()->prepare($req);

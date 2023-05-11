@@ -1,5 +1,5 @@
 <section id="panier">
-    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="image bannière" style="margin-bottom: 25px;">
+<div class="banniere" style="background-image: url(./public/assets/img/baniere.jpg);"></div>
     <p class="mb-2 fw-bold">Confirmation de paiement : nous avons réçu votre paiement </p>
     <p class="mb-4">Vous pouvez visualiser votre commande et suivre son état depuis votre compte</p>
     <div class="cadre_paiement">

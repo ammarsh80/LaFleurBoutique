@@ -23,16 +23,16 @@
 
             
         ?>
-            <div id="container_article">
-                <img  id="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>" />
-                <div id="description_article">
+            <div class="container_article">
+                <img  class="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>">
+                <div class="description_article">
                     <p><?= $nom_fleur. " " .$couleur ?></p>
                     <p><?= $nombre. " ".$unite. " ".$taille  ?></p>
                     
-                    <div id="prix_panier">
+                    <div class="prix_panier">
                         <p><?= $prix ?> Euros</p>
                         <a href="index.php?page=v_remerciement&idArticle=<?php echo $idArticle ?>&categorie=Remerciement&action=ajouterAuPanierRemerciement">
-                        <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add" />
+                        <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add">
                         </a>
                     </div>
                 </div>
@@ -68,18 +68,15 @@
 
 
         ?>
-            <div id="container_article">
-                <img id="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>" />
-                <div id="description_article">
+            <div class="container_article">
+                <img class="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>">
+                <div class="description_article">
                     <p><?= $nom_fleur . " " . $couleur ?></p>
                     <p><?= $nombre . " " . $unite . " " . $taille  ?></p>
 
-                    <div id="prix_panier">
+                    <div class="prix_panier">
                         <p><?= $prix ?> Euros &nbsp;</p> <br>
                       <p>(Article en repture de stock)</p>
-                        
-                    </a> 
-
                     </div>
                 </div>
             </div>
@@ -93,12 +90,12 @@
         <p>Journal Lafleur</p>
         <div id="container_articles">
 
-            <div id="article">
+            <div class="article">
                 <a href="https://shihan.needemand.com/projets_web/la_fleur_wordpress/?p=28">
                     <img src="./public/assets/img/blog/mimosa.jpg" alt="phoho mimosa"></a>
                 <p>Le Mimosa - Quelques conseils d’entretien</p>
             </div>
-            <div id="article">
+            <div class="article">
                 <a href="https://shihan.needemand.com/projets_web/la_fleur_wordpress/?p=66">
                     <img src="./public/assets/img/blog/muguet.jpg" alt="phoho muguet"> </a>
                 <p>Muguet : Fleur de bonheur </p>

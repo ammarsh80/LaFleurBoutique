@@ -1,19 +1,26 @@
-<body>
+<?php
+include("./App/vue/common/head.php");
+include_once './App/controleur/c_consultation.php';
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+?>
+
+<body>
+  <?php
+  include("./App/vue/common/header.php");
+
+  include("./App/vue/common/navigation.php");
+  ?>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
   <script src="public/assets/monjs/jquery.spritely.js"></script>
   <script src="public/assets/monjs/jquery.backgroundposition.js"></script>
   <script src="public/assets/monjs/slot.js"></script>
 
   <script src="public/assets/monjs/external-api.js"></script>
-  <script src="public/assets/monjs/single-file-hooks-frames.js"></script>
+  <script src="public/assets/monjs/single-file-hooks-frames.js"></script> -->
 
   <main>
     <?php
-    include("./App/vue/common/head.php");
-    include("./App/vue/common/header.php");
-    include_once './App/controleur/c_consultation.php';
-    include("./App/vue/common/navigation.php");
+
 
 
     $page = filter_input(INPUT_GET, "page", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -46,18 +53,18 @@
       && ($page !== 'v_parMot')
     )) {
 
-      
+
       include 'content/v_accueil.php';
       // include 'content/error.php';
       // die;
     } else {
-   
-      
+
+
       include './App/vue/content/' . $page . '.php';
-      
     }
 
-    if (isset($action)
+    if (
+      isset($action)
       && ($action !== 'voirArticlesAccueil')
       && ($action !== 'voirArticlesAmour')
       &&  ($action !== 'voirArticlesMariage')
@@ -90,13 +97,8 @@
     include './App/vue/common/footer.php';
     ?>
   </main>
+  <script src="public/assets/monjs/main.js"></script>
+  <!-- <script src="public/assets/bootstrap/js/bootstrap.min.js"></script> -->
 </body>
-<!-- <script src="public/assets/bootstrap/js/bootstrap.min.js"></script> -->
-<script src="public/assets/monjs/main.js"></script>
-
-
-
-
-
 
 </html>

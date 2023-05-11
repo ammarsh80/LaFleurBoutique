@@ -92,8 +92,16 @@ function ajouterAuPanierPanier($article, $quantite)
  */
 function getLesIdArticlesDuPanier()
 {
-
     return $_SESSION['Articles'];
+ 
+}
+function getLesQuantiteArticlesDuPanier()
+{
+
+    return  $_SESSION['Panier'];
+        // // $_SESSION['Panier'][$idArticle]['quantite'];
+        // var_dump($_SESSION['Panier']);
+        // die;
 }
 
 /**

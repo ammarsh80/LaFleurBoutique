@@ -19,10 +19,12 @@ if (isset($_SESSION['id'])) {
 
 switch ($action) {
     case 'passerCommande':
+
+        
         $n = nbArticlesDuPanier();
         if ($n > 0) {
             $InfoUtilisateur = [];
-
+          
             $InfoUtilisateur = M_Commande::afficherInfoUtilisateur($_SESSION['id']);
             if (!empty($_SESSION['id'])) {
                 $InfoUtilisateur = M_Commande::afficherInfoUtilisateur($_SESSION['id']);
@@ -110,6 +112,7 @@ switch ($action) {
         }
     case 'confirmerCommande':
 
+
       
         $nom = filter_input(INPUT_POST, 'identiteLiv');
         $prenom = filter_input(INPUT_POST, 'prenomLiv');
@@ -129,20 +132,23 @@ switch ($action) {
         $btn_valide_payement = filter_input(INPUT_POST, 'btn_valide_payement');
         $valider = filter_input(INPUT_POST, 'valider');
         $btn_name = filter_input(INPUT_POST, 'btn_valide_payement');
-
+       
         $errors = M_Commande::estValide($nom, $prenom, $rue, $complement, $nomFac, $prenomFac, $rueFac, $complementFac, $villeFac, $cpFac);
+       
         if (count($errors) > 0) {
             // Si une erreur, on recommence
             afficheErreurs($errors);
             break;
         }
-      
+     
         if ((!isset($_SESSION['Articles'])) || (empty($_SESSION['Articles']))) {
-           
+         
             return;
         }
        
+       
         if (isset($date_livraison_progamme) && !empty($date_livraison_progamme)) {
+      
             $id_ville_livraison = M_Inscription::trouveVille($ville);
 
             $id_ville_facturation = M_Inscription::trouveOuCreerVille($villeFac);
@@ -169,8 +175,6 @@ switch ($action) {
             return $idDerniereCommande;
         } else {
 
-           
-
             $id_ville_livraison = M_Inscription::trouveVille($ville);
             $id_ville_facturation = M_Inscription::trouveOuCreerVille($villeFac);
             $id_cp_livraison = M_Inscription::trouveCp($cp);
@@ -179,10 +183,17 @@ switch ($action) {
             $id_adresse_facturation = M_Commande::trouveOuCreerAdresse($rueFac, $complementFac, $id_ville_facturation, $id_cp_facturation);
            
             $idclient = $_SESSION['id'];
-
             $listArticles = getLesIdArticlesDuPanier();
 
-           
+
+            // var_dump($listArticles);
+        //     // die;
+        //     $quantiteArticles = getLesQuantiteArticlesDuPanier();
+        //   var_dump($quantiteArticles);
+        //   die;
+
+
+
             $idDerniereCommande =  M_Commande::creerCommande($idclient, $id_adresse_livraison, $id_adresse_facturation, $listArticles);
           
             supprimerPanier();

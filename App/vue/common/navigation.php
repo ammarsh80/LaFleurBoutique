@@ -1,25 +1,25 @@
 <section id="navigation">
     <div id="nav_bar">
         <a href="index.php?page=v_accueil&action=voirArticlesAccueil">
-            <h1>Accueil</h1>
+            <h2>Accueil</h2>
         </a>
         <a href="index.php?page=v_amour&action=voirArticlesAmour">
-            <h1>Amour et sentiments</h1>
+            <h2>Amour et sentiments</h2>
         </a>
         <a href="index.php?page=v_mariage&action=voirArticlesMariage">
-            <h1>Mariage</h1>
+            <h2>Mariage</h2>
         </a>
         <a href="index.php?page=v_naissance&action=voirArticlesNaissance">
-            <h1>Naissance</h1>
+            <h2>Naissance</h2>
         </a>
         <a href="index.php?page=v_remerciement&action=voirArticlesRemerciement">
-            <h1>Remerciement</h1>
+            <h2>Remerciement</h2>
         </a>
         <a href="index.php?page=v_anniversaire&action=voirArticlesAnniversaire">
-            <h1>Anniversaire</h1>
+            <h2>Anniversaire</h2>
         </a>
         <a href="https://shihan.needemand.com/projets_web/la_fleur_wordpress/">
-            <h1>Notre Blog</h1>
+            <h2>Notre Blog</h2>
         </a>
 
 
@@ -50,6 +50,7 @@
                     <div class="lignes"></div>
                     <div class="lignes"></div>
                 </div>
+            </div>
         </nav>
     </div>
 

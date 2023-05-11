@@ -87,7 +87,7 @@ function estUntextEtChiffre44($adresse)
 }
 
 /**
- * test si c'es un mot de pase valide
+ * test si c'est un mot de passe valide
  *
  * @param [type] $psw
  * @return : vrai ou faux
@@ -111,18 +111,16 @@ function estEntierCarte($carte)
 
 
 /**
- * Pour valider un numéro de carte bancaire, on peut utiliser l'algorithme de Luhn 
- * (également connu sous le nom d'algorithme de modulo 10). Voici le code modifié pour
- *  valider un numéro de carte bancaire :
- *
- * @param [type] $numero
- * @return void
+ * l'algorithme de Luhn: Pour valider un numéro de carte bancaire, on peut utiliser l'algorithme de Luhn 
+ * (également connu sous le nom d'algorithme de modulo 10). 
+ * 
+ * @param string $numero Le numéro de carte de crédit à valider.
+ * @return bool Vrai si le numéro est valide, faux sinon.
  */
 function estUneCarteModulo10($numero)
 {
     // Supprime tous les espaces de la chaîne de caractères
     $numero = str_replace(' ', '', $numero);
-
     // La chaîne doit être constituée de chiffres uniquement
     if (!preg_match('/^[0-9]+$/', $numero)) {
         return false;
@@ -130,20 +128,28 @@ function estUneCarteModulo10($numero)
 
     $sum = 0;
     $length = strlen($numero);
-
+    // Parcourt tous les chiffres du numéro de carte de crédit, en partant du dernier chiffre
+    // et en remontant jusqu'au premier chiffre.
     for ($i = $length - 1; $i >= 0; $i--) {
         $digit = (int) $numero[$i];
+        // Multiplie par 2 tous les chiffres situés à une position impaire (en partant de 1)
+        // à partir de la droite.
         if ($i % 2 == $length % 2) {
             $digit *= 2;
+            // Si le résultat est supérieur à 9, on soustrait 9.
             if ($digit > 9) {
                 $digit -= 9;
             }
         }
+        // Ajoute le chiffre modifié ou non-modifié à la somme.
         $sum += $digit;
     }
-
+    // Le numéro est valide selon l'algorithme du module 10 si la somme est divisible par 10.
     return $sum % 10 == 0;
 }
+
+
+
 
 /**
  * teste si c'est une date d'expiration d'une carte bancaire
@@ -185,4 +191,3 @@ function estUnPseudo($pseudo)
 {
     return preg_match('/^[a-zA-Z0-9#@_-]{3,40}$/', $pseudo) === 1;
 }
-

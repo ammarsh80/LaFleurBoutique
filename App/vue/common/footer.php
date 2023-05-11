@@ -1,14 +1,13 @@
-
 <?php
-    if ((isset($_SESSION['Articles'])) && (count($_SESSION['Articles']) !==0)) {
-        $nArticles = count($_SESSION['Articles']);
-      
-      ?>
-        
+if ((isset($_SESSION['Articles'])) && (count($_SESSION['Articles']) !== 0)) {
+    $nArticles = count($_SESSION['Articles']);
 
-<span class="nArticles"><?php echo $nArticles ?></span>
-        <?php
-    }
+?>
+
+
+    <span class="nArticles"><?php echo $nArticles ?></span>
+<?php
+}
 ?>
 <footer>
     <div id="btn_scrole">
@@ -49,7 +48,7 @@
             </div>
         </div>
         <div id="nous_contacter">
-        <a href="index.php?page=v_nousContacter">
+            <a href="index.php?page=v_nousContacter">
                 <p class="contacter">Nous-contacter</p>
             </a>
             <a href="index.php?page=v_nousContacter">

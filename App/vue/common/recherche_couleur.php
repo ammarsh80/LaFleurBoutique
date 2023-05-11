@@ -18,7 +18,7 @@ include_once 'App/controleur/c_consultation.php';
       
         <form method="GET">
             <input type="text" name="recherche_mot" placeholder="Rechercher une fleur">
-            <input type="submit" value="ok"></input>
+            <input type="submit" value="ok">
         </form>
 
         <?php

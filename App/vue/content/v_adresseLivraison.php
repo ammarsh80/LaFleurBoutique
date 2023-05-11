@@ -1,5 +1,5 @@
 <section id="panier">
-    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="image bannière" style="margin-bottom: 25px;">
+    <div class="banniere" style="background-image: url(./public/assets/img/baniere.jpg);"></div>
 
     <div id="container_panier">
 

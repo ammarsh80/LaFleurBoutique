@@ -25,20 +25,17 @@
 
 
             ?>
-                <div id="container_article">
-                    <img id="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>" />
-                    <div id="description_article">
+                <div class="container_article">
+                    <img class="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>">
+                    <div class="description_article">
                         <p><?= $nom_fleur . " " . $couleur ?></p>
                         <p><?= $nombre . " " . $unite . " " . $taille  ?></p>
 
-                        <div id="prix_panier">
+                        <div class="prix_panier">
                             <p><?= $prix ?> Euros</p>
                             <a href="index.php?page=v_accueil&idArticle=<?php echo $idArticle ?>&categorie=Accueil&action=ajouterAuPanier">
-                                <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add" />
+                                <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add">
                             </a>
-
-                            </a>
-
                         </div>
                     </div>
                 </div>
@@ -78,18 +75,15 @@
 
 
             ?>
-                    <div id="container_article">
-                        <img id="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>" />
-                        <div id="description_article">
+                    <div class="container_article">
+                        <img class="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>">
+                        <div class="description_article">
                             <p><?= $nom_fleur . " " . $couleur ?></p>
                             <p><?= $nombre . " " . $unite . " " . $taille  ?></p>
 
-                            <div id="prix_panier">
+                            <div class="prix_panier">
                                 <p><?= $prix ?> Euros &nbsp;</p> <br>
                                 <p>(Article en repture de stock)</p>
-
-                                </a>
-
                             </div>
                         </div>
                     </div>

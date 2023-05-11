@@ -106,41 +106,79 @@ const symbols = [
 ];
 let isSpinning = false;
 
+// let block = 0;
+// function spinReels() {
+//   if (isSpinning || essai > 0 || getCookie("block") > 0) {
+//     return;
+//   }
+//   essai++;
+//   block++;
+//   document.cookie = "block=" + block + "; SameSite=None; Secure";
+
+//   isSpinning = true;
+//   spinButton.disabled = true;
+
+//   const speeds = [];
+//   const destinations = [];
+//   reels.forEach((reel) => {
+//     const speed = Math.floor(Math.random());
+
+//     const randomIndex = Math.floor(Math.random() * 5);
+//     const destination = randomIndex * 100;
+
+//     speeds.push(speed);
+//     destinations.push(destination);
+//     reel.style.transition = 'transform 3s ease-out';
+//     reel.style.transform = 'rotate(15deg)';
+//     reel.style.transform = `translateY(-${destination}px) rotate(-5440deg)`;
+    
+//   });
+//   setTimeout(() => {
+//     checkWin();
+//     isSpinning = false;
+//     spinButton.disabled = false;
+//   }, 4000)}
+
 let block = 0;
 function spinReels() {
+  // Vérifie si le jeu est en cours, si l'essai a été effectué plus de 0 fois ou 
+  //si le blocage est actif, puis retourne.
   if (isSpinning || essai > 0 || getCookie("block") > 0) {
     return;
   }
-
+  // Incrémente le nombre d'essais et de blocages.
   essai++;
   block++;
+  // Enregistre le nombre de blocages dans un cookie avec SameSite None et Secure.
+  // SameSite=None indique que le cookie peut être envoyé à des sites tiers
+  // Secure indique que le cookie doit être envoyé uniquement via une connexion HTTPS sécurisée
   document.cookie = "block=" + block + "; SameSite=None; Secure";
-console.log(document.cookie);
-
+  // Définit la variable isSpinning à true et désactive le bouton de rotation.
   isSpinning = true;
   spinButton.disabled = true;
-
+  // Définit des tableaux pour stocker les vitesses et les destinations de chaque rouleau.
   const speeds = [];
   const destinations = [];
+  // Parcourt chaque rouleau et définit une vitesse et une destination aléatoires pour chacun.
   reels.forEach((reel) => {
     const speed = Math.floor(Math.random());
-
     const randomIndex = Math.floor(Math.random() * 5);
     const destination = randomIndex * 100;
-
     speeds.push(speed);
     destinations.push(destination);
+    // Anime chaque rouleau en utilisant des transitions CSS.
     reel.style.transition = 'transform 3s ease-out';
     reel.style.transform = 'rotate(15deg)';
     reel.style.transform = `translateY(-${destination}px) rotate(-5440deg)`;
-    
   });
-
+  // Vérifie le résultat de la rotation après 4 secondes.
   setTimeout(() => {
     checkWin();
+    // Réinitialise les variables et réactive le bouton de rotation.
     isSpinning = false;
     spinButton.disabled = false;
-  }, 4000)}
+  }, 4000);
+}
 
 function checkWin() {
   const destination = [];

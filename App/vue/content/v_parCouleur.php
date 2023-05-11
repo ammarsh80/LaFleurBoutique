@@ -6,7 +6,7 @@ $id_couleur = filter_var($_GET['couleur'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 ?>
 
 <section id="amour">
-    <div class="banniere" style="background-image: url(./public/assets/img/baniere.jpg);">
+<div class="banniere" style="background-image: url(./public/assets/img/baniere.jpg);"></div>
     </div>
 
     <?php
@@ -28,22 +28,17 @@ $id_couleur = filter_var($_GET['couleur'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 
         ?>
-            <div id="container_article">
-                <img id="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>" />
-                <div id="description_article">
+            <div class="container_article">
+                <img class="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>">
+                <div class="description_article">
                     <p><?= $nom_fleur . " " . $couleur ?></p>
                     <p><?= $nombre . " " . $unite . " " . $taille  ?></p>
 
-                    <div id="prix_panier">
+                    <div class="prix_panier">
                         <p><?= $prix ?> Euros</p>
                         <a href="index.php?page=v_parCouleur&idArticle=<?php echo $idArticle ?>&couleur=<?php echo $id_couleur ?>&action=ajouterAuPanierDepuisCouleur">
-                            <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add" />
-                        </a>
-
-                        </a> 
-
-
-                    </div>
+                            <img src="./public/assets/img/panier_vert.png" title="Ajouter au panier" class="add">
+                     </div>
                 </div>
             </div>
         <?php
@@ -68,13 +63,13 @@ $id_couleur = filter_var($_GET['couleur'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 
         ?>
-            <div id="container_article">
-                <img id="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>" />
-                <div id="description_article">
+            <div class="container_article">
+                <img class="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>">
+                <div class="description_article">
                     <p><?= $nom_fleur . " " . $couleur ?></p>
                     <p><?= $nombre . " " . $unite . " " . $taille  ?></p>
 
-                    <div id="prix_panier">
+                    <div class="prix_panier">
                         <p><?= $prix ?> Euros &nbsp;</p> <br>
                       <p>(Article en repture de stock)</p>
                         

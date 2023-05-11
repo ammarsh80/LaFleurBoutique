@@ -4,7 +4,7 @@ include_once "./App/controleur/c_moncompte.php";
 ?>
 
 <section id="compte">
-    <img class="image_banniere" src="./public/assets/img/baniere.jpg" alt="image bannière">
+<div class="banniere" style="background-image: url(./public/assets/img/baniere.jpg);"></div>
 
     <div id="container_compte">
         <p class="titres_compte">Information personnelles</p>
