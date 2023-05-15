@@ -108,7 +108,7 @@ class M_Inscription
         if ($pseudo === "") {
             $erreurs[] = "Il faut saisir le champ pseudo";
         } else if (!estUnPseudo($pseudo)) {
-            $erreurs[] = "erreur de pseudo, 40 caractères maximume (sont acceptés, majuscules, miniscules et caractères spéciaux  #@_-)";
+            $erreurs[] = "erreur de pseudo, 40 caractères maximume (sont acceptés, majuscules, miniscules et chiffres)";
         }
 
 

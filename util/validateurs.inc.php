@@ -189,5 +189,5 @@ function estUnMot($recherche_mot)
  */
 function estUnPseudo($pseudo)
 {
-    return preg_match('/^[a-zA-Z0-9#@_-]{3,40}$/', $pseudo) === 1;
+    return preg_match('/^[a-zA-Z0-9]{3,40}$/', $pseudo) === 1;
 }

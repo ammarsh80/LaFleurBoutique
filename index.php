@@ -11,10 +11,10 @@
 session_start();
 ini_set('date.timezone', 'Europe/Paris');
 
-// Pour afficher les erreurs PHP
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-// Attention : A supprimer en production !!!
+// // Pour afficher les erreurs PHP
+// error_reporting(E_ALL);
+// ini_set("display_errors", 1);
+// // Attention : A supprimer en production !!!
 
 require("./util/functions.inc.php");
 require('./util/validateurs.inc.php');
@@ -24,7 +24,7 @@ $clientSession = [];
 if (!empty($_SESSION['client'])) {
     $clientSession = $_SESSION['client'];
 }
-if (isset($_SESSION['clientIP'])  && (empty($_SESSION['clientIP']))) {
+if (!isset($_SESSION['clientIP'])  && (empty($_SESSION['clientIP']))) {
     $clientIP = $_SESSION['clientIP'];
     $clientIP = ($_SERVER['REMOTE_ADDR']);
     $_SESSION['clientIP'][]=$clientIP; 
@@ -118,4 +118,9 @@ switch ($uc) {
         break;
 }
 
+
+
+
+
 include_once("./App/vue/template.php");
+

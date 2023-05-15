@@ -31,7 +31,7 @@
                 </div>
                 <div>
                     <label for="pseudo" class="label_connexion">Pseudo *</label>
-                    <input type="text" name="pseudo" id="pseudo" class="input_connexion" placeholder="exemple@" required>
+                    <input type="text" name="pseudo" id="pseudo" class="input_connexion" placeholder="exemple" required>
                 </div>
                 <div>
                     <label for="psw" class="label_connexion">Mot de passe *</label>

@@ -6,7 +6,6 @@
     include './App/vue/common/recherche_couleur.php';
     ?>
     <?php
-
     if ($lesArticles) {
     ?>
         <div id="container_all_article">
@@ -22,15 +21,12 @@
                 $couleur = $unArticle['couleur'];
                 $unite = $unArticle['nom_unite'];
                 $taille = $unArticle['taille'];
-
-
             ?>
                 <div class="container_article">
                     <img class="image_article" src="./public/assets/img/<?= $image ?>" alt="Image de <?= $description ?>">
                     <div class="description_article">
                         <p><?= $nom_fleur . " " . $couleur ?></p>
                         <p><?= $nombre . " " . $unite . " " . $taille  ?></p>
-
                         <div class="prix_panier">
                             <p><?= $prix ?> Euros</p>
                             <a href="index.php?page=v_accueil&idArticle=<?php echo $idArticle ?>&categorie=Accueil&action=ajouterAuPanier">
